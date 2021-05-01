@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "A:\\graduationProjectITI\\V3\\ITI_GP\\Souqly-API\\Souqly-API.csproj": {}
+    "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\Souqly-API.csproj": {}
   },
   "projects": {
-    "A:\\graduationProjectITI\\V3\\ITI_GP\\Souqly-API\\Souqly-API.csproj": {
+    "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\Souqly-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "A:\\graduationProjectITI\\V3\\ITI_GP\\Souqly-API\\Souqly-API.csproj",
+        "projectUniqueName": "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\Souqly-API.csproj",
         "projectName": "Souqly-API",
-        "projectPath": "A:\\graduationProjectITI\\V3\\ITI_GP\\Souqly-API\\Souqly-API.csproj",
+        "projectPath": "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\Souqly-API.csproj",
         "packagesPath": "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\",
-        "outputPath": "A:\\graduationProjectITI\\V3\\ITI_GP\\Souqly-API\\obj\\",
+        "outputPath": "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

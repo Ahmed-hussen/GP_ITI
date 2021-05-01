@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "au8XP+2yY11YH+Cn6OJrorfp+Vs8fysLPsmbOa8VtGSRem+X9LZH1aIliCBkPKEaIYD62UILY5POaoiK4TLPyQ==",
+  "dgSpecHash": "O7dwL2rGk/8C0YQzAhTwjDkQ+yE5ZRq/zkpPGMtCbPLvLt4kfQVteSpNZ0VRSiA9UzWxz1B8zJbzf2XckILmMQ==",
   "success": true,
-  "projectFilePath": "A:\\graduationProjectITI\\V3\\ITI_GP\\Souqly-API\\Souqly-API.csproj",
+  "projectFilePath": "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\Souqly-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

@@ -17,5 +17,27 @@ namespace Souqly_API.Services
           var user=await _context.Users.FirstOrDefaultAsync(u=>u.Id==id);
             return user;
         }
+
+
+         public void Add<T>(T entity) where T : class
+        {
+            _context.Add(entity);
+        }
+ 
+        public void Delete<T>(T entity) where T : class
+        {
+           _context.Remove(entity);
+        }
+
+          public  async Task<bool> SaveAll()
+        {
+            return await _context.SaveChangesAsync()>0;
+        }
+
+        public async Task<bool> MarketIsExist(int id)
+        {
+            if( await  _context.Carts.AnyAsync(i=>i.MarkitingId==id) ) return false;
+            return true;
+        }
     }
 }

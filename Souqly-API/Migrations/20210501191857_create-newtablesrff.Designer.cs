@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souqly_API.Services;
 
 namespace Souqly_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210501191857_create-newtablesrff")]
+    partial class createnewtablesrff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,6 +195,12 @@ namespace Souqly_API.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("MarkitingId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("NewPrice")
+                        .HasColumnType("real");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -409,6 +417,28 @@ namespace Souqly_API.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Souqly_API.Models.ProductCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductCart");
+                });
+
             modelBuilder.Entity("Souqly_API.Models.ProductImage", b =>
                 {
                     b.Property<int>("Id")
@@ -419,39 +449,6 @@ namespace Souqly_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductImages");
-                });
-
-            modelBuilder.Entity("Souqly_API.Models.ProductOptionCart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<float>("NewPrice")
-                        .HasColumnType("real");
-
-                    b.Property<int>("OptionId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("OptionId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductOptionCart");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.Shipping", b =>
@@ -732,27 +729,23 @@ namespace Souqly_API.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Souqly_API.Models.ProductOptionCart", b =>
+            modelBuilder.Entity("Souqly_API.Models.ProductCart", b =>
                 {
                     b.HasOne("Souqly_API.Models.Cart", "Cart")
-                        .WithMany("ProductOptionCart")
+                        .WithMany("ProductCart")
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Souqly_API.Models.Option", "Option")
-                        .WithMany()
-                        .HasForeignKey("OptionId")
+                    b.HasOne("Souqly_API.Models.Product", "Product")
+                        .WithMany("ProductCarts")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Souqly_API.Models.Product", null)
-                        .WithMany("ProductCarts")
-                        .HasForeignKey("ProductId");
-
                     b.Navigation("Cart");
 
-                    b.Navigation("Option");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.UserRole", b =>
@@ -777,7 +770,7 @@ namespace Souqly_API.Migrations
 
             modelBuilder.Entity("Souqly_API.Models.Cart", b =>
                 {
-                    b.Navigation("ProductOptionCart");
+                    b.Navigation("ProductCart");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.Category", b =>

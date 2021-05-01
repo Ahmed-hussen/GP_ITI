@@ -23,7 +23,7 @@ namespace Souqly_API.Models
         public ICollection<Image> Images { get; set; }
 
         // Many To Many Realation
-        public List<ProductCart> ProductCarts { get; set; }
+        public List<ProductOptionCart> ProductCarts { get; set; }
         public virtual ICollection<MarketingProduct> MarketingProducts { get; set; }
 
 
