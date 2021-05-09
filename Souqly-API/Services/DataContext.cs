@@ -13,6 +13,8 @@ namespace Souqly_API.Services
 
     
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<Option> Option { get; set; }
         public DbSet<Image> Images4 { get; set; }
         public DbSet<MarketingProduct> MarketingProducts { get; set; }
         public DbSet<Bill> Bills { get; set; }
@@ -22,6 +24,8 @@ namespace Souqly_API.Services
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Shipping> Shippings { get; set; }
+
+        public DbSet<ProductOptionCart> ProductOptionCart { get; set; }
 
 
 

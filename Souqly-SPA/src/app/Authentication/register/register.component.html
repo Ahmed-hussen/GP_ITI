@@ -66,10 +66,11 @@
             </div>
             <div class="group-input">
               <label for="pass">الرقم السري *</label>
-              <input formControlName="password" name="password" type="password">
+
+            <input formControlName="password" name="password" type="password">
               <div style="color: crimson;"
                 *ngIf="this.registerForm.get('password').touched && this.registerForm.get('password').hasError('required')">
-                هذا مطلوي</div>
+              هذا مطلوب</div>
             </div>
 
             <button type="submit" class="site-btn register-btn">تسجيل</button>

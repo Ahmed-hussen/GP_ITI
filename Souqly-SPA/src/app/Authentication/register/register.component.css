@@ -82,3 +82,12 @@
   font-family: FontAwesome;
   color: yellow;
 }
+
+
+input.ng-valid.ng-touched{
+  border: 3px solid #007e90;
+}
+
+input.ng-invalid.ng-touched{
+  border: 3px solid red;
+}

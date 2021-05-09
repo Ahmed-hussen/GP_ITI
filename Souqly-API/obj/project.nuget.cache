@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "O7dwL2rGk/8C0YQzAhTwjDkQ+yE5ZRq/zkpPGMtCbPLvLt4kfQVteSpNZ0VRSiA9UzWxz1B8zJbzf2XckILmMQ==",
+  "dgSpecHash": "RXrWBZpJ5uFNpCjZvw2uMvxk6M846kWJ3AUpB9Cvb8NF30suUgM2bw3EmXtQF/vbY8GkaRBdFuBcKoarRp2lFg==",
   "success": true,
-  "projectFilePath": "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\Souqly-API.csproj",
+  "projectFilePath": "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
@@ -25,6 +25,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.identity\\2.2.0\\microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.5\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.5.nupkg.sha512",
+    "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.5\\microsoft.aspnetcore.jsonpatch.5.0.5.nupkg.sha512",
+    "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\5.0.5\\microsoft.aspnetcore.mvc.newtonsoftjson.5.0.5.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
@@ -64,6 +66,8 @@
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",

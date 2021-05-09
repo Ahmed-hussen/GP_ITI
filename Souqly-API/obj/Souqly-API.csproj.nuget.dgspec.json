@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\Souqly-API.csproj": {}
+    "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj": {}
   },
   "projects": {
-    "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\Souqly-API.csproj": {
+    "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\Souqly-API.csproj",
+        "projectUniqueName": "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
         "projectName": "Souqly-API",
-        "projectPath": "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\Souqly-API.csproj",
+        "projectPath": "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
         "packagesPath": "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\",
-        "outputPath": "A:\\graduationProjectITI\\ITI_GP-Souqly--master\\Souqly-API\\obj\\",
+        "outputPath": "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -62,6 +62,10 @@
               "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[5.0.5, )"
             },

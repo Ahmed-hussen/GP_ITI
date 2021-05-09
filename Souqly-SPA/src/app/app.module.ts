@@ -14,6 +14,8 @@ import { ProductListComponent } from './ManageProduct/product-list/product-list.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HasRoleDirective } from '_directives/has-role.directive';
+import {PasswordModule} from 'primeng/password';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -36,6 +38,9 @@ export function tokenGetter() {
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    PasswordModule,
+    BrowserModule,
+    BrowserAnimationsModule,
 
     JwtModule.forRoot({
       config: {

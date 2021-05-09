@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souqly_API.Services;
 
 namespace Souqly_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210505143959_create-new_table1")]
+    partial class createnew_table1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,9 +197,12 @@ namespace Souqly_API.Migrations
                     b.Property<int>("MarketingId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MarkitingId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("MarketingId");
+                    b.HasIndex("MarkitingId");
 
                     b.ToTable("Carts");
                 });
@@ -624,13 +629,11 @@ namespace Souqly_API.Migrations
 
             modelBuilder.Entity("Souqly_API.Models.Cart", b =>
                 {
-                    b.HasOne("Souqly_API.Models.User", "Marketing")
+                    b.HasOne("Souqly_API.Models.User", "Markiting")
                         .WithMany()
-                        .HasForeignKey("MarketingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MarkitingId");
 
-                    b.Navigation("Marketing");
+                    b.Navigation("Markiting");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.Image", b =>
@@ -744,7 +747,7 @@ namespace Souqly_API.Migrations
                         .IsRequired();
 
                     b.HasOne("Souqly_API.Models.Option", "Option")
-                        .WithMany("ProductOptionCart")
+                        .WithMany()
                         .HasForeignKey("OptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -786,11 +789,6 @@ namespace Souqly_API.Migrations
             modelBuilder.Entity("Souqly_API.Models.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Souqly_API.Models.Option", b =>
-                {
-                    b.Navigation("ProductOptionCart");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.Order", b =>

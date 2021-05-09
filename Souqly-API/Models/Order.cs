@@ -18,6 +18,7 @@ namespace Souqly_API.Models
         public OrderDetail OrderDetails { get; set; }
       
         // Client Info
+         public string ClientName { get; set; }
         public int Phone { get; set; }
         public string Address { get; set; }
  

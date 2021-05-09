@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souqly_API.Services;
 
 namespace Souqly_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210505144423_create-new_table2")]
+    partial class createnew_table2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -744,7 +746,7 @@ namespace Souqly_API.Migrations
                         .IsRequired();
 
                     b.HasOne("Souqly_API.Models.Option", "Option")
-                        .WithMany("ProductOptionCart")
+                        .WithMany()
                         .HasForeignKey("OptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -786,11 +788,6 @@ namespace Souqly_API.Migrations
             modelBuilder.Entity("Souqly_API.Models.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Souqly_API.Models.Option", b =>
-                {
-                    b.Navigation("ProductOptionCart");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.Order", b =>
