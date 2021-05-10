@@ -106,6 +106,24 @@ namespace Souqly_API.Services
                     }
 
             return  Total;
+
         }
+
+        public async Task<float> GetShippingPrice(int shippingId)
+        {
+
+
+          var Shipping=await _context.Shippings.FirstOrDefaultAsync(i=>i.Id==shippingId);
+
+
+          return Shipping.price;
+        }
+
+
+
+
+
+
+
     }
 }

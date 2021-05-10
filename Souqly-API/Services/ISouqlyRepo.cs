@@ -21,5 +21,6 @@ namespace Souqly_API.Services
          Task<int> GetStock(int optionId);
         Task<ProductOptionCart> GetCart(int id);
         Task<float> GetProductPrice(int cartID);
+        Task<float> GetShippingPrice(int shippingId);
     }
 }

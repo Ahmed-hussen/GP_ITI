@@ -58,37 +58,46 @@ namespace Souqly_API.Controllers
             ProductOptionCart ProOptionCart;
              if (await _repo.IsOptionExist(model.OptionId))
             {
-            var OldProOptionCart = _mapper.Map<ProductOptionCart>(model);
+
             var DBOption=  await _repo.GetOption(model.OptionId , model.CartId);
-           // var OldProOptionCart = _mapper.Map<ProductOptionCart>(model);
+
             model.Quantity=DBOption.Quantity + model.Quantity;
             model.NewPrice=DBOption.NewPrice + model.NewPrice;
 
-             ProOptionCart = _mapper.Map<ProductOptionCart>(model);
-            ProOptionCart.Id=DBOption.Id;
-            OldProOptionCart.Id=DBOption.Id;
+            ProOptionCart= _mapper.Map(model,DBOption);
+            int Stock= await _repo.GetStock(ProOptionCart.OptionId);
+            if(ProOptionCart.Quantity<=Stock){
 
-             _repo.Delete(ProOptionCart);
+             if(await _repo.SaveAll())return NoContent();
+
+
+              }
+          else
+          {
+            return NotFound("عفوا الكمية المطلوبة غير متاحة");
+          }
 
 
             }
             else{
 
-             ProOptionCart = _mapper.Map<ProductOptionCart>(model);
+            ProOptionCart = _mapper.Map<ProductOptionCart>(model);
 
-        //    _repo.Add(ProOptionCart);
+           int Stock= await _repo.GetStock(ProOptionCart.OptionId);
+           if(ProOptionCart.Quantity<=Stock){
+            _repo.Add(ProOptionCart);
+            await _repo.SaveAll();
+               return Ok();
+               }
+           else
+           {
+             return NotFound("عفوا الكمية المطلوبة غير متاحة");
+           }
 
             }
-          int Stock= await _repo.GetStock(ProOptionCart.OptionId);
-          if(ProOptionCart.Quantity<=Stock){
-           _repo.Add(ProOptionCart);
-           await _repo.SaveAll();
-              return Ok();
-              }
-          else
-          {
-            return Ok("عفوا الكمية المطلوبة غير متاحة");
-          }
+
+            return Ok();
+
         }
 
         [Route("GetCart/{CartID}")]
