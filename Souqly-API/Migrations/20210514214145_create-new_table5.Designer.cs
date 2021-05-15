@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Souqly_API.Services;
 
 namespace Souqly_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210514214145_create-new_table5")]
+    partial class createnew_table5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,6 +327,9 @@ namespace Souqly_API.Migrations
                     b.Property<DateTime>("ShippedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ShipperId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ShippingId")
                         .HasColumnType("int");
 
@@ -335,6 +340,8 @@ namespace Souqly_API.Migrations
 
                     b.HasIndex("BillId")
                         .IsUnique();
+
+                    b.HasIndex("ShipperId");
 
                     b.HasIndex("ShippingId");
 
@@ -357,7 +364,10 @@ namespace Souqly_API.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<float>("TotalOptionPrice")
+                    b.Property<int>("StockIn")
+                        .HasColumnType("int");
+
+                    b.Property<float>("price")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
@@ -680,6 +690,12 @@ namespace Souqly_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Souqly_API.Models.User", "Shipper")
+                        .WithMany("Orders")
+                        .HasForeignKey("ShipperId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Souqly_API.Models.Shipping", "Shipping")
                         .WithMany("Orders")
                         .HasForeignKey("ShippingId")
@@ -687,6 +703,8 @@ namespace Souqly_API.Migrations
                         .IsRequired();
 
                     b.Navigation("Bill");
+
+                    b.Navigation("Shipper");
 
                     b.Navigation("Shipping");
                 });
@@ -807,6 +825,8 @@ namespace Souqly_API.Migrations
             modelBuilder.Entity("Souqly_API.Models.User", b =>
                 {
                     b.Navigation("MarketingProducts");
+
+                    b.Navigation("Orders");
 
                     b.Navigation("Products");
 

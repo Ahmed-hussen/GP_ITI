@@ -83,10 +83,10 @@ namespace Souqly_API
 
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
             services.AddControllersWithViews().AddNewtonsoftJson(options =>options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-       
+
             services.AddScoped<IAuthRepo,AuthRepo>();
             services.AddScoped<ISouqlyRepo,SouqlyRepo>();
-        
+
               // CORS Policy
              services.AddCors();
 
@@ -97,7 +97,7 @@ namespace Souqly_API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Souqly_API", Version = "v1" });
             });
-           
+
             // Mapper.Reset();
         }
 

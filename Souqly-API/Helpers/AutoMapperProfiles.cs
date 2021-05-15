@@ -13,7 +13,12 @@ namespace Souqly_API.Helpers
             CreateMap<User,UserForDetails>();// Get Data
             CreateMap<AddToCartDto,ProductOptionCart>();// Create
             CreateMap<ProductOptionCart,GetFromCartDto>();// Get Data
-            
+
+            CreateMap<AddToCartDto,Order>();// Create
+            CreateMap<AddToCartDto,Shipping>();// Create
+            CreateMap<AddToCartDto,Bill>();// Create
+            CreateMap<AddToCartDto,OrderDetail>();// Create
+
 
         }
     }

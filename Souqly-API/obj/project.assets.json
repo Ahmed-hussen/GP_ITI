@@ -6610,11 +6610,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "a:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
+      "projectUniqueName": "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
       "projectName": "Souqly-API",
-      "projectPath": "a:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
+      "projectPath": "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
       "packagesPath": "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\",
-      "outputPath": "a:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\obj\\",
+      "outputPath": "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -6707,7 +6707,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

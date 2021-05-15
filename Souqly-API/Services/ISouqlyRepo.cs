@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Souqly_API.Models;
 
@@ -22,5 +23,8 @@ namespace Souqly_API.Services
         Task<ProductOptionCart> GetCart(int id);
         Task<float> GetProductPrice(int cartID);
         Task<float> GetShippingPrice(int shippingId);
+        Task<List<int>>  GetOptionsIds(int CartId);
+        Task <ProductOptionCart> GetProductOption(int optionId , int cartId);
+        
     }
 }
