@@ -1,5 +1,6 @@
 using AutoMapper;
 using Souqly_API.Dtos.Carts;
+using Souqly_API.Dtos.Orders;
 using Souqly_API.Dtos.User;
 using Souqly_API.Models;
 
@@ -14,10 +15,10 @@ namespace Souqly_API.Helpers
             CreateMap<AddToCartDto,ProductOptionCart>();// Create
             CreateMap<ProductOptionCart,GetFromCartDto>();// Get Data
 
-            CreateMap<AddToCartDto,Order>();// Create
-            CreateMap<AddToCartDto,Shipping>();// Create
-            CreateMap<AddToCartDto,Bill>();// Create
-            CreateMap<AddToCartDto,OrderDetail>();// Create
+            CreateMap<AddOrderDto,Order>();// Create
+            CreateMap<AddOrderDto,Shipping>();// Create
+            CreateMap<AddOrderDto,Bill>();// Create
+            CreateMap<AddOrderDto,OrderDetail>();// Create
 
 
         }

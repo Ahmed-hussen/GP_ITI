@@ -14,17 +14,17 @@ namespace Souqly_API.Controllers
 
     [Route("[Controller]")]
     [ApiController]
-    public class OrderControler : ControllerBase
+    public class OrderController : ControllerBase
     {
         private readonly ISouqlyRepo _repo;
         private readonly IMapper _mapper;
 
-      public OrderControler(ISouqlyRepo repo, IMapper mapper)
-        {
+       public OrderController(ISouqlyRepo repo, IMapper mapper)
+       {
             _repo = repo;
             _mapper = mapper;
+       }
 
-        }
 
         [HttpPost("MakeOrder")]
         public async Task<IActionResult> MakeOrder(AddOrderDto model)
@@ -38,6 +38,9 @@ namespace Souqly_API.Controllers
 
         _repo.Add(bill);
         await _repo.SaveAll();
+
+        // model.BillId=bill.Id;
+        // var order=  _mapper.Map<Order>(model);
         order.BillId=bill.Id;
 
         _repo.Add(order);
@@ -64,7 +67,7 @@ namespace Souqly_API.Controllers
           _repo.Add(orderDetail);
           await _repo.SaveAll();
           _repo.Delete(Cart);
-          await _repo.SaveAll();
+        //  await _repo.SaveAll();
         }
 
 
