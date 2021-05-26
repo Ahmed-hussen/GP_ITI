@@ -15,7 +15,7 @@ export class AuthServicesService {
 
   jwtHelper = new JwtHelperService();// علشان يعرف هل التوكين ده صح ولا لا
   decodedToken: any; // لفك تشفير التوكين علشان اخد المعلومات الخاصه باليوزر
-  currentUser: User;
+  static currentUser: User;
 
   login(model: any) {
     return this.http.post(this.baseURL + 'login', model).pipe( // use pip becouse api return values(token,user)
@@ -28,8 +28,8 @@ export class AuthServicesService {
           // لفك تشفير التوكين علشان اخد المعلومات الخاصه باليوزر
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
           // save user info from api in variable
-          this.currentUser = user.user;
-
+          //this.currentUser = user.user;
+          AuthServicesService.currentUser = user.user;
         }
       }))
   }

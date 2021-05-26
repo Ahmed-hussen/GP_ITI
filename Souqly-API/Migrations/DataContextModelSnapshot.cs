@@ -362,8 +362,7 @@ namespace Souqly_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -395,7 +394,7 @@ namespace Souqly_API.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.Property<float>("Weight")
@@ -405,7 +404,7 @@ namespace Souqly_API.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("Products");
                 });
@@ -694,8 +693,8 @@ namespace Souqly_API.Migrations
             modelBuilder.Entity("Souqly_API.Models.OrderDetail", b =>
                 {
                     b.HasOne("Souqly_API.Models.Order", "Order")
-                        .WithOne("OrderDetails")
-                        .HasForeignKey("Souqly_API.Models.OrderDetail", "OrderId")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -718,11 +717,15 @@ namespace Souqly_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Souqly_API.Models.User", null)
+                    b.HasOne("Souqly_API.Models.User", "Supplier")
                         .WithMany("Products")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.ProductOptionCart", b =>
