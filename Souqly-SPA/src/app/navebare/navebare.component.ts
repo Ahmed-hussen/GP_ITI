@@ -1,5 +1,5 @@
 import { AuthServicesService } from './../../../_services/AuthServices.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,10 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./navebare.component.css']
 })
 export class NavebareComponent implements OnInit {
-
-  constructor(public authService: AuthServicesService, private router: Router) { }
+  isSupplier:boolean;
+  constructor(public authService: AuthServicesService, private router: Router) { 
+  }
   ngOnInit(): void {
-
+    this.isSupplier = (this.authService.decodedToken.role == "Supplier");
   }
   loggedIn() {
     return this.authService.loggedIn();

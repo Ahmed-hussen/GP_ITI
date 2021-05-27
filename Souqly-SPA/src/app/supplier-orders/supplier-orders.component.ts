@@ -16,36 +16,11 @@ export class SupplierOrdersComponent implements OnInit {
   constructor(private supplierService:SupplierOrderService) { }
 
   ngOnInit(): void {
-    alert("hii");
 
-    this.supplierService.getOrders().subscribe(d =>{
-      console.log(d);
+    this.supplierService.getOrders().subscribe(d => {
       this.orders = d;
-      
     });
-    // this.orders = [
-    //   {
-    //     "OrderId": 4,
-    //     "OrderDate":"22/4/1998",
-    //     "Quantity": 4,
-    //     "TotalOptionPrice": 40,
-    //     "Status": "shipped"
-    //   },
-    //   {
-    //     "OrderId": 4,
-    //     "OrderDate":"22/4/1998",
-    //     "Quantity": 4,
-    //     "TotalOptionPrice": 40,
-    //     "Status": "shipped"
-    //   },
-    //   {
-    //     "OrderId": 4,
-    //     "OrderDate":"22/4/1998",
-    //     "Quantity": 4,
-    //     "TotalOptionPrice": 40,
-    //     "Status": "shipped"
-    //   }
-    // ]
+
     this.cols = [
       { field: 'orderId', header: 'Order Id' },
       { field: 'orderDate', header: 'Order Date' },

@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 using Souqly_API.Services;
 using AutoMapper;
 using Souqly_API.Dtos.Supplier;
-using Microsoft.AspNetCore.Authorization;
 using Souqly_API.Models;
 
 namespace Souqly_API.Controllers
 {
-    [AllowAnonymous]
     [Route("[controller]")]
     [ApiController]
     public class SupplierController : ControllerBase

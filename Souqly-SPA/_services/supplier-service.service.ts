@@ -14,8 +14,7 @@ export class SupplierOrderService{
   }
   
   getOrders(){
-    alert("from service");
-    //this.SupplierId = this.authService.currentUser.id;
+    this.SupplierId = this.authService.decodedToken.nameid;
     return this.http.get<SupplierOrder[]>(this.url+this.SupplierId);
   }
 

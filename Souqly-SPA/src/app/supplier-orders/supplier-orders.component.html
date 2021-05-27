@@ -1,4 +1,4 @@
-<div class="m-5" *ngIf="orders != null">
+<div class="m-5" *ngIf="orders.length != 0">
     <p-table [value]="orders">
         <ng-template pTemplate="header">
             <tr>
@@ -17,6 +17,6 @@
     </p-table>
 </div>
 
-<div *ngIf="orders == null" class="p-5 d-flex align-items-center justify-content-center">
+<div *ngIf="orders.length == 0" class="p-5 d-flex align-items-center justify-content-center">
     <p class="p-5 m-5" style="font-size: xx-large; font-weight: bold;">there are no orders yet</p>
 </div>
