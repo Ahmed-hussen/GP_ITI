@@ -16,7 +16,8 @@ namespace Souqly_API.Helpers
             CreateMap<AddToCartDto,ProductOptionCart>();// Create
             CreateMap<ProductOptionCart,GetFromCartDto>();// Get Data
 
-            CreateMap<User,UserForManage>();// Get Data
+            CreateMap<User,UserForManage>();// Get Data   
+            CreateMap<UserForManage, User>();// Create
 
             CreateMap<AddOrderDto,Order>();// Create
             CreateMap<AddOrderDto,Shipping>();// Create

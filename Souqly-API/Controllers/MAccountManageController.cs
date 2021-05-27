@@ -11,36 +11,42 @@ using System.Threading.Tasks;
 
 namespace Souqly_API.Controllers
 {
-        [Route("api/[controller]/[action]")]
-        [ApiController]
-        public class MAccountManageController : ControllerBase
+    [Route("[controller]/[action]")]
+    [ApiController]
+    public class MAccountManageController : ControllerBase
+    {
+        private IMapper _mapper;
+        private ISouqlyRepo _repo;
+        private UserForManage userToReturn;
+
+        public MAccountManageController(ISouqlyRepo repo, IMapper mapper)
         {
-            private IMapper _mapper;
-            private ISouqlyRepo _repo;
-
-            public MAccountManageController(ISouqlyRepo repo, IMapper mapper)
-            {
-                _mapper = mapper;
-                _repo = repo;
-            }
-
-            [HttpGet]
-            public async Task<IActionResult> GetData()
-            {
-                var CurrentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); // get the user id 
-                var CurrentUser = await _repo.GetUser(CurrentUserId);
-                var userToReturn = _mapper.Map<UserForManage>(CurrentUser);
-                return Ok(userToReturn);
-            }
-
-            //[HttpPut]
-            //public async Task<IActionResult> UpdateData( UserForManage Data)
-            //{
-            //   // var User = await _repo.GetUser(id); // get the user 
-            //    var UserToUpdated =  _mapper.Map<UserForManage>(Data);
-            //    _repo.Update(UserToUpdated);
-            //    return Ok(UserToUpdated);
-            //}
+            _mapper = mapper;
+            _repo = repo;
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetData()  //action --->  repo. function
+        {
+            var CurrentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); // get the current user id 
+            var CurrentUser = await _repo.GetUser(CurrentUserId);  //Getuser in repo
+            userToReturn = _mapper.Map<UserForManage>(CurrentUser);  //get -- mapping 
+            return Ok(userToReturn);
+        }
+
+        // [HttpPost]
+        // public async Task<IActionResult> UpdateAccountData(UserForManage model)
+        // {
+            
+        //     var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); // get the user id 
+        //     var oldUser = await _repo.GetUser(currentUserId);
+        //     //var newUser = _mapper.Map(model, oldUser);
+        //     userToReturn = _mapper.Map<User>(oldUser);
+        //     _repo.Update(newUser);
+        //     await _repo.SaveAll();
+        //     return Ok(newUser);
+        // }
     }
+}
 

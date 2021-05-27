@@ -8,13 +8,13 @@ namespace Souqly_API.Services
 {
     public class SouqlyRepo : ISouqlyRepo
     {
-        private readonly DataContext _context;
+        private readonly DataContext _context; 
 
         public SouqlyRepo(DataContext context)
         {
             _context = context;
         }
-        public async Task<User> GetUser(int id)
+        public async Task<User> GetUser(int id)  //souqlyrepo ---> context. (modelname)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
             return user;
