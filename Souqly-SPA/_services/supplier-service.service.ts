@@ -8,28 +8,15 @@ import { AuthServicesService } from './AuthServices.service';
   providedIn: 'root'
 })
 export class SupplierOrderService{
-
   url:string = environment.ApiUrl + 'Supplier/';
   SupplierId:number;
-  constructor(private http: HttpClient){   
+  constructor(private http: HttpClient, private authService:AuthServicesService){   
   }
   
   getOrders(){
-    this.SupplierId = AuthServicesService.currentUser.id;
-    //return this.departments;
-    return this.http.get<SupplierOrder[]>(this.url+"GetOrders/"+this.SupplierId);
+    alert("from service");
+    //this.SupplierId = this.authService.currentUser.id;
+    return this.http.get<SupplierOrder[]>(this.url+this.SupplierId);
   }
 
-//   addDepartment(dept:Department){
-//     //this.departments.push(dept);
-//     return this.http.post(this.url, dept);
-//   }
-
-//   deleteDepartment(dept:Department){
-//     return this.http.delete(this.url+"/"+dept.Id);
-//   }
-
-//   updateDepartment(dept:Department){
-//     return this.http.put(this.url+"/"+dept.Id, dept);
-//   }
 }

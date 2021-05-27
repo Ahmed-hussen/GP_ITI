@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 using Souqly_API.Services;
 using AutoMapper;
 using Souqly_API.Dtos.Supplier;
+using Microsoft.AspNetCore.Authorization;
+using Souqly_API.Models;
 
 namespace Souqly_API.Controllers
 {
+    [AllowAnonymous]
     [Route("[controller]")]
     [ApiController]
     public class SupplierController : ControllerBase
     {
-        //[Route("getOrders}")]
-        /*
+     
+        
         private readonly ISupplierRepo _repo;
         private readonly IMapper _mapper;
 
@@ -26,15 +29,21 @@ namespace Souqly_API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetOrders(int SupplierId)
+        public async Task<IActionResult> GetOrders(int id)
         {
 
-            var orderDetails = await _repo.GetOrders(SupplierId);
+            List<OrderDetail> orderDetails = await _repo.GetOrders(id);
 
-            var supplierOrders = _mapper.Map<SupplierOrderDto>(orderDetails);
+            List<SupplierOrderDto> supplierOrders = _mapper.Map<List<SupplierOrderDto>>(orderDetails);
+            for (int i = 0; i < orderDetails.Count; i++)
+            {
+                supplierOrders[i].ProductName = orderDetails[i].Product.ProductName;
+                supplierOrders[i].Status = orderDetails[i].Order.Status;
+                supplierOrders[i].OrderDate = orderDetails[i].Order.OrderDate;
+            }
             return Ok(supplierOrders);
 
         }
-        */
+        
     }
 }

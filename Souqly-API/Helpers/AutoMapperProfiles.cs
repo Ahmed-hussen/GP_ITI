@@ -26,6 +26,7 @@ namespace Souqly_API.Helpers
 
             CreateMap<Order, SupplierOrderDto>(); //get
             CreateMap<OrderDetail, SupplierOrderDto>(); //get
+            CreateMap<Product, SupplierOrderDto>();
 
         }
     }

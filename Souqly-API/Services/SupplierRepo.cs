@@ -10,19 +10,19 @@ namespace Souqly_API.Services
 {
     public class SupplierRepo : ISupplierRepo
     {
-        /*
+        
         private readonly DataContext _context;
 
-        SupplierRepo(DataContext context)
+        public SupplierRepo(DataContext context)
         {
             _context = context;
         }
 
         public async Task<List<OrderDetail>> GetOrders(long supplierId)
         {
-            var orders = await _context.OrderDetails.Where(o => o.Product.SupplierId == supplierId).ToListAsync();
+            var orders = await _context.OrderDetails.Where(o => o.Product.UserId == supplierId).Include(s => s.Order).Include(s => s.Product).ToListAsync();
             return orders;
         }
-        */
+        
     }
 }
