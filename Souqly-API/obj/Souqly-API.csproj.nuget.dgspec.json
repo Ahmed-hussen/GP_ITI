@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Graduation Project ITI\\GP\\Souqly-API\\Souqly-API.csproj": {}
+    "E:\\GP New\\GP_ITI\\Souqly-API\\Souqly-API.csproj": {}
   },
   "projects": {
-    "E:\\Graduation Project ITI\\GP\\Souqly-API\\Souqly-API.csproj": {
+    "E:\\GP New\\GP_ITI\\Souqly-API\\Souqly-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Graduation Project ITI\\GP\\Souqly-API\\Souqly-API.csproj",
+        "projectUniqueName": "E:\\GP New\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
         "projectName": "Souqly-API",
-        "projectPath": "E:\\Graduation Project ITI\\GP\\Souqly-API\\Souqly-API.csproj",
+        "projectPath": "E:\\GP New\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
         "packagesPath": "C:\\Users\\ITI\\.nuget\\packages\\",
-        "outputPath": "E:\\Graduation Project ITI\\GP\\Souqly-API\\obj\\",
+        "outputPath": "E:\\GP New\\GP_ITI\\Souqly-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

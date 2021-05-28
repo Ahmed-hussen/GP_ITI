@@ -35,18 +35,18 @@ namespace Souqly_API.Controllers
             return Ok(userToReturn);
         }
 
-        // [HttpPost]
-        // public async Task<IActionResult> UpdateAccountData(UserForManage model)
-        // {
-            
-        //     var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); // get the user id 
-        //     var oldUser = await _repo.GetUser(currentUserId);
-        //     //var newUser = _mapper.Map(model, oldUser);
-        //     userToReturn = _mapper.Map<User>(oldUser);
-        //     _repo.Update(newUser);
-        //     await _repo.SaveAll();
-        //     return Ok(newUser);
-        // }
+        [HttpPut]
+        public async Task<IActionResult> UpdateAccountData(UserForManage model)
+        { 
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); // get the user id 
+            var oldUser = await _repo.GetUser(currentUserId);
+            //model.Id = currentUserId; if we need in angular
+            var newUser = _mapper.Map(model, oldUser);
+            newUser.NormalizedUserName = model.UserName.ToUpper();
+            await _repo.SaveAll();
+            return Ok(model);
+        }
+
     }
 }
 
