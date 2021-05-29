@@ -46,7 +46,7 @@ namespace Souqly_API.Controllers
             }
             else{
 
-            Cart cart = new Cart()
+                Cart cart = new Cart()  // create new cart for marketing id 
                 {
                     MarketingId = Int32.Parse(marketingId)
                 };

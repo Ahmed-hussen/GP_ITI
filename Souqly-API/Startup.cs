@@ -119,6 +119,7 @@ namespace Souqly_API
 
             app.UseAuthentication();
             app.UseAuthorization();
+          
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
