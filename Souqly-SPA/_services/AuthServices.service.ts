@@ -17,7 +17,7 @@ export class AuthServicesService {
   decodedToken: any; // لفك تشفير التوكين علشان اخد المعلومات الخاصه باليوزر
   currentUser: User;
 
-  login(model: any) {
+  login(model: any){
     return this.http.post(this.baseURL + 'login', model).pipe( // use pip becouse api return values(token,user)
       map((response: any) => {
         const user = response;//all data from Api
@@ -28,8 +28,8 @@ export class AuthServicesService {
           // لفك تشفير التوكين علشان اخد المعلومات الخاصه باليوزر
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
           // save user info from api in variable
+          //this.currentUser = user.user;
           this.currentUser = user.user;
-
         }
       }))
   }
@@ -57,6 +57,7 @@ export class AuthServicesService {
   }
 
   register(user: User) {
+    alert(user);
     return this.http.post(this.baseURL + 'register', user);
   }
 

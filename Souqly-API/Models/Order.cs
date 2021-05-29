@@ -15,7 +15,7 @@ namespace Souqly_API.Models
         public int ShippingId { get; set; }
       //  public User Shipper { get; set; }
       //   public int ShipperId { get; set; }
-        public OrderDetail OrderDetails { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
         public string Status { get; set; }
 
         // Client Info

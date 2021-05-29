@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Controllers",
+    "\\Dtos",
+    "\\Dtos\\Carts",
+    "\\Dtos\\User",
     "\\Models"
   ],
   "SelectedNode": "\\Models\\User.cs",

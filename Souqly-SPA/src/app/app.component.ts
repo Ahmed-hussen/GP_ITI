@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '_models/user';
+import {TableModule} from 'primeng/table';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { User } from '_models/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private auth: AuthServicesService) { }
+  constructor(private auth: AuthServicesService, private authService:AuthServicesService) { }
 
   jwtHelperService = new JwtHelperService();
 
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
     if (token)
       this.auth.decodedToken = this.jwtHelperService.decodeToken(token);
     if (user)
-      this.auth.currentUser = user;
+      this.authService.currentUser = user;
 
   }
 }

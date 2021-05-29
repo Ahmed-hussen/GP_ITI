@@ -83,9 +83,9 @@ namespace Souqly_API
 
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
             services.AddControllersWithViews().AddNewtonsoftJson(options =>options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
             services.AddScoped<IAuthRepo,AuthRepo>();
             services.AddScoped<ISouqlyRepo,SouqlyRepo>();
+            services.AddScoped<ISupplierRepo, SupplierRepo>();
 
               // CORS Policy
              services.AddCors();

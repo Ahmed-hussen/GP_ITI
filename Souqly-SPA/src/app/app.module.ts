@@ -16,6 +16,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { HasRoleDirective } from '_directives/has-role.directive';
 import {PasswordModule} from 'primeng/password';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.component';
+
+import {TableModule} from 'primeng/table';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -30,7 +33,8 @@ export function tokenGetter() {
     RegisterComponent,
     ProductListComponent,
     HomePageComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    SupplierOrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,7 @@ export function tokenGetter() {
     PasswordModule,
     BrowserModule,
     BrowserAnimationsModule,
+    TableModule,
 
     JwtModule.forRoot({
       config: {

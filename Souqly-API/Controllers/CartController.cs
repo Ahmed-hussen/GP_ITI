@@ -22,7 +22,7 @@ namespace Souqly_API.Controllers
             _mapper = mapper;
 
         }
-        [HttpGet("{id}") ]
+        [HttpGet("{id}") ]  
          public async Task<int> GetCartId(int id) //get cartID of the current Marketing
          {
           int cartId = await  _repo.GetCartID(id);
@@ -33,7 +33,7 @@ namespace Souqly_API.Controllers
 
 
 
-        [HttpPost("AddToCart")]
+        [HttpPost("AddToCart")]  
         public async Task<IActionResult> AddToCart(AddToCartDto model)
         {
             var marketingId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
