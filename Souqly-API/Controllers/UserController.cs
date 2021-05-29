@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Souqly_API.Dtos.User;
@@ -10,7 +11,6 @@ namespace Souqly_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
     public class  UsersController : ControllerBase
     {
         private readonly ISouqlyRepo _repo;

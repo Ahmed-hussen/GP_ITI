@@ -1,10 +1,9 @@
 import { User } from './../_models/user';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { throwError } from 'rxjs';
 import { Users } from '_models/users';
 
 @Injectable({
@@ -16,7 +15,6 @@ export class AuthServicesService {
   constructor(private http: HttpClient) { }
   baseURL = environment.ApiUrl + 'Auth/';
   url = environment.ApiUrl +'api/Users/';
- 
  
 
   jwtHelper = new JwtHelperService();// علشان يعرف هل التوكين ده صح ولا لا
@@ -71,7 +69,6 @@ export class AuthServicesService {
   }
   nns:Users;
   edite(st:Users)
-  
   { //console.log(st);
    
     //console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
@@ -86,7 +83,7 @@ export class AuthServicesService {
        
        // console.log(this.currentUser?.userName)
        // console.log(st);
-      // alert(st.userName);
+      // alert(st.userName); 
        //st.id=this.decodedToken.nameid;//to take id of this token
        console.log(st.id);//
        console.log(st.Password);//
@@ -94,7 +91,18 @@ export class AuthServicesService {
        //return this.http.put(this.url,st);
        //return this.http.post<Users>(this.url,st);
        ///////////////////////////////////////////////////////
-       return this.http.post(this.url + 'updateUserData', st);
+
+      
+        var headers_object = new HttpHeaders({
+          'Content-Type': 'application/json',
+           'Authorization': "Bearer "+ window.localStorage.getItem('token')
+        });
+    
+        const httpOptions = {
+          headers: headers_object
+        };
+
+       return this.http.post(this.url + 'updateUserData', st, httpOptions);
 
        //مش بيعمل authorization
        

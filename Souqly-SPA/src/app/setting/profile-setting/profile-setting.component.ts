@@ -11,10 +11,10 @@ import { AuthServicesService } from '_services/AuthServices.service';
 
 export class ProfileSettingComponent implements OnInit {
  
- nstd:Users=new Users(4,"aliaa","","","123456");
+ nstd:Users=new Users(4,"aliaa","","","123456", "Supplier");
   obj:User;
  
-  constructor(private servauth:AuthServicesService) { 
+  constructor(private servauth:AuthServicesService) {  
     
     }
     
@@ -24,9 +24,7 @@ export class ProfileSettingComponent implements OnInit {
   ngOnInit(): void {
     this.nstd.userName=this.servauth.currentUser.userName;
     this.nstd.Email=this.servauth.currentUser.email;
-  //  this.nstd.PhoneNumber=this.servauth.currentUser.PhoneNumber;
-  
-  
+  //  this.nstd.PhoneNumber=this.servauth.currentUser.PhoneNumber; 
     
   }
   edit()
@@ -36,7 +34,7 @@ export class ProfileSettingComponent implements OnInit {
     
    this.servauth.edite(this.nstd).subscribe(d => {
      console.log(d);
-    //this.nstd = d;
+    //this.nstd = d; 
   });
   
   }
