@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from '@auth0/angular-jwt';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavebareComponent } from './navebare/navebare.component';
@@ -19,6 +20,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.component';
 
 import {TableModule} from 'primeng/table';
+import { ProfileSettingComponent } from './setting/profile-setting/profile-setting.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -34,7 +36,8 @@ export function tokenGetter() {
     ProductListComponent,
     HomePageComponent,
     HasRoleDirective,
-    SupplierOrdersComponent
+    SupplierOrdersComponent,
+    ProfileSettingComponent
   ],
   imports: [
     BrowserModule,

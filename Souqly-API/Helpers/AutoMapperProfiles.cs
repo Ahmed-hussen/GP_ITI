@@ -12,6 +12,7 @@ namespace Souqly_API.Helpers
          public AutoMapperProfiles()
         {
             CreateMap<UserForRegister,User>();// Create
+            CreateMap<User, UserForRegister>();// Get 
             CreateMap<User,UserForDetails>();// Get Data
             CreateMap<AddToCartDto,ProductOptionCart>();// Create
  

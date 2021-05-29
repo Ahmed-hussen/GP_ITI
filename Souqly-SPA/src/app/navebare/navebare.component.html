@@ -5,12 +5,12 @@
               <div class="ht-left">
                   <div class="mail-service">
                       <i class=" fa fa-envelope"></i>
-                      Souqly.Market@gmail.com
+                      {{ authService.currentUser?.email || authService.decodedToken?.unique_name | titlecase }}
                   </div>
-                  <div *ngIf="loggedIn()" class="phone-service">
+                  <a *ngIf="loggedIn()" class="phone-service" [routerLink]="['/setting']"> 
                     <i class="fa fa-user" aria-hidden="true"></i>
                       {{ authService.currentUser?.userName || authService.decodedToken?.unique_name | titlecase }}
-                    </div>
+                  </a>
               </div>
               <div class="ht-right">
                   <a *ngIf="!loggedIn()" [routerLink]="['login']" class="login-panel"><i class="fa fa-user"></i>تسجيل دخول</a>
@@ -138,9 +138,8 @@
 
                       <li><a href="#">حسابي</a>
                         <ul class="dropdown">
-                            <li><a href="#">Men's</a></li>
-                            <li><a href="#">Women's</a></li>
-                            <li><a href="#">Kid's</a></li>
+                            <li><a [routerLink]="['/setting']">الاعدادات</a></li>
+                            
                         </ul>
                     </li>
                     <li><a href="./contact.html"> مركز المساعدة </a></li>

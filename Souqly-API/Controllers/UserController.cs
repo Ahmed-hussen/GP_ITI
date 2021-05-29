@@ -31,6 +31,21 @@ namespace Souqly_API.Controllers
             var userToReturn = _mapper.Map<UserForDetails>(user);
             return Ok(userToReturn);
         }
+        //to Create Update for UserRegister 
+        //https://localhost:44309/api/User/updateUserData
+        
+        [HttpPost("updateUserData")]
+        public async Task<IActionResult> updateUserData(UserForRegister model)
+        {
+            var currentuserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);//Get id
+            var oldUser = await _repo.GetUser(currentuserId);
+            var newUser = _mapper.Map(model, oldUser);
+            _repo.Update(newUser);
+           await _repo.SaveAll();
+            return Ok(newUser);
+
+
+        }
 
     }
 }

@@ -1,0 +1,47 @@
+
+
+
+
+    <div class="form-row pm-2 mx-2">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4 " class="mx-3 py-2" >البريد الالكتروني</label>
+        <input type="email" class="form-control"  placeholder="{{nstd.Email}}"  >
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputEmail4" class="mx-3 py-2" >اسم المستخدم</label>
+        <input  type="text" class="form-control" placeholder="{{nstd.userName}}" >
+      </div>
+      <div class="form-group col-md-6" >
+        <label for="inputPassword4">الرقم السري</label>
+        <input  type="number" class="form-control" id="inputPassword4">
+      </div>
+    </div>
+    <div class="form-group" class="mx-3 py-2">
+      <label for="inputAddress">العنوان</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    
+    <div class="form-row" class="mx-3 py-2">
+      <div class="form-group col-md-6">
+        <label for="inputCity">رقم التليفون</label>
+        <input type="text" class="form-control" id="inputCity">
+      </div>
+      <div class="form-row" class="mx-3 py-2">
+        <div class="form-group col-md-6">
+          <label for="inputCity"> الرقم السري</label>
+          <input type="text" class="form-control" id="inputCity" [(ngModel)]="nstd.Password">
+        </div>
+     
+     
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label>
+      </div>
+    </div>
+    <div class="container mx-3 py-2 ">
+    <button type="submit" class="btn btn-dark btn-lg px-2 btn-block border border-warning" (click)="edit()">تعديل الحساب</button>
+</div>
