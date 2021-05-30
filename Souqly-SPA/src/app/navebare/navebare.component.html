@@ -132,20 +132,21 @@
               </div>
               <nav class="nav-menu mobile-menu">
                   <ul>
-                      <li class="active"><a href="./index.html">الرئيسيه</a></li>
+                      <li ><a href="./index.html">الرئيسيه</a></li>
                       <li *hasRole="['Supplier']"><a href="./shop.html">تصفح</a></li>
 
-
+                      <!-- <li routerLinkActive = "active">
+                        <a class="nav-link" routerLink="departments">Departments</a>
+                      </li> -->
                       <li><a href="#">حسابي</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Men's</a></li>
-                            <li><a href="#">Women's</a></li>
-                            <li><a href="#">Kid's</a></li>
+                        <ul class="dropdown" >
+                            <li><a class="nav-link" routerLink="manageaccount">إعدادات الحساب</a></li>
+                            <li><a href="#">تعديل الباسورد</a></li>
                         </ul>
                     </li>
                     <li><a href="./contact.html"> مركز المساعدة </a></li>
                     <!-- testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
-                   
+
                     <li *ngIf="isSupplier"><a [routerLink]="['/myorders']"> الطلبات </a></li>
                   </ul>
               </nav>

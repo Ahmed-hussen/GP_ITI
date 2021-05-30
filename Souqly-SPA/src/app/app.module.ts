@@ -19,6 +19,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.component';
 
 import {TableModule} from 'primeng/table';
+import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -34,7 +35,8 @@ export function tokenGetter() {
     ProductListComponent,
     HomePageComponent,
     HasRoleDirective,
-    SupplierOrdersComponent
+    SupplierOrdersComponent,
+    ManageAccountComponent
   ],
   imports: [
     BrowserModule,
