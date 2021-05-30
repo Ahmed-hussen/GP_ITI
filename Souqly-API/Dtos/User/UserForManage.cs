@@ -15,7 +15,7 @@ namespace Souqly_API.Dtos.User
             public  string NormalizedUserName { get; set; } // will be hidden in angular 
 
             [StringLength(256), Required]
-            public string UserName { get; set; }
+            public string UserName { get; set; }  
             public string FirstName { get; set; }
             public string PhoneNumber { get; set; }
         }
