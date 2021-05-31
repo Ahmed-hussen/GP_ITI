@@ -1,32 +1,33 @@
 
-<div class="container w-75 my-5">
-    <div class="text-center mb-5" style="font-size: 50;font-weight: bolder;">
-      Update Your Information
+
+<div class="container w-75 my-5" style="font-family:'Segoe UI';">
+    <div class="text-center mb-5" style="font-size:xx-large; font-weight: bolder; color:#e7ab3c;">
+      تعديل البيــــــانات الشخصية
     </div>
-    <div class="w-75 mx-auto">
+    <div class="w-75 mx-auto" style="direction: rtl; text-align: right;">
       <div class="row mb-4">
-             <div class="col">
-              <label for="fname" class="form-label">First Name</label>
-              <input [(ngModel)]="userData.firstName" type="text" class="form-control" id="fname">
+             <div class="col" >
+              <label for="fname" class="form-label">الاسم الأول</label>
+              <input [(ngModel)]="userData.firstName"  type="text" class="form-control" id="fname">
              </div>
              <div class="col">
-               <label for="lname" class="form-label">Last Name</label>
-               <input type="text" class="form-control" id="lname">
+               <label for="lname" class="form-label">الاسم الأخير</label>
+               <input type="text"  class="form-control" id="lname">
              </div>
       </div>
 
       <div class="row mb-4 mx-auto">
-             <label for="fulladdress" class="form-label">Full Address</label>
+             <label for="fulladdress" class="form-label">العنوان</label>
              <input type="text" class="form-control" id="fulladdress">
       </div>
 
       <div class="row mb-4">
         <div class="col">
-         <label  for="phone" class="form-label">Phone Number</label>
+         <label  for="phone" class="form-label">الهاتف المحمول</label>
          <input [(ngModel)]="userData.phoneNumber" type="number" class="form-control" id="phone">
         </div>
         <div class="col">
-          <label  for="email" class="form-label">Email</label>
+          <label  for="email" class="form-label">البريد الإلكترونى</label>
           <input  [(ngModel)]="userData.email" type="email" class="form-control" id="email">
         </div>
       </div>
@@ -34,6 +35,6 @@
 </div>
 
 <div class="text-center mb-5">
-  <button type="button" class="btn btn-outline-secondary mr-3 px-5">Discard Changes</button>
-  <button type="button" class="btn px-5 text-white" style="background-color:#e7ab3c;">Save Changes</button>
+  <button type="button" class="btn btn-outline-dark mr-3 px-5 " >إلغاء التعديلات</button>
+  <button type="button" class="btn px-5 text-white" style="background-color:#e7ab3c;">حفظ التعديلات</button>
 </div>
