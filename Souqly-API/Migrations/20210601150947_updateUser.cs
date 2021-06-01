@@ -2,43 +2,44 @@
 
 namespace Souqly_API.Migrations
 {
-    public partial class createnewtablesrff : Migration
+    public partial class updateUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Products_Carts_CartId",
+                name: "FK_Products_AspNetUsers_UserId",
                 table: "Products");
 
             migrationBuilder.DropIndex(
-                name: "IX_Products_CartId",
+                name: "IX_Products_UserId",
                 table: "Products");
 
             migrationBuilder.DropColumn(
-                name: "CartId",
+                name: "UserId",
                 table: "Products");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "CartId",
+                name: "UserId",
                 table: "Products",
                 type: "int",
-                nullable: true);
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CartId",
+                name: "IX_Products_UserId",
                 table: "Products",
-                column: "CartId");
+                column: "UserId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Products_Carts_CartId",
+                name: "FK_Products_AspNetUsers_UserId",
                 table: "Products",
-                column: "CartId",
-                principalTable: "Carts",
+                column: "UserId",
+                principalTable: "AspNetUsers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
         }
     }
 }

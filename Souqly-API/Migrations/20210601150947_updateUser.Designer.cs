@@ -10,8 +10,8 @@ using Souqly_API.Services;
 namespace Souqly_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210505145346_create-new_table3")]
-    partial class createnew_table3
+    [Migration("20210601150947_updateUser")]
+    partial class updateUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -315,6 +315,9 @@ namespace Souqly_API.Migrations
                     b.Property<int>("BillId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ClientName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -324,18 +327,16 @@ namespace Souqly_API.Migrations
                     b.Property<DateTime>("ShippedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ShipperId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ShippingId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BillId")
                         .IsUnique();
-
-                    b.HasIndex("ShipperId");
 
                     b.HasIndex("ShippingId");
 
@@ -358,16 +359,12 @@ namespace Souqly_API.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("StockIn")
-                        .HasColumnType("int");
-
-                    b.Property<float>("price")
+                    b.Property<float>("TotalOptionPrice")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -399,17 +396,12 @@ namespace Souqly_API.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<float>("Weight")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Products");
                 });
@@ -684,12 +676,6 @@ namespace Souqly_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Souqly_API.Models.User", "Shipper")
-                        .WithMany("Orders")
-                        .HasForeignKey("ShipperId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Souqly_API.Models.Shipping", "Shipping")
                         .WithMany("Orders")
                         .HasForeignKey("ShippingId")
@@ -698,16 +684,14 @@ namespace Souqly_API.Migrations
 
                     b.Navigation("Bill");
 
-                    b.Navigation("Shipper");
-
                     b.Navigation("Shipping");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.OrderDetail", b =>
                 {
                     b.HasOne("Souqly_API.Models.Order", "Order")
-                        .WithOne("OrderDetails")
-                        .HasForeignKey("Souqly_API.Models.OrderDetail", "OrderId")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -729,10 +713,6 @@ namespace Souqly_API.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Souqly_API.Models.User", null)
-                        .WithMany("Products")
-                        .HasForeignKey("UserId");
 
                     b.Navigation("Category");
                 });
@@ -819,10 +799,6 @@ namespace Souqly_API.Migrations
             modelBuilder.Entity("Souqly_API.Models.User", b =>
                 {
                     b.Navigation("MarketingProducts");
-
-                    b.Navigation("Orders");
-
-                    b.Navigation("Products");
 
                     b.Navigation("UserRoles");
                 });

@@ -11,11 +11,12 @@ export class NavebareComponent implements OnInit {
   isSupplier:boolean;
   constructor(public authService: AuthServicesService, private router: Router) { 
   }
+  
   ngOnInit(): void {
-    this.isSupplier = (this.authService.decodedToken.role == "Supplier");
   }
+
   loggedIn() {
-    return this.authService.loggedIn();
+    return (this.authService.loggedIn() && this.authService.decodedToken.role == "Supplier");
   }
   loggedOut() {
     localStorage.removeItem('token');

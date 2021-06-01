@@ -18,7 +18,7 @@ namespace Souqly_API.Models
         // Last Name 
         // Why Total profits here 
         public int? TotalProfits { get; set; }
-        public ICollection<Product> Products { get; set; }
+        //public ICollection<Product> Products { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
           //   public ICollection<Order> Orders { get; set; }
          // Many To Many

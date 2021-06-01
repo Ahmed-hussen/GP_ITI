@@ -394,17 +394,12 @@ namespace Souqly_API.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<float>("Weight")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Products");
                 });
@@ -717,15 +712,7 @@ namespace Souqly_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Souqly_API.Models.User", "User")
-                        .WithMany("Products")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Category");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.ProductOptionCart", b =>
@@ -810,8 +797,6 @@ namespace Souqly_API.Migrations
             modelBuilder.Entity("Souqly_API.Models.User", b =>
                 {
                     b.Navigation("MarketingProducts");
-
-                    b.Navigation("Products");
 
                     b.Navigation("UserRoles");
                 });
