@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Souqly_API.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("[controller]")]
     [ApiController]
     public class MAccountManageController : ControllerBase
     {
