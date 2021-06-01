@@ -18,11 +18,11 @@ namespace Souqly_API.Services
             _context = context;
         }
 
-        public async Task<List<OrderDetail>> GetOrders(long supplierId)
-        {
-            var orders = await _context.OrderDetails.Where(o => o.Product.UserId == supplierId).Include(s => s.Order).Include(s => s.Product).ToListAsync();
-            return orders;
-        }
+        // public async Task<List<OrderDetail>> GetOrders(long supplierId)
+        // {
+        //     var orders = await _context.OrderDetails.Where(o => o.Product.UserId == supplierId).Include(s => s.Order).Include(s => s.Product).ToListAsync();
+        //     return orders;
+        // }
         
     }
 }

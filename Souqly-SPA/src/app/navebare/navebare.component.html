@@ -138,7 +138,7 @@
                       <!-- <li routerLinkActive = "active">
                         <a class="nav-link" routerLink="departments">Departments</a>
                       </li> -->
-                      <li><a href="#">حسابي</a>
+                      <li *ngIf="loggedIn()"><a *hasRole="['Marketing']" href=" ">حسابي</a>
                         <ul class="dropdown" >
                             <li><a class="nav-link" routerLink="manageaccount">إعدادات الحساب</a></li>
                             <li><a href="#">تعديل الباسورد</a></li>

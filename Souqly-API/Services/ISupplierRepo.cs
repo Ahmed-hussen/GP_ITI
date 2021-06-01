@@ -8,6 +8,6 @@ namespace Souqly_API.Services
    
     public interface ISupplierRepo
     {
-        Task<List<OrderDetail>> GetOrders(long supplierId);
+       // Task<List<OrderDetail>> GetOrders(long supplierId);
     }
 }
