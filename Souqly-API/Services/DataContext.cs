@@ -16,7 +16,7 @@ namespace Souqly_API.Services
 
         public DbSet<Option> Option { get; set; }
         public DbSet<Image> Images4 { get; set; }
-        public DbSet<MarketingProduct> MarketingProducts { get; set; }
+      //  public DbSet<MarketingProduct> MarketingProducts { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -27,8 +27,23 @@ namespace Souqly_API.Services
 
         public DbSet<ProductOptionCart> ProductOptionCart { get; set; }
 
+        public DbSet<UserBill> UserBills { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+              base.OnModelCreating(builder);
+              builder.Entity<Product>()
+                .HasOne<User>(s => s.Supplier)
+                .WithMany(ta => ta.Products)
+                .HasForeignKey(u => u.SupplierId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-
+              //  base.OnModelCreating(builder);
+              // builder.Entity<Order>()
+              //   .HasOne<User>(s => s.Marketing)
+              //   .WithMany(ta => ta.Orders)
+              //   .HasForeignKey(u => u.MarketingId)
+              //   .OnDelete(DeleteBehavior.Restrict);
+        }
 
     }
 }

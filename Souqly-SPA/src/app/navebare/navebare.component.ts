@@ -1,6 +1,8 @@
 import { AuthServicesService } from './../../../_services/AuthServices.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductOptionCart } from '_models/productOptionCart';
+import { CartMangmentService } from '_services/cart-mangment.service';
 
 @Component({
   selector: 'app-navebare',
@@ -9,10 +11,23 @@ import { Router } from '@angular/router';
 })
 export class NavebareComponent implements OnInit {
 
-  constructor(public authService: AuthServicesService, private router: Router) { }
-  ngOnInit(): void {
+  products: ProductOptionCart[];
+  constructor(public authService: AuthServicesService, private router: Router, private resolver: ActivatedRoute,
+    private cartService: CartMangmentService) { }
 
+  ngOnInit(): void {
+    // this.resolver.data.subscribe(
+    //   data=>{this.products=data['options']}
+    // )
+    this.loadCart()
   }
+  loadCart() {
+    this.cartService.getOptionsFromCart().subscribe(
+      succ => { this.products = succ },
+      err => { }
+    )
+  }
+
   loggedIn() {
     return this.authService.loggedIn();
   }

@@ -4,12 +4,12 @@ using Souqly_API.Models;
 
 namespace Souqly_API.Services
 {
-    
+
     public interface ISouqlyRepo
     {
 
-      void Add <T> (T entity) where T:class;// Add Any entity
-      void Delete <T> (T entity) where T:class;
+Task Add <T> (T entity) where T:class;// Add Any entity
+        Task Delete <T> (T entity) where T:class;
        void Update <T> (T entity) where T:class;
       Task <bool> SaveAll();
 
@@ -20,11 +20,19 @@ namespace Souqly_API.Services
          Task<bool> IsOptionExist(int id);
          Task <ProductOptionCart> GetOption(int optionId , int cartId);
          Task<int> GetStock(int optionId);
-        Task<ProductOptionCart> GetCart(int id);
+        Task<List<ProductOptionCart>> GetCart(int id);
         Task<float> GetProductPrice(int cartID);
         Task<float> GetShippingPrice(int shippingId);
         Task<List<int>>  GetOptionsIds(int CartId);
         Task <ProductOptionCart> GetProductOption(int optionId , int cartId);
-        
+        Task<float> GetOptionPrice(int optionId);
+
+        ///////////////////
+        Task<IEnumerable<Shipping>> GetAllshipping();
+        Task<Shipping> GetShipping(int id);
+
+        Task <Order> GetOrderInfoById(int id,int marketingId);
+        Task <IEnumerable<Order>> GetAllOrders(int id);
+
     }
 }

@@ -174,12 +174,6 @@ namespace Souqly_API.Migrations
                     b.Property<float>("SiteProfits")
                         .HasColumnType("real");
 
-                    b.Property<float>("SupplierProfits")
-                        .HasColumnType("real");
-
-                    b.Property<float>("TotalPriceForClient")
-                        .HasColumnType("real");
-
                     b.HasKey("Id");
 
                     b.ToTable("Bills");
@@ -240,34 +234,6 @@ namespace Souqly_API.Migrations
                     b.ToTable("Images4");
                 });
 
-            modelBuilder.Entity("Souqly_API.Models.MarketingProduct", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Confirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("MarketingId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Profits")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MarketingId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("MarketingProducts");
-                });
-
             modelBuilder.Entity("Souqly_API.Models.Option", b =>
                 {
                     b.Property<int>("Id")
@@ -284,14 +250,11 @@ namespace Souqly_API.Migrations
                     b.Property<float>("ItemPrice")
                         .HasColumnType("real");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("StockIn")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StockIn")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -316,6 +279,9 @@ namespace Souqly_API.Migrations
                     b.Property<string>("ClientName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MarketingId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -336,6 +302,8 @@ namespace Souqly_API.Migrations
                     b.HasIndex("BillId")
                         .IsUnique();
 
+                    b.HasIndex("MarketingId");
+
                     b.HasIndex("ShippingId");
 
                     b.ToTable("Orders");
@@ -348,10 +316,10 @@ namespace Souqly_API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("OrderId")
+                    b.Property<int>("OptionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -362,10 +330,10 @@ namespace Souqly_API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OptionId");
+
                     b.HasIndex("OrderId")
                         .IsUnique();
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -395,7 +363,7 @@ namespace Souqly_API.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.Property<float>("Weight")
@@ -405,7 +373,7 @@ namespace Souqly_API.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("Products");
                 });
@@ -438,9 +406,6 @@ namespace Souqly_API.Migrations
                     b.Property<int>("OptionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -449,8 +414,6 @@ namespace Souqly_API.Migrations
                     b.HasIndex("CartId");
 
                     b.HasIndex("OptionId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductOptionCart");
                 });
@@ -552,6 +515,34 @@ namespace Souqly_API.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Souqly_API.Models.UserBill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("BillId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("UserProfit")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BillId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserBills");
+                });
+
             modelBuilder.Entity("Souqly_API.Models.UserRole", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<int>");
@@ -642,25 +633,6 @@ namespace Souqly_API.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Souqly_API.Models.MarketingProduct", b =>
-                {
-                    b.HasOne("Souqly_API.Models.User", "Marketing")
-                        .WithMany("MarketingProducts")
-                        .HasForeignKey("MarketingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Souqly_API.Models.Product", "Product")
-                        .WithMany("MarketingProducts")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Marketing");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Souqly_API.Models.Option", b =>
                 {
                     b.HasOne("Souqly_API.Models.Product", "Product")
@@ -680,6 +652,12 @@ namespace Souqly_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Souqly_API.Models.User", "Marketing")
+                        .WithMany("Orders")
+                        .HasForeignKey("MarketingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Souqly_API.Models.Shipping", "Shipping")
                         .WithMany("Orders")
                         .HasForeignKey("ShippingId")
@@ -688,26 +666,28 @@ namespace Souqly_API.Migrations
 
                     b.Navigation("Bill");
 
+                    b.Navigation("Marketing");
+
                     b.Navigation("Shipping");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.OrderDetail", b =>
                 {
+                    b.HasOne("Souqly_API.Models.Option", "Option")
+                        .WithMany()
+                        .HasForeignKey("OptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Souqly_API.Models.Order", "Order")
                         .WithOne("OrderDetails")
                         .HasForeignKey("Souqly_API.Models.OrderDetail", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Souqly_API.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Option");
 
                     b.Navigation("Order");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.Product", b =>
@@ -718,11 +698,15 @@ namespace Souqly_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Souqly_API.Models.User", null)
+                    b.HasOne("Souqly_API.Models.User", "Supplier")
                         .WithMany("Products")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.ProductOptionCart", b =>
@@ -739,13 +723,28 @@ namespace Souqly_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Souqly_API.Models.Product", null)
-                        .WithMany("ProductCarts")
-                        .HasForeignKey("ProductId");
-
                     b.Navigation("Cart");
 
                     b.Navigation("Option");
+                });
+
+            modelBuilder.Entity("Souqly_API.Models.UserBill", b =>
+                {
+                    b.HasOne("Souqly_API.Models.Bill", "Bill")
+                        .WithMany()
+                        .HasForeignKey("BillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Souqly_API.Models.User", "User")
+                        .WithMany("UserBills")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Bill");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.UserRole", b =>
@@ -792,11 +791,7 @@ namespace Souqly_API.Migrations
                 {
                     b.Navigation("Images");
 
-                    b.Navigation("MarketingProducts");
-
                     b.Navigation("Options");
-
-                    b.Navigation("ProductCarts");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.Shipping", b =>
@@ -806,9 +801,11 @@ namespace Souqly_API.Migrations
 
             modelBuilder.Entity("Souqly_API.Models.User", b =>
                 {
-                    b.Navigation("MarketingProducts");
+                    b.Navigation("Orders");
 
                     b.Navigation("Products");
+
+                    b.Navigation("UserBills");
 
                     b.Navigation("UserRoles");
                 });

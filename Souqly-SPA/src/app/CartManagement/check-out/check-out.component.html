@@ -1,0 +1,217 @@
+<!-- Shopping Cart Section Begin -->
+<section class="checkout-section spad">
+  <div class="container">
+    <form action="#" class="checkout-form">
+      <div class="row">
+        <div class="col-lg-4">
+          <!-- <div class="checkout-content">
+            <input type="text" placeholder="Enter Your Coupon Code">
+          </div> -->
+          <div class="place-order">
+
+            <h4 class="text" style="color: #e7ab3c;margin-left: 40%;">الفاتورة</h4>
+            <div class="order-total">
+              <ul class="order-table">
+                <li>Product <span>Total</span></li>
+                <li class="fw-normal">سعر المنتجات
+                  <span >{{total}}  EGP</span>
+                </li>
+                <li class="fw-normal">سعر الشحن
+
+                  <span> {{ShippingPrice}} EGP</span>
+                </li>
+                <li class="fw-normal">عمولة سوقلي
+
+                  <!-- <span  #m [innerHTML]='myDealPrice.value * 10/100'></span> -->
+
+                  <span> {{DealPrice * 10/100 }}  EGP</span>
+                </li>
+                <li class="fw-normal">سعر التحصيل من العميل
+
+                  <span> {{DealPrice}}  EGP</span>
+
+                </li>
+                <li class="total-price">الإجمالى
+
+                  <span  >{{ totalProductPrice + (DealPrice * 10/100) + ShippingPrice}}  EGP</span>
+                </li>
+                <li class="total-price">اجمالى الربح
+
+                  <span>{{  DealPrice -(totalProductPrice + (DealPrice * 10/100) + ShippingPrice) }}  EGP</span>
+                </li>
+              </ul>
+              <!-- <div class="payment-check">
+                <div class="pc-item">
+                  <label for="pc-check">
+                    Cheque Payment
+                    <input type="checkbox" id="pc-check">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="pc-item">
+                  <label for="pc-paypal">
+                    Paypal
+                    <input type="checkbox" id="pc-paypal">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div> -->
+              <div class="order-btn">
+                <!-- <button type="submit" class="site-btn place-btn"> إكمال الطلب</button> -->
+                <button class="btn btn-primary btn-jittery">
+                  إكمال الطلب
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="checkout-content">
+                <a href="#" class="content-btn">Click Here To Login</a>
+            </div> -->
+
+
+          </div>
+
+        <div class="col-lg-8">
+          <!-- Shopping Cart Section Begin -->
+          <section class="shopping-cart spad">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <!-- Table  -->
+                  <div class="cart-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>صورة المنتج</th>
+                          <th class="p-name">اسم المنتج </th>
+                          <th>سعر المنتج </th>
+                          <th>الكمية</th>
+                          <th>المخزون </th>
+                          <th><i class="ti-close"></i></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of options">
+                          <td class="cart-pic first-row"><img src="img/cart-page/product-1.jpg" alt=""></td>
+                          <td class="cart-title first-row">
+                            <h5>{{item.option.name}}</h5>
+                          </td>
+                          <td class="p-price first-row">{{item.option.itemPrice}}</td>
+                          <td class="qua-col first-row">
+                            <div class="quantity">
+                              <div>
+                                <input #myInput type="number" min="1"
+                                  (change)="updateQuantity(item.optionId,myInput.value)" class="form-control"
+                                  value={{item.quantity}} style="margin-top: 22%;">
+                              </div>
+
+
+                            </div>
+                          </td>
+                          <td class="total-price first-row">{{item.option.stockIn}}</td>
+                          <td class="close-td first-row"><i class="ti-close"></i></td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="discount-coupon">
+                    <h6 class="text" style="text-align: right; margin-left: 30%;">حساب سعر الشحن للطلب </h6>
+                    <form action="#" class="coupon-form" style=" width: 100% !important;">
+                      <div>
+                        <div class="proceed-checkout" style="   width: 100% !important;    ">
+                          <ul>
+                            <li class="subtotal"> اختار المدينه المراد الشحن اليها
+                              <span>
+                                <div class="select-dropdown">
+                                  <!-- <select #myOption (change)="DealPrice(myOption.value)">
+                                    <option *ngFor="let ship of shipping" value="{{ship.price}}">{{ship.city}}
+                                    </option>
+                                  </select> -->
+                                  <select name="ShippingPrice" [(ngModel)]="ShippingPrice">
+                                    <option  *ngFor="let ship of shipping" [ngValue]="ship.price"> {{ship.city}}
+                                    </option>
+                                  </select>
+                                </div>
+                              </span>
+                            </li>
+                            <li class="cart-total">سعر الشحن
+                              <span [innerHTML]='ShippingPrice'></span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <!--
+                      <input type="text" placeholder="Enter your codes">
+                      <button type="submit" class="site-btn coupon-btn">Apply</button> -->
+                    </form>
+                    <h6 class="text" style="text-align: right;margin-left: 30%;">حساب ربحك من الطلب </h6>
+                    <form action="#" class="coupon-form">
+                      <div>
+                        <div class="proceed-checkout">
+                          <ul>
+                            <li class="subtotal">ادخل المبلغ المراد تحصيله من عميلك <span>
+
+                                <!-- <input style="font-size: 23px !important;" #myDealPrice
+                                  (change)="UpdateDealPrice(myDealPrice.value)" type="number"> -->
+
+                                  <input name="DealPrice" [(ngModel)]="DealPrice"  type="number">
+
+                              </span></li>
+                            <li class="cart-total">ربحك فى هذه الحالة
+                              <span>$240.00</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <!--
+                      <input type="text" placeholder="Enter your codes">
+                      <button type="submit" class="site-btn coupon-btn">Apply</button> -->
+                    </form>
+                  </div>
+
+                  <h4 class="text" style="text-align: right !important; font-size: 30px;">بيانات العميل
+                  </h4>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <label for="fir">الاسم <span>*</span></label>
+                      <input type="text" id="fir">
+                    </div>
+                    <div class="col-lg-6">
+                      <label for="phone"> رقم الهاتف
+                        <span>*</span></label>
+                      <input type="text" id="phone">
+                    </div>
+                    <div class="col-lg-12">
+                      <label for="cun-name">العنوان </label>
+                      <input type="text" id="cun-name">
+                    </div>
+
+                  </div>
+
+
+                      <!-- <div class="cart-buttons">
+                        <a href="#" class="primary-btn continue-shop">Continue shopping</a>
+                        <a href="#" class="primary-btn up-cart">Update cart</a>
+                      </div> -->
+
+                    </div>
+
+
+                  </div>
+                </div>
+
+
+          </section>
+          <!-- Shopping Cart Section End -->
+
+
+        </div>
+
+
+
+        </div>
+    </form>
+  </div>
+</section>

@@ -7,6 +7,9 @@ namespace Souqly_API.Models
     public class Order
     {
         public int Id { get; set; }
+
+        public User Marketing { get; set; }
+        public int MarketingId { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime ShippedDate { get; set; }
         public Bill Bill { get; set; }
