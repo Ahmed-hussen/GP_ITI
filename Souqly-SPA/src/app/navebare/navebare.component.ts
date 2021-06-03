@@ -1,5 +1,5 @@
 import { AuthServicesService } from './../../../_services/AuthServices.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductOptionCart } from '_models/productOptionCart';
 import { CartMangmentService } from '_services/cart-mangment.service';
@@ -12,6 +12,7 @@ import { CartMangmentService } from '_services/cart-mangment.service';
 export class NavebareComponent implements OnInit {
 
   products: ProductOptionCart[];
+  isSupplier:boolean;
   constructor(public authService: AuthServicesService, private router: Router, private resolver: ActivatedRoute,
     private cartService: CartMangmentService) { }
 
@@ -28,8 +29,10 @@ export class NavebareComponent implements OnInit {
     )
   }
 
+
+
   loggedIn() {
-    return this.authService.loggedIn();
+    return (this.authService.loggedIn() && this.authService.decodedToken.role == "Supplier");
   }
   loggedOut() {
     localStorage.removeItem('token');

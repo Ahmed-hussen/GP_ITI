@@ -6603,26 +6603,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Users\\MoHaLegenD\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
+      "projectUniqueName": "C:\\Users\\MoHaLegenD\\Desktop\\GraduationProject\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
       "projectName": "Souqly-API",
-      "projectPath": "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
-      "packagesPath": "C:\\Users\\Eng-Ahmed Hussen\\.nuget\\packages\\",
-      "outputPath": "A:\\graduationProjectITI\\LastVirsion\\GP_ITI\\Souqly-API\\obj\\",
+      "projectPath": "C:\\Users\\MoHaLegenD\\Desktop\\GraduationProject\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
+      "packagesPath": "C:\\Users\\MoHaLegenD\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\MoHaLegenD\\Desktop\\GraduationProject\\GP_ITI\\Souqly-API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Eng-Ahmed Hussen\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\MoHaLegenD\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

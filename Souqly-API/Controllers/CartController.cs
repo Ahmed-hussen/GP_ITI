@@ -24,8 +24,18 @@ namespace Souqly_API.Controllers
             _mapper = mapper;
 
         }
+        [HttpGet("{id}") ]  
+         public async Task<int> GetCartId(int id) //get cartID of the current Marketing
+         {
+          int cartId = await  _repo.GetCartID(id);
+          return cartId;
 
-        [HttpPost]
+         }
+
+
+
+
+        [HttpPost] 
         public async Task<IActionResult> AddToCart(AddToCartDto model)
         {
             var marketingId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -35,9 +45,9 @@ namespace Souqly_API.Controllers
             {
                 CartId = await _repo.GetCartID(Int32.Parse(marketingId));
             }
-            else
-            {
-                Cart cart = new Cart()
+            else{
+
+                Cart cart = new Cart()  // create new cart for marketing id 
                 {
                     MarketingId = Int32.Parse(marketingId)
                 };

@@ -1,0 +1,22 @@
+<div class="m-5" *ngIf="orders.length != 0">
+    <p-table [value]="orders" tableStyle="border-raduis:50px">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let col of cols">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order>
+            <tr>
+                <td *ngFor="let col of cols">
+                        {{order[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<div *ngIf="orders.length == 0" class="p-5 d-flex align-items-center justify-content-center">
+    <p class="p-5 m-5" style="font-size: xx-large; font-weight: bold;">there are no orders yet</p>
+</div>

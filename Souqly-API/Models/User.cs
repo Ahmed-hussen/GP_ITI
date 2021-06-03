@@ -14,6 +14,10 @@ namespace Souqly_API.Models
        public string FirstName { get; set; }
 
         public string ImageID { get; set; } // صوره الرقم القومي
+        // Shahy Asks ?????
+        // P.P 
+        // Last Name 
+        // Why Total profits here 
         public int? TotalProfits { get; set; }
        public virtual ICollection<Product> Products { get; set; }
          public virtual ICollection<Order> Orders { get; set; }

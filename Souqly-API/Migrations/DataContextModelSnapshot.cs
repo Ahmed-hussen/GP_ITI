@@ -360,10 +360,14 @@ namespace Souqly_API.Migrations
                     b.Property<string>("Dimension")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SupplierId")
+                    b.Property<int>("SupplierId");
+                    b.Property<int>("StockIn")
                         .HasColumnType("int");
 
                     b.Property<float>("Weight")
@@ -680,8 +684,8 @@ namespace Souqly_API.Migrations
                         .IsRequired();
 
                     b.HasOne("Souqly_API.Models.Order", "Order")
-                        .WithOne("OrderDetails")
-                        .HasForeignKey("Souqly_API.Models.OrderDetail", "OrderId")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -10,7 +10,6 @@ import { NavebareComponent } from './navebare/navebare.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './Authentication/login/login.component';
 import { RegisterComponent } from './Authentication/register/register.component';
-import { ProductListComponent } from './ManageProduct/product-list/product-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HasRoleDirective } from '_directives/has-role.directive';
@@ -25,6 +24,11 @@ import { OrderDetailsComponent } from './CartManagement/order-details/order-deta
 import { OrderListResolver } from '_resolvers/OrderList.resolver';
 import { OrderDetailsResolver } from '_resolvers/OrderDetails.resolver';
 import { OrderListComponent } from './CartManagement/order-list/order-list.component';
+import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.component';
+
+import {TableModule} from 'primeng/table';
+import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
+import { ProductExploreModule } from './product-explore/product-explore.module';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -37,12 +41,13 @@ export function tokenGetter() {
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    ProductListComponent,
     HomePageComponent,
     HasRoleDirective,
     CheckOutComponent,
     OrderDetailsComponent,
-    OrderListComponent
+    OrderListComponent,
+    SupplierOrdersComponent,
+    ManageAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,8 @@ export function tokenGetter() {
     PasswordModule,
     BrowserModule,
     BrowserAnimationsModule,
-
+    TableModule,
+    ProductExploreModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

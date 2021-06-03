@@ -8,7 +8,7 @@ namespace Souqly_API.Services
 {
     public class SouqlyRepo : ISouqlyRepo
     {
-        private readonly DataContext _context;
+        private readonly DataContext _context; 
 
         public SouqlyRepo(DataContext context)
         {

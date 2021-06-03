@@ -27,7 +27,5 @@ namespace Souqly_API.Models
      //   public virtual ICollection<MarketingProduct> MarketingProducts { get; set; }
 
 
-
-
     }
 }
