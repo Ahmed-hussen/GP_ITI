@@ -3,6 +3,7 @@ using Souqly_API.Dtos.Carts;
 using Souqly_API.Dtos.Orders;
 using Souqly_API.Dtos.User;
 using Souqly_API.Dtos.Supplier;
+using Souqly_API.Dtos.Products;
 using Souqly_API.Models;
 
 namespace Souqly_API.Helpers
@@ -31,6 +32,12 @@ namespace Souqly_API.Helpers
             CreateMap<Order, SupplierOrderDto>(); //get
             CreateMap<OrderDetail, SupplierOrderDto>(); //get
             CreateMap<Product, SupplierOrderDto>();
+
+            //CreateMap<Product, ProductDto>();
+            //CreateMap<Option, ProductDto>();
+
+            CreateMap<Product, ProductDto>();
+                    
 
         }
     }

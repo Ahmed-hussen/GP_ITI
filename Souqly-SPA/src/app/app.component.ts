@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '_models/user';
-import {TableModule} from 'primeng/table';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

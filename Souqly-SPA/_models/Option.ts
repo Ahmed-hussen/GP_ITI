@@ -2,9 +2,9 @@ import { Product } from "./Product";
 import { ProductOptionCart } from "./ProductOptionCart";
 
 export class Option {
-    constructor(public Id?:number, public Code?:string, public StockIn?:number, public Name?:string,
-        public ItemPrice?:number, public AvailableOptions?:string, public Product?:Product, 
-        public ProductId?:number, public ProductOptionCart?:ProductOptionCart[]){
+    constructor(public id?:number, public code?:string, public stockIn?:number, public name?:string,
+        public itemPrice?:number, public availableOptions?:string, public product?:Product, 
+        public productId?:number, public productOptionCart?:ProductOptionCart[]){
 
     }
 }

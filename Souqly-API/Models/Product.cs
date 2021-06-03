@@ -13,7 +13,8 @@ namespace Souqly_API.Models
         public string Brand { get; set; }
         public DateTime Date { get; set; }
         public string Dimension { get; set; }
-
+        // public float Price { get; set; }
+        // public int StockIn { get; set; }
         //public User Supplier { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }
