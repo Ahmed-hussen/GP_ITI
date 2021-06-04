@@ -2,26 +2,27 @@
 <section class="contact-section spad">
   <div class="container">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-4" style="    margin-top: 7% !important;">
         <div class="contact-title">
 
           <div class="proceed-checkout ">
             <ul class="myborder">
-              <li class="subtotal" style="    margin-bottom: 10%; ">رقم الطلب : <span>$240.00</span></li>
-              <li class="subtotal" style="    margin-bottom: 10%;">تاريخ الطلب : <span>$240.00</span></li>
-              <li class="subtotal" style="    margin-bottom: 10%;">البريد الإلكتروني : <span>$240.00</span></li>
-              <li class="subtotal" style="    margin-bottom: 10%;"> نوع الطلب : <span>$240.00</span></li>
+              <li class="subtotal" style="    margin-bottom: 10%; ">رقم الطلب : <span>Preparing</span></li>
+              <li class="subtotal" style="    margin-bottom: 10%;">تاريخ الطلب : <span>{{order.orderDate}}</span></li>
+              <li class="subtotal" style="    margin-bottom: 10%;">البريد الإلكتروني : <span> {{ authService.currentUser?.email || authService.decodedToken?.unique_name | titlecase }}</span></li>
+              <li class="subtotal" style="    margin-bottom: 10%;"> نوع الطلب : <span>قطاعي</span></li>
             </ul>
           </div>
+
 
           <div class="proceed-checkout ">
             <h4 class="text" style="margin-left: 45%;font-size: 35px !important; margin-top: 7%;"> بيانات العميل
             </h4>
             <ul class="myborder" >
-              <li class="subtotal" style="    margin-bottom: 10%; ">  <span>$240.00</span></li>
-              <li class="subtotal" style="    margin-bottom: 10%;">  <span>$240.00</span></li>
-              <li class="subtotal" style="    margin-bottom: 10%;">   <span>$240.00</span></li>
-              <li class="subtotal" style="    margin-bottom: 10%;">   <span>$240.00</span></li>
+              <li class="subtotal" style="    margin-bottom: 10%; ">  <span>{{order.address}}</span></li>
+              <li class="subtotal" style="    margin-bottom: 10%;">  <span>{{order.city}}</span></li>
+              <li class="subtotal" style="    margin-bottom: 10%;">   <span>{{order.clientName}}</span></li>
+              <li class="subtotal" style="    margin-bottom: 10%;">   <span>{{order.phone}}</span></li>
             </ul>
           </div>
 
@@ -34,57 +35,73 @@
             </h4>
 
           <div class="proceed-checkout ">
+
+
               <ul  class="myborder"  style="background-color: #ffffff !important; margin-bottom:5%">
-                <li class="subtotal" style="font-size: 22px !important;"> سعر التحصيل من العميل: <span>$240.00</span></li>
+                           <span class="mytitle" style="margin-left:47%"> الطلبات
+                  </span>
+                <li *ngFor="let item of order.orderDetails" class="subtotal" style="font-size: 22px !important;     border-bottom: 1px solid #644d12 !important">
+                 {{item.totalOptionPrice}} EGP <span>  {{item.option.availableOptions}}</span>
+
+                   </li>
               </ul>
             </div>
-
             <div class="contact-widget">
               <div class="cw-item">
 
-                <div style="text-align: right; margin-left: 48%;" class="ci-text">
+                <div style="text-align: right; margin-left: 71%;" class="ci-text">
 
                   <span class="mytitle">: سعر الشحن
                   </span>
-                  <p>60-49 Road 11378 New York</p>
 
                 </div>
+
+          <div  style="text-align: right; margin-right: 70%;" class="ci-text" >
+               
+          </div>
+          <div  style="text-align: right; margin-right: 70%;" class="ci-text" >
+            <p>{{order.shippingProfits}} EGP</p>
+        </div>
+
               </div>
             </div>
             <div class="contact-widget">
               <div class="cw-item">
 
-                <div style="text-align: right; margin-left: 48%;" class="ci-text">
+                <div style="text-align: right; margin-left: 70%;" class="ci-text">
 
 
                   <span class="mytitle">: عمولة تاجرلى</span>
-                  <p>60-49 Road 11378 New York</p>
 
                 </div>
+
+                <div  style="text-align: right; margin-right: 70%;" class="ci-text" >
+                  <p>{{order.siteProfits}} EGP</p>
+              </div>
+
               </div>
             </div>
             <div class="contact-widget">
               <div class="cw-item">
-
-                <div style="text-align: right; margin-left: 48%;" class="ci-text">
-
+                <div style="text-align: right;     margin-left: 76%;" class="ci-text">
                   <span class="mytitle">: الإجمالي</span>
-                  <p>60-49 Road 11378 New York</p>
-                </div>
+
+                 </div>
+
+                 <div  style="text-align: right; margin-right: 70%;" class="ci-text" >
+                  <p>{{total}} EGP</p>
+              </div>
+
+
               </div>
             </div>
+            <div class="proceed-checkout ">
+              <ul class="myborder"  style=" background-color: #e7ab3c !important">
+                <li class="subtotal" style="font-size: 22px !important;"> سعر التحصيل من العميل: <span>{{order.dealPrice}} EGP</span></li>
+              </ul>
+            </div>
 
-            <div class="proceed-checkout ">
-              <ul class="myborder"  style="    background-color: #e7ab3c !important">
-                <li class="subtotal" style="font-size: 22px !important;"> سعر التحصيل من العميل: <span>$240.00</span></li>
-              </ul>
-            </div>
-            <div class="proceed-checkout ">
-              <ul class="myborder"  style="    background-color: #252525 !important">
-                <li class="subtotal" style="font-size: 22px !important; color: white;">   إجمالى الربح من الطلب
-                  : <span>$240.00</span></li>
-              </ul>
-            </div>
+
           </div>
 
         </div>

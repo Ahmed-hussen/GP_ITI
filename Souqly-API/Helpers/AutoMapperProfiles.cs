@@ -13,7 +13,7 @@ namespace Souqly_API.Helpers
     {
          public AutoMapperProfiles()
         {
-            
+
             CreateMap<UserForRegister,User>();// Create
             CreateMap<User,UserForDetails>();// Get Data
             CreateMap<AddToCartDto,ProductOptionCart>();// Create
@@ -21,7 +21,7 @@ namespace Souqly_API.Helpers
 
             CreateMap<ProductOptionCart,GetFromCartDto>();// Get Data
 
-            CreateMap<User,UserForManage>();// Get Data   
+            CreateMap<User,UserForManage>();// Get Data
             CreateMap<UserForManage, User>();// Create
 
             CreateMap<AddOrderDto,Order>();// Create
@@ -42,7 +42,6 @@ namespace Souqly_API.Helpers
              //.ForMember(dest=>dest.OrderDetails,opt=>{opt.MapFrom(src=>src.OrderDetails);});
 
             CreateMap<Order,OrderListDto>()// Get Data
-          //  CreateMap<Bill,OrderListDto>();// Get Data
              .ForMember(dest=>dest.MarktingProfits,opt=>{opt.MapFrom(src=>src.Bill.MarktingProfits);});
 
 

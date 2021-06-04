@@ -24,15 +24,31 @@ export class NavebareComponent implements OnInit {
   }
   loadCart() {
     this.cartService.getOptionsFromCart().subscribe(
-      succ => { this.products = succ },
+      succ => { this.products = succ, this.findsum(succ) },
       err => { }
     )
   }
 
+  public total = 0;
+  findsum(data) {
+    this.products = data
 
+    for (let j = 0; j < data.length; j++) {
+
+      this.total += this.products[j].quantity * this.products[j].option.itemPrice;
+    }
+  }
+
+  disabledButton() {
+    if (this.total == 0) {
+      return true;
+    }
+    else
+      return false;
+  }
 
   loggedIn() {
-    return (this.authService.loggedIn() && this.authService.decodedToken.role == "Supplier");
+    return this.authService.loggedIn();
   }
   loggedOut() {
     localStorage.removeItem('token');

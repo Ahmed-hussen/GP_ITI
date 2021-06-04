@@ -332,8 +332,7 @@ namespace Souqly_API.Migrations
 
                     b.HasIndex("OptionId");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -360,14 +359,10 @@ namespace Souqly_API.Migrations
                     b.Property<string>("Dimension")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
-
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SupplierId");
-                    b.Property<int>("StockIn")
+                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.Property<float>("Weight")
@@ -735,7 +730,7 @@ namespace Souqly_API.Migrations
             modelBuilder.Entity("Souqly_API.Models.UserBill", b =>
                 {
                     b.HasOne("Souqly_API.Models.Bill", "Bill")
-                        .WithMany()
+                        .WithMany("UserBills")
                         .HasForeignKey("BillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -769,6 +764,8 @@ namespace Souqly_API.Migrations
             modelBuilder.Entity("Souqly_API.Models.Bill", b =>
                 {
                     b.Navigation("Order");
+
+                    b.Navigation("UserBills");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.Cart", b =>

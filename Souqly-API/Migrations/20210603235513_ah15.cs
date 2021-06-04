@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Souqly_API.Migrations
 {
-    public partial class newmig : Migration
+    public partial class ah15 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,9 +60,7 @@ namespace Souqly_API.Migrations
                     DealPrice = table.Column<float>(type: "real", nullable: false),
                     SiteProfits = table.Column<float>(type: "real", nullable: false),
                     ShippingProfits = table.Column<float>(type: "real", nullable: false),
-                    MarktingProfits = table.Column<float>(type: "real", nullable: false),
-                    SupplierProfits = table.Column<float>(type: "real", nullable: false),
-                    TotalPriceForClient = table.Column<float>(type: "real", nullable: false)
+                    MarktingProfits = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -250,6 +248,34 @@ namespace Souqly_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserBills",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    BillId = table.Column<int>(type: "int", nullable: false),
+                    UserProfit = table.Column<float>(type: "real", nullable: false),
+                    Active = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserBills", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserBills_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserBills_Bills_BillId",
+                        column: x => x.BillId,
+                        principalTable: "Bills",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -262,14 +288,14 @@ namespace Souqly_API.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Dimension = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    SupplierId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Products_AspNetUsers_SupplierId",
+                        column: x => x.SupplierId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -287,6 +313,7 @@ namespace Souqly_API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    MarketingId = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ShippedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BillId = table.Column<int>(type: "int", nullable: false),
@@ -299,6 +326,12 @@ namespace Souqly_API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_MarketingId",
+                        column: x => x.MarketingId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Bills_BillId",
                         column: x => x.BillId,
@@ -335,42 +368,13 @@ namespace Souqly_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MarketingProducts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MarketingId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Profits = table.Column<float>(type: "real", nullable: false),
-                    Confirmed = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MarketingProducts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MarketingProducts_AspNetUsers_MarketingId",
-                        column: x => x.MarketingId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MarketingProducts_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Option",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StockIn = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StockIn = table.Column<int>(type: "int", nullable: false),
                     ItemPrice = table.Column<float>(type: "real", nullable: false),
                     AvailableOptions = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductId = table.Column<int>(type: "int", nullable: false)
@@ -395,21 +399,21 @@ namespace Souqly_API.Migrations
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     TotalOptionPrice = table.Column<float>(type: "real", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    OptionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
+                        name: "FK_OrderDetails_Option_OptionId",
+                        column: x => x.OptionId,
+                        principalTable: "Option",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
+                        name: "FK_OrderDetails_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -423,8 +427,7 @@ namespace Souqly_API.Migrations
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     NewPrice = table.Column<float>(type: "real", nullable: false),
                     OptionId = table.Column<int>(type: "int", nullable: false),
-                    CartId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    CartId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -441,12 +444,6 @@ namespace Souqly_API.Migrations
                         principalTable: "Option",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductOptionCart_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -509,19 +506,14 @@ namespace Souqly_API.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MarketingProducts_MarketingId",
-                table: "MarketingProducts",
-                column: "MarketingId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MarketingProducts_ProductId",
-                table: "MarketingProducts",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Option_ProductId",
                 table: "Option",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetails_OptionId",
+                table: "OrderDetails",
+                column: "OptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_OrderId",
@@ -529,15 +521,15 @@ namespace Souqly_API.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_ProductId",
-                table: "OrderDetails",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Orders_BillId",
                 table: "Orders",
                 column: "BillId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_MarketingId",
+                table: "Orders",
+                column: "MarketingId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_ShippingId",
@@ -555,18 +547,23 @@ namespace Souqly_API.Migrations
                 column: "OptionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductOptionCart_ProductId",
-                table: "ProductOptionCart",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_UserId",
+                name: "IX_Products_SupplierId",
                 table: "Products",
+                column: "SupplierId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserBills_BillId",
+                table: "UserBills",
+                column: "BillId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserBills_UserId",
+                table: "UserBills",
                 column: "UserId");
         }
 
@@ -591,9 +588,6 @@ namespace Souqly_API.Migrations
                 name: "Images4");
 
             migrationBuilder.DropTable(
-                name: "MarketingProducts");
-
-            migrationBuilder.DropTable(
                 name: "OrderDetails");
 
             migrationBuilder.DropTable(
@@ -601,6 +595,9 @@ namespace Souqly_API.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductOptionCart");
+
+            migrationBuilder.DropTable(
+                name: "UserBills");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

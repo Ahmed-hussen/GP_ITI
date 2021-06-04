@@ -7,11 +7,11 @@ namespace Souqly_API.Services
 {
     public class DataContext : IdentityDbContext<User, Role, int>
     {
-        // 
+        //
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
 
-    
+
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Option> Option { get; set; }

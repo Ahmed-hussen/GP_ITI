@@ -24,18 +24,8 @@ namespace Souqly_API.Controllers
             _mapper = mapper;
 
         }
-        [HttpGet("{id}") ]  
-         public async Task<int> GetCartId(int id) //get cartID of the current Marketing
-         {
-          int cartId = await  _repo.GetCartID(id);
-          return cartId;
 
-         }
-
-
-
-
-        [HttpPost] 
+        [HttpPost]
         public async Task<IActionResult> AddToCart(AddToCartDto model)
         {
             var marketingId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -45,9 +35,9 @@ namespace Souqly_API.Controllers
             {
                 CartId = await _repo.GetCartID(Int32.Parse(marketingId));
             }
-            else{
-
-                Cart cart = new Cart()  // create new cart for marketing id 
+            else
+            {
+                Cart cart = new Cart()
                 {
                     MarketingId = Int32.Parse(marketingId)
                 };
@@ -85,7 +75,7 @@ namespace Souqly_API.Controllers
                 int Stock = await _repo.GetStock(ProOptionCart.OptionId);
                 if (ProOptionCart.Quantity <= Stock)
                 {
-                    await  _repo.Add(ProOptionCart);
+                    _repo.Add(ProOptionCart);
                     await _repo.SaveAll();
                     return Ok();
                 }
@@ -99,7 +89,7 @@ namespace Souqly_API.Controllers
 
         }
 
-       [HttpGet("{id}/{model}")]
+      [HttpGet("{id}/{model}")]
         public async Task<IActionResult> UpdateQuantityCart(int id, int model)
         {
 
@@ -155,12 +145,12 @@ namespace Souqly_API.Controllers
             var CartId = await _repo.GetCartID(Int32.Parse(marketingId));
 
             var Option = _repo.GetOption(id, CartId);
-           await _repo.Delete(Option);
+            _repo.Delete(Option);
             await _repo.SaveAll();
 
             return Ok();
         }
-    
+
         [HttpGet]
         public async Task<IActionResult> GetAllShipping(){
 
@@ -168,7 +158,6 @@ namespace Souqly_API.Controllers
             var data= _mapper.Map<IEnumerable<AllShippingDto>>(Allshipping);
             return Ok(data) ;
         }
-
 
     }
 }
