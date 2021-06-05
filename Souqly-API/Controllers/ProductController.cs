@@ -29,7 +29,7 @@ namespace Souqly_API.Controllers
         public async Task<IActionResult> GetProducts()
         {
             var prods = await _repo.GetProducts();
-            
+
 
 
             return Ok(prods);

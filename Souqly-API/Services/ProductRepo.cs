@@ -19,7 +19,7 @@ namespace Souqly_API.Services
 
         public async Task<List<ProductDto>> GetProducts()
         {
-         
+
             List<ProductDto> result = await  _context.Products.Include(p => p.Options).Include(p => p.Images).Select(p => new ProductDto()
                                      {
                                           id = p.Id,
@@ -31,12 +31,9 @@ namespace Souqly_API.Services
                                               Id = o.Id, Name = o.AvailableOptions, ItemPrice = o.ItemPrice, StockIn = o.StockIn
                                           }).ToList()
                                      }).ToListAsync();
-            return result ;    
+            return result ;
 
         }
 
-        
-
-      
     }
 }
