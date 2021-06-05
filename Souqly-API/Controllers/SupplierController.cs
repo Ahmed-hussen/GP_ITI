@@ -38,5 +38,5 @@ namespace Souqly_API.Controllers
 
         }
         
-    }
+   }
 }

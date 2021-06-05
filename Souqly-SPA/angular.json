@@ -30,8 +30,7 @@
               "src/styles.css"
             ],
             "scripts": [
-
-              "src/assets/js/myjs.js"
+              "node_modules/alertifyjs/build/alertify.js"
             ]
           },
           "configurations": {

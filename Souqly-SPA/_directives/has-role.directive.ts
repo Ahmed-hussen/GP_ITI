@@ -7,7 +7,7 @@ import { Directive, Input, ViewContainerRef, TemplateRef, OnInit } from '@angula
 export class HasRoleDirective implements OnInit {
 
   @Input() hasRole: string[];
-  isVisible = false; 
+  isVisible = false;
 
   constructor(private viewContainerRef: ViewContainerRef,
     private templateRef: TemplateRef<any>,

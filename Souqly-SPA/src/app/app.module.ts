@@ -15,6 +15,15 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { HasRoleDirective } from '_directives/has-role.directive';
 import {PasswordModule} from 'primeng/password';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CheckOutComponent } from './CartManagement/check-out/check-out.component';
+import { ShippingListResolver } from '_resolvers/ShippingList.resolver';
+import { OptionCartListresolver } from '_resolvers/OptionCartList.resolver';
+import { AlertService } from '_services/alertifay.service';
+//import { CartMangementComponent } from './CartManagement/cart-mangement/cart-mangement.component';
+import { OrderDetailsComponent } from './CartManagement/order-details/order-details.component';
+import { OrderListResolver } from '_resolvers/OrderList.resolver';
+import { OrderDetailsResolver } from '_resolvers/OrderDetails.resolver';
+import { OrderListComponent } from './CartManagement/order-list/order-list.component';
 import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.component';
 
 import {TableModule} from 'primeng/table';
@@ -34,6 +43,9 @@ export function tokenGetter() {
     RegisterComponent,
     HomePageComponent,
     HasRoleDirective,
+    CheckOutComponent,
+    OrderDetailsComponent,
+    OrderListComponent,
     SupplierOrdersComponent,
     ManageAccountComponent
   ],
@@ -52,13 +64,18 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         allowedDomains: ['localhost:5000'],
-        disallowedRoutes: ['localhost:5000/auth']// login - 
+        disallowedRoutes: ['localhost:5000/auth']// login -
       }
     })
   ],
   providers: [
 
     AuthServicesService
+    ,ShippingListResolver
+    ,OptionCartListresolver,
+    AlertService,
+    OrderListResolver,
+    OrderDetailsResolver
   ],
   bootstrap: [AppComponent]
 })

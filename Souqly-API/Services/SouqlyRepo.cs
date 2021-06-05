@@ -14,23 +14,31 @@ namespace Souqly_API.Services
         {
             _context = context;
         }
-        public async Task<User> GetUser(int id)  //souqlyrepo ---> context. (modelname)
+
+
+        public async Task<IEnumerable<Shipping>> GetAllshipping()
+        {
+            var data=await _context.Shippings.ToListAsync();
+            return data;
+        }
+
+        public async Task<User> GetUser(int id)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
             return user;
         }
 
 
-        public void Add<T>(T entity) where T : class
+        public async Task Add<T>(T entity) where T : class
         {
             _context.Add(entity);
         }
 
 
-        public void Delete<T>(T entity) where T : class
+        public async Task  Delete <T>(T entity) where T : class
         {
             _context.Remove(entity);
-            _context.SaveChangesAsync();
+           await   _context.SaveChangesAsync();
         }
 
         public void Update<T>(T entity) where T : class
@@ -64,7 +72,7 @@ namespace Souqly_API.Services
 
         public async Task<ProductOptionCart> GetOption(int optionId, int cartId)
         {
-            var ProductOptionInCart = await _context.ProductOptionCart.FirstOrDefaultAsync(i => i.OptionId == optionId && i.CartId == cartId);
+            var ProductOptionInCart = await _context.ProductOptionCart.Include(i=>i.Option).FirstOrDefaultAsync(i => i.OptionId == optionId && i.CartId == cartId);
             return ProductOptionInCart;
 
         }
@@ -76,9 +84,9 @@ namespace Souqly_API.Services
             return Option.StockIn;
         }
 
-        public Task<ProductOptionCart> GetCart(int id)
+        public Task<List<ProductOptionCart>> GetCart(int id)
         {
-            var CartItems = _context.ProductOptionCart.Include(i => i.Option).FirstOrDefaultAsync(i => i.CartId == id);
+            var CartItems = _context.ProductOptionCart.Include(i => i.Option).Where(i => i.CartId == id).ToListAsync();
             return CartItems;
 
         }
@@ -112,10 +120,7 @@ namespace Souqly_API.Services
 
         public async Task<float> GetShippingPrice(int shippingId)
         {
-
-
             var Shipping = await _context.Shippings.FirstOrDefaultAsync(i => i.Id == shippingId);
-
 
             return Shipping.price;
         }
@@ -137,6 +142,37 @@ namespace Souqly_API.Services
             return ProductOptionInCart;
 
         }
+
+        public async Task<float> GetOptionPrice(int optionId)
+        {
+          var Option=await _context.Option.FirstOrDefaultAsync(i=>i.Id==optionId);
+         var price= Option.ItemPrice;
+          return price;
+        }
+
+        public async Task<Shipping> GetShipping(int id)
+        {
+            var ship=await _context.Shippings.FirstOrDefaultAsync(i=>i.Id==id);
+            return ship;
+        }
+
+
+       public async Task<Order> GetOrderInfoById(int id,int marketingId)
+        {
+            var order=await  _context.Orders.Include(i=>i.Bill).Include(i=>i.Shipping)
+                .Include(i=>i.OrderDetails).ThenInclude(i=>i.Option).ThenInclude(i=>i.Product)
+                .ThenInclude(i=>i.Images)
+                .FirstOrDefaultAsync(i=>i.Id==id && i.MarketingId == marketingId);
+            return order;
+        }
+        public async Task<IEnumerable<Order>> GetAllOrders(int id)
+        {
+            var order= await  _context.Orders.Include(i=>i.Bill).Where(i=>i.MarketingId==id).OrderBy(i=>i.OrderDate).ToListAsync();
+            return order;
+        }
+
+
+
 
 
     }
