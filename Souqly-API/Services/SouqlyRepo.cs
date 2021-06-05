@@ -171,9 +171,41 @@ namespace Souqly_API.Services
             return order;
         }
 
+        public async Task<bool>  DeleteAllSelected(ICollection<string> ids)
+        {
+            if(ids.Count<1)
+            {
+                return false;
+            }
+             var i=0;
+             foreach(var id in ids)
+             {
+               try
+               {
+
+                var ProOptionCartId=int.Parse(id);
+               var ProOptionCart=await _context.ProductOptionCart.FirstOrDefaultAsync(i=>i.Id==ProOptionCartId);
+
+               if(ProOptionCart != null)
+               {
+                _context.ProductOptionCart.Remove(ProOptionCart);
+                i++;
+                }
+
+               }
+               catch (System.Exception)
+               {
+                   
+                   throw;
+               }
 
 
-
-
+             }
+             if(i > 0)
+             {
+                 await _context.SaveChangesAsync();
+             }
+             return true;
+        }
     }
 }

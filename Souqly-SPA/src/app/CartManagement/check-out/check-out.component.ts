@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, forwardRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MakeOrder } from '_models/MakeOrder';
@@ -6,7 +6,8 @@ import { ProductOptionCart } from '_models/productOptionCart';
 import { Shipping } from '_models/Shipping';
 import { AlertService } from '_services/alertifay.service';
 import { CartMangmentService } from '_services/cart-mangment.service';
-
+import * as $ from '../../../assets/js/jquery-3.3.1.min.js';
+//import * as $ from '../../../assets/js/jquery-ui.min.js';
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
@@ -29,11 +30,14 @@ export class CheckOutComponent implements OnInit {
   public DealPrice;
   public someProperty = 0;
   public totalPrices=0;
+  num:number;
   constructor(private resolve: ActivatedRoute, private services: CartMangmentService, private router: Router,
   private alertifyService: AlertService, private fp:FormBuilder
   ) {
   }
   ngOnInit() {
+    this.num=0;
+    this.seletAll();
     this.resolve.data.subscribe(
       data => {
         this.options = data['checkout']
@@ -147,7 +151,108 @@ export class CheckOutComponent implements OnInit {
   }
 
 
+  seletAll()
+  {
+    var tb1=$('#tb1');//كدا هاخد التابل
+    var header =tb1.find('thead .ckheader'); //كدا هاخد الشيك بوكس الي فوق خالص
+    var item =tb1.find('tbody .ckitem');//كدا هاخد الشيكز بوكسس الي جوه البودي
+    
+    $(function () {
+        item.on('change', function(){
+
+        if($(this).is(':checked'))//اديله كلاس ملون لو لخترته وشيله لو مخترتوش
+        {
+          $(this).closest('tr').addClass('NewRowColor');
+        }
+        else{
+          $(this).closest('tr').removeClass('NewRowColor');
+        }
+      }
+        );
+
+        header.change(function(){
+
+          var c =this.checked;
+          item.prop('checked', c);//زودلي بوبيرتي شيكد علي الشيكز بوكس الي في البودي خليهالي ذيها ذي بتاعت الهيدر
+          item.trigger('check');//علملي علي المربه بتاع الشيك بوكس
+             if($(this).is(':checked'))//اديله كلاس ملون لو لخترته وشيله لو مخترتوش
+             {
+               $(item).closest('tr').addClass('NewRowColor');
+             }
+             else{
+               $(item).closest('tr').removeClass('NewRowColor');
+             }
+
+   
+        });
+      });
+
+    }
+
+    IsDelete()
+    {
+      var Checkboxes = document.getElementsByClassName("ckitem");
+      if(Checkboxes.length > 0)
+      {
+        for(let i=0;i< Checkboxes.length; i++)
+        {
+          if($(Checkboxes[i]).is(":checked")){
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    DeleteCount()
+    {
+      var count =$(".ckitem:Checked").length;
+      this.num=count;
+    }
+
+
+    DeleteAllProductCart(ids)
+    {
+      let DIDs=ids;
+      alert(DIDs);
+
+      this.services.DeleteAllProductCart(DIDs).subscribe(
+        res => {this.alertifyService.success("تم الحذف بنجاح");
+      },
+      e => {
+        this.alertifyService.error("e.error");
+      //  this.alertifyService.error(e.error);
+      }
+      )
+       }
+ 
+
+
+    DeleteConfirm()
+    {
+      var checkboxes =document.getElementsByClassName('ckitem');
+      if(checkboxes.length > 0)
+      {
+        var ids=[];
+        for(let i =0 ; i< checkboxes.length ; i++ )
+        {
+            if($(checkboxes[i]).is(":checked"))
+            {
+               var id =$(checkboxes[i]).val();
+               ids.push(id);
+               this.DeleteAllProductCart(ids);
+            }
+        }
+      }
+     }
+
+      }
 
 
 
-}
+
+
+
+
+
+

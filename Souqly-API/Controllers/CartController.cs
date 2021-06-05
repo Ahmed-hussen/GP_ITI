@@ -151,6 +151,34 @@ namespace Souqly_API.Controllers
             return Ok();
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAllProOptionFromCart( ICollection<String> ids)
+        {
+
+
+            if(ids.Count<1)
+            {
+                  return StatusCode(500,"يجب عليك تحديد المنتجات للحذف");
+            }
+
+                  var result= await _repo.DeleteAllSelected(ids);
+            if(result)
+            {
+                return Ok();
+            }
+            else{
+                return StatusCode(500,"يوجد مشكله في الحذف");
+            }
+
+
+        }
+
+
+
+
+
+
         [HttpGet]
         public async Task<IActionResult> GetAllShipping(){
 

@@ -13,7 +13,6 @@ import { Shipping } from '_models/Shipping';
 export class CartMangmentService {
 
   constructor(private http: HttpClient) { }
-           
   apiURL = environment.ApiUrl + "Cart/";
   OrderURL= environment.ApiUrl + "Order/";
 
@@ -42,6 +41,14 @@ export class CartMangmentService {
 
   GetAllOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(this.OrderURL + "GetAllOrders");
+  }
+
+
+  DeleteAllProductCart(ids:string[])
+  {
+    alert("welcome ahmed ids="+ids);
+    return this.http.post(this.apiURL + 'DeleteAllProOptionFromCart' ,ids);
+
   }
 
 }

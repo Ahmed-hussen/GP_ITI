@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-
+ 
 namespace Souqly_API.Controllers
 {
     [Route("[controller]")]
@@ -18,14 +18,13 @@ namespace Souqly_API.Controllers
         private IMapper _mapper;
         private ISouqlyRepo _repo;
         private UserForManage userToReturn;
-
+ 
         public MAccountManageController(ISouqlyRepo repo, IMapper mapper)
         {
             _mapper = mapper;
             _repo = repo;
         }
-
-
+ 
         [HttpGet]
         public async Task<IActionResult> GetData()  //action --->  repo. function
         {
@@ -34,19 +33,22 @@ namespace Souqly_API.Controllers
             userToReturn = _mapper.Map<UserForManage>(CurrentUser);  //get -- mapping 
             return Ok(userToReturn);
         }
-
+            
+   
+ 
         [HttpPut]
         public async Task<IActionResult> UpdateAccountData(UserForManage model)
         { 
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); // get the user id 
             var oldUser = await _repo.GetUser(currentUserId);
-            //model.Id = currentUserId; if we need in angular
-            var newUser = _mapper.Map(model, oldUser);
-            newUser.NormalizedUserName = model.UserName.ToUpper();
+            var newUser = _mapper.Map(model, oldUser); // update
+            // var updatedUserName = model.FirstName +" "+ model.lastName;
+            // newUser.UserName = updatedUserName;
+            // newUser.NormalizedUserName = newUser.UserName.ToUpper();
             await _repo.SaveAll();
-            return Ok(model);
+            return Ok(model); 
         }
-
-    }
+    
+ }
+ 
 }
-
