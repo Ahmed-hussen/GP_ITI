@@ -3,11 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Souqly_API.Migrations
 {
-<<<<<<< HEAD:Souqly-API/Migrations/20210603234508_addSupplierToProduct.cs
     public partial class addSupplierToProduct : Migration
-=======
-    public partial class ah15 : Migration
->>>>>>> db0dd0cb9a54b61fbc8ca9a7005507ddb83341ee:Souqly-API/Migrations/20210603235513_ah15.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
