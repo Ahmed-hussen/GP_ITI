@@ -10,13 +10,8 @@ using Souqly_API.Services;
 namespace Souqly_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-<<<<<<< HEAD:Souqly-API/Migrations/20210603234508_addSupplierToProduct.Designer.cs
     [Migration("20210603234508_addSupplierToProduct")]
     partial class addSupplierToProduct
-=======
-    [Migration("20210603235513_ah15")]
-    partial class ah15
->>>>>>> db0dd0cb9a54b61fbc8ca9a7005507ddb83341ee:Souqly-API/Migrations/20210603235513_ah15.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
