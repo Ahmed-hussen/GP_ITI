@@ -10,7 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Souqly_API.Controllers
-{   
+{  
+    [AllowAnonymous]
     [Route("[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -28,26 +29,15 @@ namespace Souqly_API.Controllers
         public async Task<IActionResult> GetProducts()
         {
             var prods = await _repo.GetProducts();
-        
-
-            var productsToReturn = _mapper.Map<List<ProductDto>>(prods);
-            for (int i = 0; i < productsToReturn.Count; i++)
-            {
-                productsToReturn[i].images = new List<string>();
-                foreach (var item in prods[i].Images)
-                {
-                   
-                    productsToReturn[i].images.Add(item.Url);
-                }
-                 
-            }
+            
 
 
-            return Ok(productsToReturn);
+            return Ok(prods);
 
 
         }
 
+        /*
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductById(int id)
         {
@@ -58,6 +48,6 @@ namespace Souqly_API.Controllers
             return Ok(product);
 
 
-        }
+        }*/
     }
 }

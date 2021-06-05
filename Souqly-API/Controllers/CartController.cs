@@ -111,15 +111,6 @@ namespace Souqly_API.Controllers
         return Ok(CartItemToReturn);
 
         }
-
-
-
-
-
-
-
-
-
         }
     }
 

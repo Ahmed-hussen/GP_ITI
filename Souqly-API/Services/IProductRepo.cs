@@ -1,4 +1,5 @@
-﻿using Souqly_API.Models;
+﻿using Souqly_API.Dtos.Products;
+using Souqly_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,8 @@ namespace Souqly_API.Services
 {
     public interface IProductRepo
     {
-        Task<List<Product>> GetProducts();
-        Task<Product> GetProductById(int id);
+        Task<List<ProductDto>> GetProducts();
+        //Task<Product> GetProductById(int id);
 
     }
 }

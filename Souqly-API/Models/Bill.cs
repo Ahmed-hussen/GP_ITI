@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Souqly_API.Models
 {
     public class Bill
@@ -7,10 +9,10 @@ namespace Souqly_API.Models
         public float SiteProfits { get; set; }
         public float ShippingProfits { get; set; }
         public float MarktingProfits { get; set; }
-        public float SupplierProfits { get; set; }
-        public float TotalPriceForClient { get; set; }
+        public virtual ICollection<UserBill> UserBills { get; set; }
         public Order Order { get; set; }
 
     }
     
 }
+

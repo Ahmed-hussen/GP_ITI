@@ -12,5 +12,6 @@ namespace Souqly_API.Dtos.Products
         public int stockIn { get; set; }
         public float price { get; set; }
         public List<string> images { get; set; }
+        public List<OptionDto> options { get; set; }
     }
 }

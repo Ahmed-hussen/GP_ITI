@@ -10,6 +10,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import {ButtonModule} from 'primeng/button';
 import {GalleriaModule} from 'primeng/galleria';
 import {DataViewModule} from 'primeng/dataview';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {DataViewModule} from 'primeng/dataview';
     RadioButtonModule,
     ButtonModule,
     GalleriaModule,
-    DataViewModule
+    DataViewModule,
+    FormsModule
   ]
 })
 export class ProductExploreModule { }

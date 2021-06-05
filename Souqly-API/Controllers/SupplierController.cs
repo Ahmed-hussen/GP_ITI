@@ -30,16 +30,11 @@ namespace Souqly_API.Controllers
         public async Task<IActionResult> GetOrders(int id)
         {
 
-            List<OrderDetail> orderDetails = await _repo.GetOrders(id);
+            List<SupplierOrderDto> orderDetails = await _repo.GetOrders(id);
 
-            List<SupplierOrderDto> supplierOrders = _mapper.Map<List<SupplierOrderDto>>(orderDetails);
-            for (int i = 0; i < orderDetails.Count; i++)
-            {
-                supplierOrders[i].ProductName = orderDetails[i].Product.ProductName;
-                supplierOrders[i].Status = orderDetails[i].Order.Status;
-                supplierOrders[i].OrderDate = orderDetails[i].Order.OrderDate;
-            }
-            return Ok(supplierOrders);
+            //List<SupplierOrderDto> supplierOrders = _mapper.Map<List<SupplierOrderDto>>(orderDetails);
+         
+            return Ok(orderDetails);
 
         }
         

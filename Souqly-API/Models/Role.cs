@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace E_Commerce.API.Models
 {
-    public class Role:IdentityRole<int>
+    public class Role : IdentityRole<int>
     {
-        
+
     }
 }

@@ -18,14 +18,20 @@ namespace Souqly_API.Services
             _context = context;
         }
 
-        public async Task<List<OrderDetail>> GetOrders(long supplierId)
+        public async Task<List<SupplierOrderDto>> GetOrders(long supplierId)
         {
 
-             var orders = await _context.OrderDetails.Include(i => i.Order).
-                                            Include(i => i.Product).
-                                            ThenInclude(i => i.MarketingProducts).
-                                            Where(o => o.Product.MarketingProducts.
-                                                        FirstOrDefault(s => s.MarketingId == supplierId) != null).ToListAsync();
+            var orders = await _context.OrderDetails.Include(i => i.Order).
+                                           Include(i => i.Option).ThenInclude( o => o.Product).Select(o => new SupplierOrderDto()
+                                           {
+                                               OrderId = o.OrderId,
+                                               OrderDate = o.Order.OrderDate,
+                                               ProductId = o.Option.ProductId,
+                                               ProductName = o.Option.Product.ProductName,
+                                               Quantity = o.Quantity,
+                                               Status = o.Order.Status,
+                                               TotalOptionPrice = o.TotalOptionPrice
+                                           }).ToListAsync();
             return orders;
         }
         
