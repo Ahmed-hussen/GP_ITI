@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Souqly_API.Models
 {
- public class User:IdentityUser<int>
+    public class User : IdentityUser<int>
     {
         // Marketing Info
 

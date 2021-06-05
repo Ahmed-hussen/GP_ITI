@@ -5,6 +5,8 @@
 // import { ProductOptionCart } from "./ProductOptionCart";
 // import { User } from "./user";
 
+import { Option } from "./Option";
+
 // export class Product {
 //     constructor(public id?:number, public productName?:string, public weight?:number, public description?:string,
 //         public brand?:string, public date?:Date, public dimension?:string, public category?:Category,
@@ -21,5 +23,7 @@ export interface Product {
     stockIn:number;
     price:number;
     images:string[];
+    options: Option[];
+
 }
   

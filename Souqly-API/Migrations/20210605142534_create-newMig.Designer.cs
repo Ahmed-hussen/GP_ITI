@@ -10,8 +10,8 @@ using Souqly_API.Services;
 namespace Souqly_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210603235513_ah15")]
-    partial class ah15
+    [Migration("20210605142534_create-newMig")]
+    partial class createnewMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

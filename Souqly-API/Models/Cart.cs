@@ -7,12 +7,12 @@ namespace Souqly_API.Models
     {
         public int Id { get; set; }
 
-     //   public ICollection<Product> Products { get; set; }
+        //   public ICollection<Product> Products { get; set; }
         public User Marketing { get; set; }
         public int MarketingId { get; set; }
 
         // Many To Many Realation
-        public  List<ProductOptionCart> ProductOptionCart { get; set; }
+        public List<ProductOptionCart> ProductOptionCart { get; set; }
 
 
 

@@ -6,7 +6,7 @@ namespace Souqly_API.Models
         public int Quantity { get; set; }
         public float NewPrice { get; set; }
 
-        public  Option Option { get; set; }
+        public Option Option { get; set; }
         public int OptionId { get; set; }
 
         public Cart Cart { get; set; }
