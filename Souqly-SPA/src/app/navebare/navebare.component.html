@@ -139,8 +139,9 @@
 
            <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Marketing' , 'Supplier']" >حسابـــي</a>
                         <ul class="dropdown" >
-                            <li *ngIf="loggedIn()"><a [routerLink]="['/myorders']" >متابعة الطلبات</a></li>
-                            <li><a class="nav-link" routerLink="manageaccount">إعدادات الحساب</a></li>
+                            <li *ngIf="loggedIn()"><a  *hasRole="['Supplier']" [routerLink]="['/myorders']" >متابعة الطلبات</a></li>
+                            <li *ngIf="loggedIn()"><a  *hasRole="['Marketing']" [routerLink]="['/followorders']" >متابعة الطلبات</a></li>
+                            <li *ngIf="loggedIn()"><a  *hasRole="['Marketing' , 'Supplier']" [routerLink]="['/manageaccount']" >إعدادات الحساب</a></li>
                             <li><a href="#">تعديل الباسورد</a></li>
                         </ul>
                     </li>
