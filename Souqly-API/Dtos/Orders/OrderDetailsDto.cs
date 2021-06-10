@@ -23,7 +23,7 @@ namespace Souqly_API.Dtos.Orders
         public float SiteProfits { get; set; }
         public float ShippingProfits { get; set; }
         public float MarktingProfits { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
        // public ICollection<OrderDetail> OrderDetails { get; set; }
         
     }

@@ -59,7 +59,7 @@ namespace Souqly_API.Controllers
                     // 
                     var OptionInfo = await _repo.GetProductOption(OptionIdInCart, cartID);
 
-                    OrderDetail orderDetail = new OrderDetail()
+                    OrderDetails orderDetail = new OrderDetails()
                     {
                         Quantity = OptionInfo.Quantity,
                         OrderId = order.Id,
