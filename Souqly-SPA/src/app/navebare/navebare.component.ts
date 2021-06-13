@@ -41,7 +41,6 @@ export class NavebareComponent implements OnInit {
 
 
 
-
   }
   loadCart() {
     this.cartService.getOptionsFromCart().subscribe(
@@ -52,6 +51,7 @@ export class NavebareComponent implements OnInit {
 
   public total = 0;
   findsum(data) {
+    this.total=0;
     this.products = data
 
     for (let j = 0; j < data.length; j++) {
@@ -82,6 +82,7 @@ export class NavebareComponent implements OnInit {
   RefreshCart(){
 
     this.hubConnection.invoke('refresh');
+  //  this.loadCart()
   }
 
 
