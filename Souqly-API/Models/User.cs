@@ -13,11 +13,25 @@ namespace Souqly_API.Models
         // Supplier Info
        public string FirstName { get; set; }
 
-        public string ImageID { get; set; } // صوره الرقم القومي
+       public string ImageID { get; set; } // صوره الرقم القومي
+        //********** Visa Info**********
+        //Bank Data
+        public string ClientName { get; set; }
+        public string BankName { get; set; }
+        public int AccountNumber { get; set; }
+        public string Section { get; set; }
+        // mail Data
+        public int CardNumber { get; set; }
+        public string CardName { get; set; }
+        // wallet Data
+        public int WalletNumber { get; set; }
+
+        
         // Shahy Asks ?????
         // P.P 
         // Last Name 
         // Why Total profits here 
+
         public int? TotalProfits { get; set; }
        public virtual ICollection<Product> Products { get; set; }
          public virtual ICollection<Order> Orders { get; set; }

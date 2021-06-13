@@ -15,6 +15,8 @@ namespace Souqly_API.Helpers
         {
 
             CreateMap<UserForRegister,User>();// Create
+
+            CreateMap<UserVisa, User>();// Create
             CreateMap<User,UserForDetails>();// Get Data
             CreateMap<AddToCartDto,ProductOptionCart>();// Create
             CreateMap<UpdateCartDto,ProductOptionCart>();// Create
@@ -23,7 +25,7 @@ namespace Souqly_API.Helpers
 
             CreateMap<User,UserForManage>();// Get Data
             CreateMap<UserForManage, User>();// Create
-
+            CreateMap<User, UserVisa>();// Get Data
             CreateMap<AddOrderDto,Order>();// Create
             CreateMap<AddOrderDto,Shipping>();// Create
             CreateMap<AddOrderDto,Bill>();// Create

@@ -27,6 +27,11 @@ namespace Souqly_API.Services
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
             return user;
         }
+       public async Task<IEnumerable<User>> GetAllUsers()
+        {
+            var data = await _context.Users.ToListAsync();
+            return (data);
+        }
 
 
         public async Task Add<T>(T entity) where T : class

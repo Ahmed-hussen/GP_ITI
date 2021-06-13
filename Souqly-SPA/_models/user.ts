@@ -4,4 +4,6 @@ export interface User {
   email:string;
   password:number;
   roleName:string;
+  phoneNumber:string;
+  firstName:string;
 }

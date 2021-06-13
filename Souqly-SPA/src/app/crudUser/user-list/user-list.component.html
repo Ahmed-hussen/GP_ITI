@@ -1,0 +1,33 @@
+<div class="container">
+<table class="table table-striped my-3 mx-3 py-2 ">
+    <thead>
+        <h3> User Data</h3>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col"> User Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">roleName</th>
+
+        <th>Operations</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      
+      
+      <tr>
+       
+        <tr *ngFor="let item of nstd"  >
+          <td>{{item.id}}</td>
+            <td>{{item.userName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.roleName}}</td>
+            <a [routerLink]="['details',item.id]" class="btn btn-muted py-2  my-2"> Details</a>
+            
+          
+      </tr>
+    </tbody>
+  </table>
+
+  
+</div>

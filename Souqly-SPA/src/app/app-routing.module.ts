@@ -14,12 +14,21 @@ import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.compo
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
 import { ProductComponent } from './product-explore/product/product.component';
 import {ProductListComponent} from './product-explore/product-list/product-list.component';
+import { PaymentComponent } from './payment/payment.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UserListComponent } from './crudUser/user-list/user-list.component';
+import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 const routes: Routes = [
   {path:'',component:HomePageComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
   {path: 'myorders', component: SupplierOrdersComponent},
   {path: 'manageaccount', component: ManageAccountComponent},
+  { path: 'payment', component:PaymentComponent},
+  { path: 'dashboard', component:AdminDashboardComponent},
+  { path: 'UserList', component:UserListComponent},
+  { path: 'UserList/details/:id', component:UserDetailsComponent},
+  
   {path: 'products', component: ProductListComponent},
   { path: 'Checkout', component: CheckOutComponent,resolve:{checkout:OptionCartListresolver,shipping:ShippingListResolver}},//b7ml el data 3la el route
   { path: 'OrderList', component: OrderListComponent,resolve:{order:OrderListResolver}},
