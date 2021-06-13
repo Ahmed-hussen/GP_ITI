@@ -91,6 +91,8 @@ namespace Souqly_API
               // CORS Policy
              services.AddCors();
 
+             services.AddSignalR();
+
 
              services.AddAutoMapper(typeof(Startup));
                  // Mapper.Reset();
@@ -124,6 +126,7 @@ namespace Souqly_API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<CartHub>("/cart");
             });
 
         }

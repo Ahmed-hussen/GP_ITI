@@ -33,6 +33,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './crudUser/user-list/user-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
+import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -55,7 +56,8 @@ export function tokenGetter() {
     PaymentComponent,
     AdminDashboardComponent,
     UserListComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    FollowOrdersComponent
   ],
   imports: [
     BrowserModule,

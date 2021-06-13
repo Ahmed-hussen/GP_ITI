@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { SupplierOrder } from '_models/SupplierOrder';
+import { SupplierOrder } from '_models/ola/SupplierOrder';
 import { AuthServicesService } from './AuthServices.service';
 
 @Injectable({

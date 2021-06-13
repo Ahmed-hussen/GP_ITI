@@ -18,6 +18,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './crudUser/user-list/user-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
+import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
 const routes: Routes = [
   {path:'',component:HomePageComponent},
   { path: 'login', component: LoginComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'UserList', component:UserListComponent},
   { path: 'UserList/details/:id', component:UserDetailsComponent},
   
+  {path: 'followorders', component: FollowOrdersComponent},
   {path: 'products', component: ProductListComponent},
   { path: 'Checkout', component: CheckOutComponent,resolve:{checkout:OptionCartListresolver,shipping:ShippingListResolver}},//b7ml el data 3la el route
   { path: 'OrderList', component: OrderListComponent,resolve:{order:OrderListResolver}},

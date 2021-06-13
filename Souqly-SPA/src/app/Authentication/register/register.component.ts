@@ -43,9 +43,11 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fp.group({
       roleName: ['', Validators.required],
       userName: ['', Validators.required],
+      FirstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
-
+      phoneNumber: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(11), Validators.maxLength(11)]],
     })
   }
 

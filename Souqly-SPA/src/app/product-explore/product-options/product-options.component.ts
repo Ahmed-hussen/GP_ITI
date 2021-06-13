@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { config } from 'rxjs';
-import { Product } from '_models/Product';
-import { ProductWithOptions } from '_models/ProductWithOptions';
+import { Product } from '_models/ola/Product';
+import { AlertService } from '_services/alertifay.service';
+import { CartMangmentService } from '_services/cart-mangment.service';
 import { ProductServiceService } from '_services/product-service.service';
 
 @Component({
@@ -11,11 +11,12 @@ import { ProductServiceService } from '_services/product-service.service';
   styleUrls: ['./product-options.component.css']
 })
 export class ProductOptionComponent implements OnInit {
-    id:number;
-    product: ProductWithOptions;
+    // id:number;
+    product: Product;
+    
+    optionId:number;
     quantity:number;
-    productToCart:ProductWithOptions;
-    selectedOptionId:number;
+
     cols: any[];
 
     responsiveOptions:any[] = [
@@ -32,15 +33,12 @@ export class ProductOptionComponent implements OnInit {
           numVisible: 1
       }
   ];
-            
-    constructor(private productService: ProductServiceService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
+
+    constructor(private productService: ProductServiceService, public ref: DynamicDialogRef, public config: DynamicDialogConfig ,private services : CartMangmentService,private alertifyService: AlertService) { }
 
     ngOnInit() {
-      this.id = this.config.data;
-        this.productService.getProductById(this.id).subscribe(
-          p => this.product = p
-        );
-        
+      this.product = this.config.data;
+      this.quantity = 1;
     }
 
     selectProduct(product: Product) {
@@ -50,8 +48,19 @@ export class ProductOptionComponent implements OnInit {
     closeModel(){
       this.ref.close();
     }
-    selectButton(id:number){
-      this.selectedOptionId = id;
+   
+
+    addToCart(){
+      alert(this.optionId + ", " + this.quantity);
+      this.services.AddToCart(this.optionId,this.quantity).subscribe(
+        suc=>{
+          this.alertifyService.success("قد تمت الاضافه للسله بنجـاح")
+        },e=>{
+          this.alertifyService.error(e.error)
+        }
+  
+  
+      )
     }
 
 }

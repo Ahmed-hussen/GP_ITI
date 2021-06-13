@@ -37,5 +37,7 @@ Task Add <T> (T entity) where T:class;// Add Any entity
         //Admin
          Task<IEnumerable<User>> GetAllUsers();
 
+        Task<bool> DeleteAllSelected(ICollection<string> ids);
+        Task<IEnumerable<OrderDetails>> GetMarketeerOrders(int id);
     }
 }

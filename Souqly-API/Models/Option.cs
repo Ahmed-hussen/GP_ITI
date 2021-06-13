@@ -13,12 +13,12 @@ namespace Souqly_API.Models
      //   public string Name { get; set; }
 
         public float ItemPrice { get; set; }
-        public string AvailableOptions { get; set; } 
+        public string AvailableOptions { get; set; }
         public Product Product { get; set; }
 
         [ForeignKey("Product")]
         public int ProductId { get; set; }
 
-         public  List<ProductOptionCart> ProductOptionCart { get; set; }
+        public List<ProductOptionCart> ProductOptionCart { get; set; }
     }
 }

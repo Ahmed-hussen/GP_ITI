@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Souqly_API.Models
 {
- public class User:IdentityUser<int>
+    public class User : IdentityUser<int>
     {
         // Marketing Info
 
         // Shipping Info
 
         // Supplier Info
-       public string FirstName { get; set; }
+        public string FirstName { get; set; }
 
-       public string ImageID { get; set; } // صوره الرقم القومي
+       //public string ImageID { get; set; } // صوره الرقم القومي
         //********** Visa Info**********
         //Bank Data
         public string ClientName { get; set; }
@@ -27,6 +27,9 @@ namespace Souqly_API.Models
         public int WalletNumber { get; set; }
 
         
+        public string lastName { get; set; }
+        public string address { get; set; }
+        public string ImageID { get; set; } // صوره الرقم القومي
         // Shahy Asks ?????
         // P.P 
         // Last Name 
