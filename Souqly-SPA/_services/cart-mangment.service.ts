@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AddToCart } from '_models/AddToCart';
 import { MakeOrder } from '_models/MakeOrder';
 import { Order } from '_models/Order';
 import { ProductOptionCart } from '_models/productOptionCart';
@@ -46,9 +47,14 @@ export class CartMangmentService {
 
   DeleteAllProductCart(ids:string[])
   {
-    alert("welcome ahmed ids="+ids);
     return this.http.post(this.apiURL + 'DeleteAllProOptionFromCart' ,ids);
 
+  }
+
+
+  AddToCart(OptionId:number,Quantity:number)
+  {
+    return this.http.get(this.apiURL + 'AddToCart/'+OptionId +'/'+Quantity)
   }
 
 }

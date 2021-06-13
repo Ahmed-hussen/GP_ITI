@@ -118,8 +118,8 @@ namespace Souqly_API.Controllers
              var marketingId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
              var products=await _repo.GetAllOrders(int.Parse(marketingId));
-             
-            var productsReturn= _mapper.Map<IEnumerable<OrderListDto>>(products);
+
+             var productsReturn= _mapper.Map<IEnumerable<OrderListDto>>(products);
             return Ok(productsReturn);
 
       }

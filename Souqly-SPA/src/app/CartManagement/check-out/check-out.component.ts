@@ -93,7 +93,7 @@ export class CheckOutComponent implements OnInit {
         shippingId: ['', Validators.required],
         siteProfits: ['', Validators.required],
         shippingProfits: ['', Validators.required],
-        marketingProfits:['', Validators.required],
+        marketingProfits:['',[ Validators.required,Validators.min(0)]],
 
         // dealPrice: [''],
         // clientName: [''],
@@ -123,7 +123,7 @@ export class CheckOutComponent implements OnInit {
       },
       e => {
         this.alertifyService.error(e.error);
-      }
+           }
     )
   }
 
@@ -225,7 +225,7 @@ export class CheckOutComponent implements OnInit {
       }
       )
        }
- 
+
 
 
     DeleteConfirm()
@@ -243,6 +243,7 @@ export class CheckOutComponent implements OnInit {
                this.DeleteAllProductCart(ids);
             }
         }
+        window.location.reload();
       }
      }
 

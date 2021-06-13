@@ -72,7 +72,26 @@
   font-size: 22px;
 }
 
+
+
 .NewRowColor{
 	background-color: khaki;
 }
+
+table td.centered {
+	text-align: center;
+	width: 25px;
+	padding-left: 10px;
+  }
+ 
+
+
+
+
+
+
+
+
+
+
 

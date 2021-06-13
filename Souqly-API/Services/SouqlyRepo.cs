@@ -195,7 +195,6 @@ namespace Souqly_API.Services
                }
                catch (System.Exception)
                {
-                   
                    throw;
                }
 
