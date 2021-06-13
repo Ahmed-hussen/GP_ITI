@@ -157,15 +157,16 @@ namespace Souqly_API.Services
         }
 
 
-       public async Task<Order> GetOrderInfoById(int id,int marketingId)
+        public async Task<Order> GetOrderInfoById(int id,int marketingId)
         {
             var order=await  _context.Orders.Include(i=>i.Bill).Include(i=>i.Shipping)
-                .Include(i=>i.OrderDetails).ThenInclude(i=>i.Option).ThenInclude(i=>i.Product)
+                .Include(i=>i.OrderDetail).ThenInclude(i=>i.Option).ThenInclude(i=>i.Product)
                 .ThenInclude(i=>i.Images)
                 .FirstOrDefaultAsync(i=>i.Id==id && i.MarketingId == marketingId);
             return order;
         }
-        public async Task<IEnumerable<Order>> GetAllOrders(int id)
+
+        public async Task<IEnumerable<Order>> GetAllOrders(int id) // marketing id
         {
             var order= await  _context.Orders.Include(i=>i.Bill).Where(i=>i.MarketingId==id).OrderBy(i=>i.OrderDate).ToListAsync();
             return order;
@@ -206,5 +207,13 @@ namespace Souqly_API.Services
              }
              return true;
         }
+
+        public async Task<IEnumerable<OrderDetails>> GetMarketeerOrders(int id) // marketing id
+        {
+            var orders = await  _context.OrderDetails.Include(i => i.Option).ThenInclude(i => i.Product).Include(i=>i.Order).ThenInclude(i=>i.Bill).Where(i=>i.Order.MarketingId==id).OrderBy(i=>i.Order.OrderDate).ToListAsync();
+
+             return orders;
+        }
+
     }
 }

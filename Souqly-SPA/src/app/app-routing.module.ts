@@ -14,12 +14,14 @@ import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.compo
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
 import { ProductComponent } from './product-explore/product/product.component';
 import {ProductListComponent} from './product-explore/product-list/product-list.component';
+import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
 const routes: Routes = [
   {path:'',component:HomePageComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
   {path: 'myorders', component: SupplierOrdersComponent},
   {path: 'manageaccount', component: ManageAccountComponent},
+  {path: 'followorders', component: FollowOrdersComponent},
   {path: 'products', component: ProductListComponent},
   { path: 'Checkout', component: CheckOutComponent,resolve:{checkout:OptionCartListresolver,shipping:ShippingListResolver}},//b7ml el data 3la el route
   { path: 'OrderList', component: OrderListComponent,resolve:{order:OrderListResolver}},
