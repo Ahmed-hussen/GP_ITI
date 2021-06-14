@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { UserForManage } from "src/app/Dtos/UserForManage";
 import { environment } from "src/environments/environment";
-import { AuthServicesService } from "./AuthServices.service";
+import { UserForManage } from "_models/UserForManage";
+import { AuthServicesService } from "_services/AuthServices.service";
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,17 @@ export class MarketingService {
      return this.http.get<UserForManage>(this.url,httpOptions);
   }
 
+  UpdateData(updateduser : UserForManage)
+  {
+    var headers_object = new HttpHeaders({
+      'Content-Type': 'application/json',
+       'Authorization': "Bearer "+ window.localStorage.getItem('token')
+    });
+    const httpOptions = {
+      headers: headers_object
+    };
+    return this.http.put<UserForManage>(this.url, updateduser,httpOptions);
+
+  }
 
 }

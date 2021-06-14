@@ -6,6 +6,7 @@ using Souqly_API.Dtos.User;
 using Souqly_API.Dtos.Supplier;
 using Souqly_API.Dtos.Products;
 using Souqly_API.Models;
+using Souqly_API.Dtos.Marketeer;
 
 namespace Souqly_API.Helpers
 {
@@ -15,6 +16,8 @@ namespace Souqly_API.Helpers
         {
 
             CreateMap<UserForRegister,User>();// Create
+
+            CreateMap<UserVisa, User>();// Create
             CreateMap<User,UserForDetails>();// Get Data
             CreateMap<AddToCartDto,ProductOptionCart>();// Create
             CreateMap<UpdateCartDto,ProductOptionCart>();// Create
@@ -23,11 +26,11 @@ namespace Souqly_API.Helpers
 
             CreateMap<User,UserForManage>();// Get Data
             CreateMap<UserForManage, User>();// Create
-
+            CreateMap<User, UserVisa>();// Get Data
             CreateMap<AddOrderDto,Order>();// Create
             CreateMap<AddOrderDto,Shipping>();// Create
             CreateMap<AddOrderDto,Bill>();// Create
-            CreateMap<AddOrderDto,OrderDetail>();// Create
+            CreateMap<AddOrderDto,OrderDetails>();// Create
 
             CreateMap<Shipping,AllShippingDto>();// Get Data
 
@@ -38,7 +41,7 @@ namespace Souqly_API.Helpers
              .ForMember(dest=>dest.DealPrice,opt=>{opt.MapFrom(src=>src.Bill.DealPrice);})
              .ForMember(dest=>dest.SiteProfits,opt=>{opt.MapFrom(src=>src.Bill.SiteProfits);})
              .ForMember(dest=>dest.ShippingProfits,opt=>{opt.MapFrom(src=>src.Bill.ShippingProfits);})
-            .ForMember(dest=>dest.MarktingProfits,opt=>{opt.MapFrom(src=>src.Bill.MarktingProfits);});
+             .ForMember(dest=>dest.MarktingProfits,opt=>{opt.MapFrom(src=>src.Bill.MarktingProfits);});
              //.ForMember(dest=>dest.OrderDetails,opt=>{opt.MapFrom(src=>src.OrderDetails);});
 
             CreateMap<Order,OrderListDto>()// Get Data
@@ -46,14 +49,31 @@ namespace Souqly_API.Helpers
 
 
             CreateMap<Order, SupplierOrderDto>(); //get
-            CreateMap<OrderDetail, SupplierOrderDto>(); //get
+            CreateMap<OrderDetails, SupplierOrderDto>(); //get
             CreateMap<Product, SupplierOrderDto>();
 
             //CreateMap<Product, ProductDto>();
             //CreateMap<Option, ProductDto>();
 
             CreateMap<Product, ProductDto>();
-                    
+
+
+            //Follow marketeer orders
+            CreateMap<OrderDetails, MarketeerOrdersDto>()// Get Data
+              //order table
+              .ForMember(dest => dest.OrderDate, opt => { opt.MapFrom(src => src.Order.OrderDate); })
+              .ForMember(dest => dest.Status, opt => { opt.MapFrom(src => src.Order.Status); })
+              .ForMember(dest => dest.Address, opt => { opt.MapFrom(src => src.Order.Address); })
+              .ForMember(dest => dest.Phone, opt => { opt.MapFrom(src => src.Order.Phone); })
+              .ForMember(dest => dest.ClientName, opt => { opt.MapFrom(src => src.Order.ClientName); })
+              //option
+              .ForMember(dest => dest.AvailableOptions, opt => { opt.MapFrom(src => src.Option.AvailableOptions); })
+              //  product 
+              .ForMember(dest => dest.ProductName, opt => { opt.MapFrom(src => src.Option.Product.ProductName); })
+             //bills from order
+              .ForMember(dest => dest.DealPrice, opt => { opt.MapFrom(src => src.Order.Bill.DealPrice); })
+              .ForMember(dest => dest.MarktingProfits, opt => { opt.MapFrom(src => src.Order.Bill.MarktingProfits); });
+
 
         }
     }

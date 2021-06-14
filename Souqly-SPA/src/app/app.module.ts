@@ -30,6 +30,11 @@ import {TableModule} from 'primeng/table';
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
 import { ProductExploreModule } from './product-explore/product-explore.module';
 import {BadgeModule} from 'primeng/badge';
+import { PaymentComponent } from './payment/payment.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UserListComponent } from './crudUser/user-list/user-list.component';
+import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
+import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -48,7 +53,12 @@ export function tokenGetter() {
     OrderDetailsComponent,
     OrderListComponent,
     SupplierOrdersComponent,
-    ManageAccountComponent
+    ManageAccountComponent,
+    PaymentComponent,
+    AdminDashboardComponent,
+    UserListComponent,
+    UserDetailsComponent,
+    FollowOrdersComponent
   ],
   imports: [
     BrowserModule,

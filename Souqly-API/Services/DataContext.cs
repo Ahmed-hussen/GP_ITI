@@ -21,7 +21,7 @@ namespace Souqly_API.Services
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Shipping> Shippings { get; set; }
 

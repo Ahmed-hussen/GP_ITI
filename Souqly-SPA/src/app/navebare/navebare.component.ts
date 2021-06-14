@@ -5,6 +5,7 @@ import { ProductOptionCart } from '_models/productOptionCart';
 import { CartMangmentService } from '_services/cart-mangment.service';
 import { AppComponent } from '../app.component';
 import { SupplierOrderService } from '_services/supplier-service.service';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 @Component({
   selector: 'app-navebare',
@@ -18,6 +19,10 @@ export class NavebareComponent implements OnInit {
   constructor(public authService: AuthServicesService, private router: Router, private resolver: ActivatedRoute,
     private cartService: CartMangmentService, private supplierService:SupplierOrderService) { }
 
+   //define connection SR
+   hubConnection:HubConnection;
+
+
   ngOnInit(): void {
     // this.resolver.data.subscribe(
     //   data=>{this.products=data['options']}
@@ -30,6 +35,21 @@ export class NavebareComponent implements OnInit {
       );
       
         
+    // this.loadCart()
+
+   //define conction and give it api service url
+    this.hubConnection=new HubConnectionBuilder().withUrl("http://localhost:5000/cart").build();
+
+    //start Connection
+    this.hubConnection.start();
+
+    //define subscribe method to refresh
+    this.hubConnection.on('refresh',()=>{
+      this.loadCart();
+
+    })
+
+
 
   }
   loadCart() {
@@ -41,6 +61,7 @@ export class NavebareComponent implements OnInit {
 
   public total = 0;
   findsum(data) {
+    this.total=0;
     this.products = data
 
     for (let j = 0; j < data.length; j++) {
@@ -67,4 +88,12 @@ export class NavebareComponent implements OnInit {
     this.authService.currentUser = null;
     this.router.navigate(['']);
   }
+
+  RefreshCart(){
+
+    this.hubConnection.invoke('refresh');
+  //  this.loadCart()
+  }
+
+
 }

@@ -3,6 +3,5 @@ export interface Option {
     name:string;
     stockIn:number;
     itemPrice:number;
-   
 
 }

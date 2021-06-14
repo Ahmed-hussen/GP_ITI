@@ -51,8 +51,30 @@
               *ngIf="this.registerForm.get('userName').touched
               && this.registerForm.get('userName').hasError('required')">
                 هذا مطلوب</div>
-
             </div>
+            <!-- neeeeeew shahy -->
+            <div class="group-input">
+              <label>الاسم الأول *</label>
+              <input formControlName="FirstName" name="FirstName" type="text">
+
+
+              <div style="color: crimson;"
+              *ngIf="this.registerForm.get('FirstName').touched
+              && this.registerForm.get('FirstName').hasError('required')">
+                هذا مطلوب</div>
+            </div>
+
+            <div class="group-input">
+              <label>الاسم الأخير *</label>
+              <input formControlName="lastName" name="lastName" type="text">
+
+
+              <div style="color: crimson;"
+              *ngIf="this.registerForm.get('lastName').touched
+              && this.registerForm.get('lastName').hasError('required')">
+                هذا مطلوب</div>
+            </div>
+            <!-- neeeeeew shahy -->
 
 
             <div class="group-input">
@@ -64,6 +86,23 @@
               <div style="color: crimson;" *ngIf="this.registerForm.get('email').hasError('email')">
                 الرجاء إدخال البريد الاكتروني صحيح</div>
             </div>
+<!-- //new shaaahy -->
+            <div class="group-input">
+              <label for="phoneNumber"> رقم الموبايل</label>
+              <input  formControlName="phoneNumber" name="phoneNumber" type="text">
+              <div style="color: crimson;"
+              *ngIf="registerForm.get('phoneNumber').hasError('pattern')">
+              من فضلك ادخل أرقام موبايل صحيحة
+            </div>
+            <div style="color: crimson;"
+              *ngIf="registerForm.get('phoneNumber').hasError('maxLength')">
+            </div>
+            <div style="color: crimson;"
+              *ngIf="registerForm.get('phoneNumber').hasError('minLength')">
+            </div>
+          </div>
+<!-- //new shaaahy -->
+
             <div class="group-input">
               <label for="pass">الرقم السري *</label>
 

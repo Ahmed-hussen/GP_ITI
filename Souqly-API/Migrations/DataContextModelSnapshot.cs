@@ -451,6 +451,21 @@ namespace Souqly_API.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int>("AccountNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BankName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CardNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClientName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -491,6 +506,9 @@ namespace Souqly_API.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Section")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -504,7 +522,8 @@ namespace Souqly_API.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("WithdrawnProfits")
+                    b.Property<int>("WithdrawnProfits");
+                    b.Property<int>("WalletNumber")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

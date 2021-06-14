@@ -11,8 +11,24 @@ namespace Souqly_API.Models
         // Shipping Info
 
         // Supplier Info
-       public string FirstName { get; set; }
+        public string FirstName { get; set; }
 
+       //public string ImageID { get; set; } // صوره الرقم القومي
+        //********** Visa Info**********
+        //Bank Data
+        public string ClientName { get; set; }
+        public string BankName { get; set; }
+        public int AccountNumber { get; set; }
+        public string Section { get; set; }
+        // mail Data
+        public int CardNumber { get; set; }
+        public string CardName { get; set; }
+        // wallet Data
+        public int WalletNumber { get; set; }
+
+        
+        public string lastName { get; set; }
+        public string address { get; set; }
         public string ImageID { get; set; } // صوره الرقم القومي
         // Shahy Asks ?????
         // P.P 

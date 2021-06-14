@@ -28,6 +28,11 @@ namespace Souqly_API.Services
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
             return user;
         }
+       public async Task<IEnumerable<User>> GetAllUsers()
+        {
+            var data = await _context.Users.ToListAsync();
+            return (data);
+        }
 
 
         public async Task Add<T>(T entity) where T : class
@@ -158,20 +163,56 @@ namespace Souqly_API.Services
         }
 
 
-       public async Task<Order> GetOrderInfoById(int id,int marketingId)
+        public async Task<Order> GetOrderInfoById(int id,int marketingId)
         {
             var order=await  _context.Orders.Include(i=>i.Bill).Include(i=>i.Shipping)
-                .Include(i=>i.OrderDetails).ThenInclude(i=>i.Option).ThenInclude(i=>i.Product)
+                .Include(i=>i.OrderDetail).ThenInclude(i=>i.Option).ThenInclude(i=>i.Product)
                 .ThenInclude(i=>i.Images)
                 .FirstOrDefaultAsync(i=>i.Id==id && i.MarketingId == marketingId);
             return order;
         }
-        public async Task<IEnumerable<Order>> GetAllOrders(int id)
+
+        public async Task<IEnumerable<Order>> GetAllOrders(int id) // marketing id
         {
             var order= await  _context.Orders.Include(i=>i.Bill).Where(i=>i.MarketingId==id).OrderBy(i=>i.OrderDate).ToListAsync();
             return order;
         }
 
+        public async Task<bool>  DeleteAllSelected(ICollection<string> ids)
+        {
+            if(ids.Count<1)
+            {
+                return false;
+            }
+             var i=0;
+             foreach(var id in ids)
+             {
+               try
+               {
+
+                var ProOptionCartId=int.Parse(id);
+               var ProOptionCart=await _context.ProductOptionCart.FirstOrDefaultAsync(i=>i.Id==ProOptionCartId);
+
+               if(ProOptionCart != null)
+               {
+                _context.ProductOptionCart.Remove(ProOptionCart);
+                i++;
+                }
+
+               }
+               catch (System.Exception)
+               {
+                   throw;
+               }
+
+
+             }
+             if(i > 0)
+             {
+                 await _context.SaveChangesAsync();
+             }
+             return true;
+        }
 
         //function to return user profits data
         public async Task<UserProfitsDto> GetUserProfits(int user_id)
@@ -184,7 +225,13 @@ namespace Souqly_API.Services
                 ExpectedProfits = (int)result.UserBills.Where(o => o.UserId == user_id && o.Active == false).Sum(o => o.UserProfit)
             };
         }
+        
+        public async Task<IEnumerable<OrderDetails>> GetMarketeerOrders(int id) // marketing id
+        {
+            var orders = await  _context.OrderDetails.Include(i => i.Option).ThenInclude(i => i.Product).Include(i=>i.Order).ThenInclude(i=>i.Bill).Where(i=>i.Order.MarketingId==id).OrderBy(i=>i.Order.OrderDate).ToListAsync();
 
+             return orders;
+        }
 
     }
 }

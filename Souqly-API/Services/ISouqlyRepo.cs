@@ -34,8 +34,13 @@ Task Add <T> (T entity) where T:class;// Add Any entity
 
         Task <Order> GetOrderInfoById(int id,int marketingId);
         Task <IEnumerable<Order>> GetAllOrders(int id);
+        //*********************************
+        //Admin
+         Task<IEnumerable<User>> GetAllUsers();
 
         Task<UserProfitsDto> GetUserProfits(int user_id);
 
+        Task<bool> DeleteAllSelected(ICollection<string> ids);
+        Task<IEnumerable<OrderDetails>> GetMarketeerOrders(int id);
     }
 }

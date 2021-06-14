@@ -42,6 +42,8 @@ namespace Souqly_API.Controllers
 
             return Ok(_repo.GetCountOfOrders(id));
 
+         // }
+
         }
 
        

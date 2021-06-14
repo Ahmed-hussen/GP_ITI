@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Product } from '_models/ola/Product';
+import { AlertService } from '_services/alertifay.service';
+import { CartMangmentService } from '_services/cart-mangment.service';
 import { ProductServiceService } from '_services/product-service.service';
 
 @Component({
@@ -31,8 +33,8 @@ export class ProductOptionComponent implements OnInit {
           numVisible: 1
       }
   ];
-            
-    constructor(private productService: ProductServiceService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
+
+    constructor(private productService: ProductServiceService, public ref: DynamicDialogRef, public config: DynamicDialogConfig ,private services : CartMangmentService,private alertifyService: AlertService) { }
 
     ngOnInit() {
       this.product = this.config.data;
@@ -40,7 +42,7 @@ export class ProductOptionComponent implements OnInit {
     }
 
     selectProduct(product: Product) {
-        this.ref.close(product); 
+        this.ref.close(product);
     }
 
     closeModel(){
@@ -50,10 +52,15 @@ export class ProductOptionComponent implements OnInit {
 
     addToCart(){
       alert(this.optionId + ", " + this.quantity);
-      //send the productId with the optionId and quantity to the server to add to the database
-      
-      //add product to the cart using --> product, optionId, and quantity declared above.
-      //the product has a list of options, select the required option using optionId.
+      this.services.AddToCart(this.optionId,this.quantity).subscribe(
+        suc=>{
+          this.alertifyService.success("قد تمت الاضافه للسله بنجـاح")
+        },e=>{
+          this.alertifyService.error(e.error)
+        }
+  
+  
+      )
     }
 
 }
