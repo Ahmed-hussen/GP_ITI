@@ -29,6 +29,7 @@ import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.compo
 import {TableModule} from 'primeng/table';
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
 import { ProductExploreModule } from './product-explore/product-explore.module';
+import {BadgeModule} from 'primeng/badge';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -60,6 +61,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     TableModule,
     ProductExploreModule,
+    BadgeModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

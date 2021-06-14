@@ -1,6 +1,36 @@
-<div class="row w-100 p-5">
+<!-- <div class="row w-100 p-5">
     <div *ngFor="let prod of products" class="col-3">
         <app-product [product]="prod"></app-product>
     </div>
+    <br>
+</div> -->
+<div class="container">
+    <div class="" dir="rtl">
+        <p-dataView #dv [value]="products" [paginator]="true" [rows]="12" filterBy="productName"
+            [sortField]="sortField" [sortOrder]="sortOrder" layout="grid" class="p-dataview">
+            <ng-template pTemplate="header" class="p-dataview-header">
+                <div class="d-flex justify-content-between p-5 options bg-white" style="border-radius: 60px;">
+                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="ترتيب المنتجات" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
+                    <span class="p-input-icon-right p-mb-2 p-mb-md-0 py-2">
+                        <i class="pi pi-search"></i>
+                        <input style="padding-right: 33px;" type="search" pInputText placeholder="تصفية بالاسم" (input)="dv.filter($event.target.value)">
+                    </span>
+                   
+                </div>
+            </ng-template>
+                     
+         
+            <ng-template let-prod pTemplate="gridItem">
+                <div class="p-col-12 p-md-4">
+                    <app-product [product]="prod"></app-product>   
+                </div>
+            </ng-template>
+        
+            
+        </p-dataView>
+    </div>
+
 </div>
+    
+
      

@@ -11,6 +11,7 @@ import {ButtonModule} from 'primeng/button';
 import {GalleriaModule} from 'primeng/galleria';
 import {DataViewModule} from 'primeng/dataview';
 import { FormsModule } from '@angular/forms';
+import {PaginatorModule} from 'primeng/paginator';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     ButtonModule,
     GalleriaModule,
     DataViewModule,
-    FormsModule
+    FormsModule,
+    PaginatorModule
   ]
 })
 export class ProductExploreModule { }

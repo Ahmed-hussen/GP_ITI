@@ -14,6 +14,7 @@ import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.compo
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
 import { ProductComponent } from './product-explore/product/product.component';
 import {ProductListComponent} from './product-explore/product-list/product-list.component';
+import { ProfitsComponent } from './user/profits/profits.component';
 const routes: Routes = [
   {path:'',component:HomePageComponent},
   { path: 'login', component: LoginComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'Checkout', component: CheckOutComponent,resolve:{checkout:OptionCartListresolver,shipping:ShippingListResolver}},//b7ml el data 3la el route
   { path: 'OrderList', component: OrderListComponent,resolve:{order:OrderListResolver}},
   { path: 'OrderDetails/:id', component: OrderDetailsComponent,resolve:{OrderDetails:OrderDetailsResolver}},
+  { path: 'withdraw', component: ProfitsComponent},
   { path: '**', redirectTo :'',pathMatch:'full'},
 
 ];

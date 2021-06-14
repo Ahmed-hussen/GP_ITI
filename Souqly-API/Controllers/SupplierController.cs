@@ -32,11 +32,19 @@ namespace Souqly_API.Controllers
 
             List<SupplierOrderDto> orderDetails = await _repo.GetOrders(id);
 
-            //List<SupplierOrderDto> supplierOrders = _mapper.Map<List<SupplierOrderDto>>(orderDetails);
-         
             return Ok(orderDetails);
+             
+        }
+
+        [HttpGet("count/{id}")]
+        public IActionResult GetOrdersCount(int id)
+        {      
+
+            return Ok(_repo.GetCountOfOrders(id));
 
         }
-        
-   }
+
+       
+
+    }
 }

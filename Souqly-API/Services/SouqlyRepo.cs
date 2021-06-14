@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Souqly_API.Models;
+using Souqly_API.Dtos.User;
 
 namespace Souqly_API.Services
 {
@@ -172,7 +173,17 @@ namespace Souqly_API.Services
         }
 
 
-
+        //function to return user profits data
+        public async Task<UserProfitsDto> GetUserProfits(int user_id)
+        {
+            var result =  _context.Users.Include(u => u.UserBills).FirstOrDefault(u => u.Id == user_id);
+            return new UserProfitsDto()
+            {
+                TotalProfits = (int)result.TotalProfits,
+                AvailableProfits = (int)(result.TotalProfits-result.WithdrawnProfits),
+                ExpectedProfits = (int)result.UserBills.Where(o => o.UserId == user_id && o.Active == false).Sum(o => o.UserProfit)
+            };
+        }
 
 
     }

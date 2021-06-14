@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Souqly_API.Dtos.User;
 using Souqly_API.Models;
 
 namespace Souqly_API.Services
@@ -33,6 +34,8 @@ Task Add <T> (T entity) where T:class;// Add Any entity
 
         Task <Order> GetOrderInfoById(int id,int marketingId);
         Task <IEnumerable<Order>> GetAllOrders(int id);
+
+        Task<UserProfitsDto> GetUserProfits(int user_id);
 
     }
 }

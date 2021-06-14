@@ -132,7 +132,14 @@
 
            <li *ngIf="loggedIn()"><a  *hasRole="['Supplier']" >حسابي</a>
                         <ul class="dropdown" >
-                            <li *ngIf="loggedIn()"><a [routerLink]="['/myorders']"> منتجاتي </a></li>
+                            <li *ngIf="loggedIn()">              
+                                                           
+                                  <a [routerLink]="['/myorders']">
+                                    <p-badge [value]="count" size="meduim" severity="warning" styleClass="p-mr-2 mr-2"></p-badge> 
+                                    متابعة الطلبات 
+                                  </a> <!--Supplier-->                   
+                            </li>
+                            <li><a [routerLink]="['/withdraw']">سحب الأرباح</a></li>
                             <li><a class="nav-link" routerLink="manageaccount">إعدادات الحساب</a></li>
                             <li><a href="#">تعديل الباسورد</a></li>
                         </ul>

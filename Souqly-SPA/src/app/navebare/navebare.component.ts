@@ -1,8 +1,10 @@
 import { AuthServicesService } from './../../../_services/AuthServices.service';
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductOptionCart } from '_models/productOptionCart';
 import { CartMangmentService } from '_services/cart-mangment.service';
+import { AppComponent } from '../app.component';
+import { SupplierOrderService } from '_services/supplier-service.service';
 
 @Component({
   selector: 'app-navebare',
@@ -10,17 +12,25 @@ import { CartMangmentService } from '_services/cart-mangment.service';
   styleUrls: ['./navebare.component.css']
 })
 export class NavebareComponent implements OnInit {
-
+  count:number;
   products: ProductOptionCart[];
   isSupplier:boolean;
   constructor(public authService: AuthServicesService, private router: Router, private resolver: ActivatedRoute,
-    private cartService: CartMangmentService) { }
+    private cartService: CartMangmentService, private supplierService:SupplierOrderService) { }
 
   ngOnInit(): void {
     // this.resolver.data.subscribe(
     //   data=>{this.products=data['options']}
     // )
-    this.loadCart()
+    this.loadCart();
+    
+    if (this.authService.decodedToken.role == "Supplier")
+      this.supplierService.getCountOfOrders().subscribe(
+        d => this.count = this.supplierService.count
+      );
+      
+        
+
   }
   loadCart() {
     this.cartService.getOptionsFromCart().subscribe(
