@@ -1,8 +1,14 @@
+import { UploadProductImagesComponent } from './SupplierProducts/Upload-Images/uploadProductImages/uploadProductImages.component';
 import { AuthServicesService } from './../../_services/AuthServices.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from '@auth0/angular-jwt';
+import { FileUploadModule} from 'ng2-file-upload';
+import { CommonModule } from '@angular/common';
+import {DropdownModule} from 'primeng/dropdown';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,9 +23,14 @@ import { HasRoleDirective } from '_directives/has-role.directive';
 import {PasswordModule} from 'primeng/password';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.component';
+import { AddProductMainDataComponent } from './SupplierProducts/AddProductMainData/addProductMainData/addProductMainData.component'
+
 
 import {TableModule} from 'primeng/table';
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
+
+
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -36,7 +47,10 @@ export function tokenGetter() {
     HomePageComponent,
     HasRoleDirective,
     SupplierOrdersComponent,
-    ManageAccountComponent
+    ManageAccountComponent,
+    UploadProductImagesComponent,
+    AddProductMainDataComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -44,16 +58,19 @@ export function tokenGetter() {
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    FileUploadModule,
     PasswordModule,
     BrowserModule,
     BrowserAnimationsModule,
     TableModule,
+    CommonModule,
+    DropdownModule,
 
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
         allowedDomains: ['localhost:5000'],
-        disallowedRoutes: ['localhost:5000/auth']// login - 
+        disallowedRoutes: ['localhost:5000/auth']// login -
       }
     })
   ],

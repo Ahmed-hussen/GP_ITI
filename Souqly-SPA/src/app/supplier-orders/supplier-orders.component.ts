@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SupplierOrder } from '_models/SupplierOrder';
-import { SupplierOrderService } from '_services/supplier-service.service';
+import { SupplierOrderService } from '_services/supplierService.service';
 import {TableModule} from 'primeng/table';
 
 @Component({

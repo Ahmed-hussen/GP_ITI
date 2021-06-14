@@ -138,6 +138,10 @@ namespace Souqly_API.Services
 
         }
 
-
+        // public Category[] GetCategories()
+        // {
+        //     var categories =  _context.Categories.ToListAsync();
+        //     return categories;
+        // }
     }
 }
