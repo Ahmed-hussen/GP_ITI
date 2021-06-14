@@ -10,7 +10,7 @@ export interface ProductDataDto {
 
    //options
      codes:string[]
-    stockIns:string[]
+    stockIns:number[]
     itemPrices:number[]
     availableOptions:string[]
 

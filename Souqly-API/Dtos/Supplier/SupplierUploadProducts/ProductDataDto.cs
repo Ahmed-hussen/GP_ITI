@@ -17,7 +17,7 @@ namespace Souqly_API.Dtos.Supplier.SupplierUploadProducts
 
         //options
         public string[] Codes { get; set; }
-        public string[] StockIns { get; set; }
+        public int[] StockIns { get; set; }
         public float[] ItemPrices { get; set; }
         public string[] AvailableOptions { get; set; }
 

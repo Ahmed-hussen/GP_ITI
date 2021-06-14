@@ -76,7 +76,7 @@ namespace Souqly_API.Services
         {
             var Option = await _context.Option.FirstOrDefaultAsync(i => i.Id == optionId);
 
-            return int.Parse(Option.StockIn);
+            return Option.StockIn;
         }
 
         public Task<ProductOptionCart> GetCart(int id)
