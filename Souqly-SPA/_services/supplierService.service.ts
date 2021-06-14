@@ -1,3 +1,4 @@
+import { ProductDataDto } from './../src/app/Dtos/ProductDataDto';
 import { ProductOption } from './../src/app/Dtos/productOption';
 import { ProductForUploadDto } from '../src/app/Dtos/ProductForUploadDto';
 import { Categories } from '../src/app/Dtos/Categories';
@@ -68,5 +69,28 @@ export class SupplierOrderService{
   }//end of addproductoption
 
 
+  getallcategories(){
+
+    var headers_object = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer "+ window.localStorage.getItem('token')
+    });
+
+    const httpOptions = { headers: headers_object };
+
+    return this.http.get<Categories[]>('https://localhost:44309/api/getallcategories',httpOptions);
+
+  }//end of getallcategories
+
+  addnewproduct(product:ProductDataDto){
+    var headers_object = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer "+ window.localStorage.getItem('token')
+    });
+
+    const httpOptions = { headers: headers_object };
+
+    return this.http.post('https://localhost:44309/api/addproduct',product,httpOptions);
+  }
 
 }

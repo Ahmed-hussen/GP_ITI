@@ -21,11 +21,14 @@ namespace Souqly_API.Services
         }
 
 
-        public void Add<T>(T entity) where T : class
+        //public void Add<T>(T entity) where T : class
+        //{
+        //    _context.Add(entity);
+        //}
+        public async Task Add<T>(T entity) where T : class
         {
             _context.Add(entity);
         }
-
 
         public void Delete<T>(T entity) where T : class
         {
@@ -136,6 +139,11 @@ namespace Souqly_API.Services
             var ProductOptionInCart = await _context.ProductOptionCart.Include(i => i.Option).ThenInclude(i => i.Product).FirstOrDefaultAsync(i => i.OptionId == optionId && i.CartId == cartId);
             return ProductOptionInCart;
 
+        }
+
+        public async Task<List<Category>> GetAllCategories()
+        {
+            return await _context.Categories.ToListAsync();
         }
 
         // public Category[] GetCategories()

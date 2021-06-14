@@ -1,3 +1,4 @@
+import { UploadProductDataComponent } from './SupplierProducts/AddProductData/uploadProductData/uploadProductData.component';
 import { UploadProductImagesComponent } from './SupplierProducts/Upload-Images/uploadProductImages/uploadProductImages.component';
 import { AuthServicesService } from './../../_services/AuthServices.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,7 +24,6 @@ import { HasRoleDirective } from '_directives/has-role.directive';
 import {PasswordModule} from 'primeng/password';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.component';
-import { AddProductMainDataComponent } from './SupplierProducts/AddProductMainData/addProductMainData/addProductMainData.component'
 
 
 import {TableModule} from 'primeng/table';
@@ -49,7 +49,8 @@ export function tokenGetter() {
     SupplierOrdersComponent,
     ManageAccountComponent,
     UploadProductImagesComponent,
-    AddProductMainDataComponent,
+    UploadProductDataComponent,
+
 
   ],
   imports: [

@@ -70,6 +70,42 @@ namespace Souqly_API.Controllers
             return Ok();
 
         }//end of AddProductOptionData
+        
+
+        //////////////////////////////////////////////////////////////////////////////////
+        
+        //Option op=new Option();
+
+        [HttpPost("addproduct")]
+        public async Task<IActionResult> AddNewProduct(ProductDataDto productdata)
+        {
+            Product product = _mapper.Map<Product>(productdata);
+            await _isouqlyRepo.Add(product);
+            await _isouqlyRepo.SaveAll();
+
+            
+            for (int i = 0; i < productdata.Codes.Length ; i++)
+            {
+                Option op = new Option();
+                op.ProductId = product.Id;
+                op.Code = productdata.Codes[i];
+                op.StockIn = productdata.StockIns[i];
+                op.ItemPrice = productdata.ItemPrices[i];
+                op.AvailableOptions = productdata.AvailableOptions[i];
+                await _isouqlyRepo.Add(op);
+                await _isouqlyRepo.SaveAll();
+
+            }//end of For LOOP
+
+            //await _isouqlyRepo.SaveAll();
+
+            return Ok(product.Id);
+
+        }//end of Action AddNewProduct
+
+
+
+
 
 
     }//end of class

@@ -9,10 +9,11 @@ namespace Souqly_API.Models
     {
         public int Id { get; set; }
         public string Code { get; set; }
-        public string StockIn { get; set; }
-        public string Name { get; set; }
+        public int StockIn { get; set; }
+     //   public string Name { get; set; }
+
         public float ItemPrice { get; set; }
-        public string AvailableOptions { get; set; }
+        public string AvailableOptions { get; set; } 
         public Product Product { get; set; }
 
         [ForeignKey("Product")]

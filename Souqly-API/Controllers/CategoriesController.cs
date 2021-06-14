@@ -16,21 +16,23 @@ namespace Souqly_API.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-          
+        private readonly ISouqlyRepo _service;
         private readonly IMapper _mapper;
 
-        public CategoriesController(ISupplierRepo service, IMapper mapper, ISouqlyRepo IsouqlyRepo)
+        public CategoriesController(ISouqlyRepo service, IMapper mapper, ISouqlyRepo IsouqlyRepo)
         {
+            _service = service;
             _mapper = mapper;
         }//end of constructor
 
 
         
-        //  [HttpGet("allcategories")]
-        // public async Task<IActionResult> AddImageForProduct()
-        // {
-        //     //return 
-        // }
+          [HttpGet("getallcategories")]
+         public async Task<IActionResult> GetAllCategories()
+         {
+            var categoriess = await _service.GetAllCategories();
+            return Ok(categoriess);
+        }//end of GetAllCategories
 
 
     }//end of class

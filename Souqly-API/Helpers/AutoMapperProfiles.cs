@@ -46,6 +46,9 @@ namespace Souqly_API.Helpers
             CreateMap<ProductOptionDataDto, Option>();
 
 
+            CreateMap<Product, ProductDataDto>();
+            CreateMap<ProductDataDto, Product>();
+
         }
     }
 }

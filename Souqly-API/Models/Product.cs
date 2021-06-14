@@ -14,18 +14,17 @@ namespace Souqly_API.Models
         public DateTime Date { get; set; }
         public string Dimension { get; set; }
 
-        //public User User { get; set; }
+        public User Supplier { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }
-        //public int UserId { get; set; }
- 
+        public int SupplierId { get; set; }
+
         public ICollection<Option> Options { get; set; }
         public ICollection<Image> Images { get; set; }
 
         // Many To Many Realation
-        public List<ProductOptionCart> ProductCarts { get; set; }
-
-        public virtual ICollection<MarketingProduct> MarketingProducts { get; set; }
+     //   public List<ProductOptionCart> ProductCarts { get; set; }
+     //   public virtual ICollection<MarketingProduct> MarketingProducts { get; set; }
 
 
     }

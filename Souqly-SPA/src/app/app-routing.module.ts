@@ -1,3 +1,4 @@
+import { UploadProductDataComponent } from './SupplierProducts/AddProductData/uploadProductData/uploadProductData.component';
 import { UploadProductImagesComponent } from './SupplierProducts/Upload-Images/uploadProductImages/uploadProductImages.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegisterComponent } from './Authentication/register/register.component';
@@ -14,7 +15,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'myorders', component: SupplierOrdersComponent},
   {path: 'manageaccount', component: ManageAccountComponent},
-  {path: 'uploadproduct', component: UploadProductImagesComponent},
+  {path: 'uploadproduct', component: UploadProductDataComponent},
 
   { path: '**', redirectTo :'',pathMatch:'full'},
 ];
