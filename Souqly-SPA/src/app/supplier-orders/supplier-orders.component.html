@@ -1,5 +1,5 @@
 <div class="m-5" *ngIf="orders.length != 0">
-    <p-table [value]="orders">
+    <p-table [value]="orders" tableStyle="border-raduis:50px">
         <ng-template pTemplate="header">
             <tr>
                 <th *ngFor="let col of cols">

@@ -19,6 +19,6 @@ namespace Souqly_API.Models
         [ForeignKey("Product")]
         public int ProductId { get; set; }
 
-         public  List<ProductOptionCart> ProductOptionCart { get; set; }
+        public List<ProductOptionCart> ProductOptionCart { get; set; }
     }
 }

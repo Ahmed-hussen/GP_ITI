@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Souqly_API.Dtos.Supplier.SupplierUploadProducts;
 using Souqly_API.Models;
+using Souqly_API.Dtos.Supplier;
 
 namespace Souqly_API.Services
 {
@@ -17,5 +18,6 @@ namespace Souqly_API.Services
         Task<ImageForReturnDto> AddImageForProduct(int productId, ImageForCreateDto imageForCreateDto);
 
 
+         Task<List<SupplierOrderDto>> GetOrders(long supplierId);
     }
 }

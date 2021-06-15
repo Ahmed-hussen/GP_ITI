@@ -88,9 +88,12 @@ namespace Souqly_API
             services.AddScoped<IAuthRepo,AuthRepo>();
             services.AddScoped<ISouqlyRepo,SouqlyRepo>();
             services.AddScoped<ISupplierRepo, SupplierRepo>();
+            services.AddScoped<IProductRepo, ProductRepo>();
 
               // CORS Policy
              services.AddCors();
+
+             services.AddSignalR();
 
 
              services.AddAutoMapper(typeof(Startup));
@@ -113,7 +116,7 @@ namespace Souqly_API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Souqly_API v1"));
             }
 
-            app.UseHttpsRedirection();
+    //        app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -126,6 +129,7 @@ namespace Souqly_API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<CartHub>("/cart");
             });
 
         }

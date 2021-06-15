@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SupplierOrder } from '_models/SupplierOrder';
-import { SupplierOrderService } from '_services/supplierService.service';
-import {TableModule} from 'primeng/table';
+import { SupplierOrder } from '_models/ola/SupplierOrder';
+import { SupplierOrderService } from '_services/supplier-service.service';
 
 @Component({
   selector: 'app-supplier-orders',
@@ -22,13 +21,13 @@ export class SupplierOrdersComponent implements OnInit {
     });
 
     this.cols = [
-      { field: 'orderId', header: 'Order Id' },
-      { field: 'orderDate', header: 'Order Date' },
-      { field: 'productId', header: 'Product Id' },
-      { field: 'productName', header: 'Product Name' },
-      { field: 'quantity', header: 'Quantity' },
-      { field: 'totalOptionPrice', header: 'Total Price' },
-      { field: 'status', header: 'Status' }
+      { field: 'orderId', header: 'رقم الطلب' },
+      { field: 'orderDate', header: 'تاريخ الطلب' },
+      { field: 'productId', header: 'رقم المنتج' },
+      { field: 'productName', header: 'اسم المنتج' },
+      { field: 'quantity', header: 'الكمية' },
+      { field: 'totalOptionPrice', header: 'السعر' },
+      { field: 'status', header: 'الحالة' }
   ];
   }
 

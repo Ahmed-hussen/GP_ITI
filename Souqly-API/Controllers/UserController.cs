@@ -31,6 +31,49 @@ namespace Souqly_API.Controllers
             var userToReturn = _mapper.Map<UserForDetails>(user);
             return Ok(userToReturn);
         }
+        //admin function
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAllUser()
+        {
+            var allusers = await _repo.GetAllUsers();
+            var data = _mapper.Map<System.Collections.Generic.IEnumerable<UserForManage>>(allusers);
+            
+            return Ok(data);
+        }
+        //gitUser
+        [HttpGet("GetUserData/{id}")]
+        public async Task<IActionResult> Getuserr(int id)
+        {
+
+            var user = await _repo.GetUser(id);
+            var userToReturn = _mapper.Map<UserForManage>(user);
+            return Ok(userToReturn);
+        }
+        //git visa data
+        [HttpGet("GetVisaData/{id}")]
+        public async Task<IActionResult> GetVisaData(int id)
+        {
+
+            var user = await _repo.GetUser(id);
+            var userToReturn = _mapper.Map<UserVisa>(user);
+            return Ok(userToReturn);
+        }
+
+
+        //visa Data
+
+        [HttpPost("paymentdetails")]
+        public async Task<IActionResult> paymentdetails(UserVisa model)
+        {
+            var currentuserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);//Get id
+            var user = await _repo.GetUser(currentuserId);
+            var newUser = _mapper.Map(model, user);
+           _repo.Update(newUser);
+            await _repo.SaveAll();
+            return Ok(newUser);
+
+
+        }
 
     }
 }

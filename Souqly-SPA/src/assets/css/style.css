@@ -30,6 +30,12 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
+
+.select-items{
+	height: 300px !important;
+	overflow-y:auto !important;
+  }
+
 .text{
   font-family: 'Almarai', sans-serif !important;
 }

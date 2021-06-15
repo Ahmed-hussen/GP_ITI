@@ -4,20 +4,37 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Souqly_API.Models
 {
- public class User:IdentityUser<int>
+    public class User : IdentityUser<int>
     {
         // Marketing Info
 
         // Shipping Info
 
         // Supplier Info
-       public string FirstName { get; set; }
+        public string FirstName { get; set; }
 
+       //public string ImageID { get; set; } // صوره الرقم القومي
+        //********** Visa Info**********
+        //Bank Data
+        public string ClientName { get; set; }
+        public string BankName { get; set; }
+        public int AccountNumber { get; set; }
+        public string Section { get; set; }
+        // mail Data
+        public int CardNumber { get; set; }
+        public string CardName { get; set; }
+        // wallet Data
+        public int WalletNumber { get; set; }
+
+        
+        public string lastName { get; set; }
+        public string address { get; set; }
         public string ImageID { get; set; } // صوره الرقم القومي
         // Shahy Asks ?????
         // P.P 
         // Last Name 
         // Why Total profits here 
+
         public int? TotalProfits { get; set; }
        public virtual ICollection<Product> Products { get; set; }
          public virtual ICollection<Order> Orders { get; set; }

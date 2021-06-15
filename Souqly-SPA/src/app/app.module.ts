@@ -17,17 +17,40 @@ import { NavebareComponent } from './navebare/navebare.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './Authentication/login/login.component';
 import { RegisterComponent } from './Authentication/register/register.component';
-import { ProductListComponent } from './ManageProduct/product-list/product-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HasRoleDirective } from '_directives/has-role.directive';
 import {PasswordModule} from 'primeng/password';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+//import { CheckOutComponent } from './CartManagement/check-out/check-out.component';
+import { ShippingListResolver } from '_resolvers/ShippingList.resolver';
+import { OptionCartListresolver } from '_resolvers/OptionCartList.resolver';
+import { AlertService } from '_services/alertifay.service';
+//import { CartMangementComponent } from './CartManagement/cart-mangement/cart-mangement.component';
+//import { OrderDetailsComponent } from './CartManagement/order-details/order-details.component';
+import { OrderListResolver } from '_resolvers/OrderList.resolver';
+import { OrderDetailsResolver } from '_resolvers/OrderDetails.resolver';
+//import { OrderListComponent } from './CartManagement/order-list/order-list.component';
 import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.component';
 
 
 import {TableModule} from 'primeng/table';
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
+import { PaymentComponent } from './payment/payment.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { CheckOutComponent } from './CartManagement/check-out/check-out.component';
+import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import { OrderDetailsComponent } from './CartManagement/order-details/order-details.component';
+import { OrderListComponent } from './CartManagement/order-list/order-list.component';
+import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
+import { UserListComponent } from './crudUser/user-list/user-list.component';
+import { ProductExploreModule } from './product-explore/product-explore.module';
+//import { ProductExploreModule } from './product-explore/product-explore.module';
+//import { PaymentComponent } from './payment/payment.component';
+//import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+//import { UserListComponent } from './crudUser/user-list/user-list.component';
+//import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
+//import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
 
 
 
@@ -43,15 +66,22 @@ export function tokenGetter() {
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    ProductListComponent,
     HomePageComponent,
     HasRoleDirective,
+    CheckOutComponent,
+    OrderDetailsComponent,
+    OrderListComponent,
     SupplierOrdersComponent,
     ManageAccountComponent,
     UploadProductImagesComponent,
     UploadProductDataComponent,
 
 
+    PaymentComponent,
+    AdminDashboardComponent,
+    UserListComponent,
+    UserDetailsComponent,
+    FollowOrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +97,7 @@ export function tokenGetter() {
     CommonModule,
     DropdownModule,
 
+    ProductExploreModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -78,6 +109,11 @@ export function tokenGetter() {
   providers: [
 
     AuthServicesService
+    ,ShippingListResolver
+    ,OptionCartListresolver,
+    AlertService,
+    OrderListResolver,
+    OrderDetailsResolver
   ],
   bootstrap: [AppComponent]
 })

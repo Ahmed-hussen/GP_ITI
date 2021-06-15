@@ -384,8 +384,8 @@
 /*  */
 
 .btn-jittery {
-  -webkit-animation: jittery 4s infinite;
-          animation: jittery 4s infinite;
+  /* -webkit-animation: jittery 4s infinite;
+          animation: jittery 4s infinite; */
           padding: 13px 40px 11px;
           background: #000000;
           border-color: #000000;
@@ -394,8 +394,8 @@
 
 }
 .btn-jittery1 {
-  -webkit-animation: jittery 4s infinite;
-          animation: jittery 4s infinite;
+  /* -webkit-animation: jittery 4s infinite;
+          animation: jittery 4s infinite; */
           padding: 13px 40px 11px;
           background: #e7ab3c;
           border-color: #e7ab3c;

@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Work\\Courses\\Courses\\Angular & Api Core\\New Clone Graduation Project --- ( 07-6-2021 )\\GP_ITI\\Souqly-API\\Souqly-API.csproj": {}
+    "D:\\sproject\\finalProject\\GP_ITI\\Souqly-API\\Souqly-API.csproj": {}
   },
   "projects": {
-    "D:\\Work\\Courses\\Courses\\Angular & Api Core\\New Clone Graduation Project --- ( 07-6-2021 )\\GP_ITI\\Souqly-API\\Souqly-API.csproj": {
+    "D:\\sproject\\finalProject\\GP_ITI\\Souqly-API\\Souqly-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\Courses\\Courses\\Angular & Api Core\\New Clone Graduation Project --- ( 07-6-2021 )\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
+        "projectUniqueName": "D:\\sproject\\finalProject\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
         "projectName": "Souqly-API",
-        "projectPath": "D:\\Work\\Courses\\Courses\\Angular & Api Core\\New Clone Graduation Project --- ( 07-6-2021 )\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
-        "packagesPath": "C:\\Users\\alisa\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\Courses\\Courses\\Angular & Api Core\\New Clone Graduation Project --- ( 07-6-2021 )\\GP_ITI\\Souqly-API\\obj\\",
+        "projectPath": "D:\\sproject\\finalProject\\GP_ITI\\Souqly-API\\Souqly-API.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "D:\\sproject\\finalProject\\GP_ITI\\Souqly-API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\alisa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -72,6 +66,10 @@
               "target": "Package",
               "version": "[5.0.5, )"
             },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.5, )"
@@ -107,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
         }
       }
     }

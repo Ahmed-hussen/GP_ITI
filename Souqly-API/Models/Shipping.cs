@@ -9,8 +9,8 @@ namespace Souqly_API.Models
         public float price { get; set; }
         public int Duration { get; set; }
         public ICollection<Order> Orders { get; set; }
-        
-        
+
+
 
 
     }

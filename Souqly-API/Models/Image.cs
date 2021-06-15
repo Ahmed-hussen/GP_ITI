@@ -8,6 +8,7 @@ namespace Souqly_API.Models
         public string publicId  { get; set; } //to get from cloud
 
         public bool IsMain { get; set; }
+
         public Product Product { get; set; }
         public int ProductId { get; set; }
     }
