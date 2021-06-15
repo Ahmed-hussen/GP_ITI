@@ -1,5 +1,5 @@
 import { UploadProductDataComponent } from './SupplierProducts/AddProductData/uploadProductData/uploadProductData.component';
-import { UploadProductImagesComponent } from './SupplierProducts/Upload-Images/uploadProductImages/uploadProductImages.component';
+
 import { AuthServicesService } from './../../_services/AuthServices.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -73,7 +73,6 @@ export function tokenGetter() {
     OrderListComponent,
     SupplierOrdersComponent,
     ManageAccountComponent,
-    UploadProductImagesComponent,
     UploadProductDataComponent,
 
 

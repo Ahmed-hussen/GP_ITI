@@ -312,7 +312,7 @@ namespace Souqly_API.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Souqly_API.Models.OrderDetail", b =>
+            modelBuilder.Entity("Souqly_API.Models.OrderDetails", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -525,6 +525,12 @@ namespace Souqly_API.Migrations
                     b.Property<int>("WalletNumber")
                         .HasColumnType("int");
 
+                    b.Property<string>("address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lastName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -694,7 +700,7 @@ namespace Souqly_API.Migrations
                     b.Navigation("Shipping");
                 });
 
-            modelBuilder.Entity("Souqly_API.Models.OrderDetail", b =>
+            modelBuilder.Entity("Souqly_API.Models.OrderDetails", b =>
                 {
                     b.HasOne("Souqly_API.Models.Option", "Option")
                         .WithMany()
@@ -703,7 +709,7 @@ namespace Souqly_API.Migrations
                         .IsRequired();
 
                     b.HasOne("Souqly_API.Models.Order", "Order")
-                        .WithMany("OrderDetails")
+                        .WithMany("OrderDetail")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -809,7 +815,7 @@ namespace Souqly_API.Migrations
 
             modelBuilder.Entity("Souqly_API.Models.Order", b =>
                 {
-                    b.Navigation("OrderDetails");
+                    b.Navigation("OrderDetail");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.Product", b =>

@@ -7,6 +7,7 @@ export interface ProductDataDto {
      brand:string
      dimension:string
      categoryId:number
+     supplierId:number
 
    //options
      codes:string[]

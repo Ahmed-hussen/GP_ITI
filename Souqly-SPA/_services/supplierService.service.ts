@@ -1,12 +1,13 @@
 import { ProductDataDto } from './../src/app/Dtos/ProductDataDto';
 import { ProductOption } from './../src/app/Dtos/productOption';
 import { ProductForUploadDto } from '../src/app/Dtos/ProductForUploadDto';
-import { Categories } from '../src/app/Dtos/Categories';
+import { Category } from '../src/app/Dtos/Categories';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { SupplierOrder } from '_models/SupplierOrder';
+//import { SupplierOrder } from '_models/SupplierOrder';
 import { AuthServicesService } from './AuthServices.service';
+import { SupplierOrder } from '_models/ola/SupplierOrder';
 
 
 @Injectable({
@@ -25,7 +26,7 @@ export class SupplierOrderService{
   }
 
   getCategories(){
-   return this.http.get<Categories[]>(this.urll+"allcategories");
+   return this.http.get<Category[]>(this.urll+"allcategories");
   }
 
 
@@ -78,7 +79,7 @@ export class SupplierOrderService{
 
     const httpOptions = { headers: headers_object };
 
-    return this.http.get<Categories[]>('https://localhost:44309/api/getallcategories',httpOptions);
+    return this.http.get<Category[]>('https://localhost:44309/api/getallcategories',httpOptions);
 
   }//end of getallcategories
 
@@ -89,7 +90,10 @@ export class SupplierOrderService{
     });
 
     const httpOptions = { headers: headers_object };
-
+    this.SupplierId = this.authService.decodedToken.nameid;
+    console.log("yes"+this.SupplierId);
+    product.supplierId=this.SupplierId;
+    console.log("yes"+product.supplierId);
     return this.http.post('https://localhost:44309/api/addproduct',product,httpOptions);
   }
 

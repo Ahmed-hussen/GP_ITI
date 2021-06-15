@@ -14,6 +14,7 @@ namespace Souqly_API.Dtos.Supplier.SupplierUploadProducts
         public string Brand { get; set; }
         public string Dimension { get; set; }
         public int CategoryId { get; set; }
+        public int SupplierId { get; set; }
 
         //options
         public string[] Codes { get; set; }
