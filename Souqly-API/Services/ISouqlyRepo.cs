@@ -25,6 +25,11 @@ Task Add <T> (T entity) where T:class;// Add Any entity
         Task<float> GetShippingPrice(int shippingId);
         Task<List<int>>  GetOptionsIds(int CartId);
         Task <ProductOptionCart> GetProductOption(int optionId , int cartId);
+        Task<List<Category>> GetAllCategories();
+        
+        //category
+        //  Category[] GetCategories();
+
         Task<float> GetOptionPrice(int optionId);
 
         ///////////////////

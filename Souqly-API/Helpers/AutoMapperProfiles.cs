@@ -6,6 +6,7 @@ using Souqly_API.Dtos.User;
 using Souqly_API.Dtos.Supplier;
 using Souqly_API.Dtos.Products;
 using Souqly_API.Models;
+using Souqly_API.Dtos.Supplier.SupplierUploadProducts;
 using Souqly_API.Dtos.Marketeer;
 
 namespace Souqly_API.Helpers
@@ -51,6 +52,22 @@ namespace Souqly_API.Helpers
             CreateMap<Order, SupplierOrderDto>(); //get
             CreateMap<OrderDetails, SupplierOrderDto>(); //get
             CreateMap<Product, SupplierOrderDto>();
+
+            CreateMap<Image, ImageForReturnDto>();  
+            CreateMap<ImageForCreateDto, Image>();
+
+            CreateMap<Product, ProductForUploadDto>();
+            CreateMap<ProductForUploadDto,Product>();
+
+            CreateMap<Option,ProductForUploadDto>();
+            CreateMap<ProductForUploadDto, Option>();
+
+            CreateMap<Option, ProductOptionDataDto>();
+            CreateMap<ProductOptionDataDto, Option>();
+
+
+            CreateMap<Product, ProductDataDto>();
+            CreateMap<ProductDataDto, Product>();
 
             //CreateMap<Product, ProductDto>();
             //CreateMap<Option, ProductDto>();
