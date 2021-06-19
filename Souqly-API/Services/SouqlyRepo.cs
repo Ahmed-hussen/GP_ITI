@@ -148,6 +148,10 @@ namespace Souqly_API.Services
 
         }
 
+        public async Task<List<Category>> GetAllCategories()
+        {
+            return await _context.Categories.ToListAsync();
+        }
         public async Task<float> GetOptionPrice(int optionId)
         {
           var Option=await _context.Option.FirstOrDefaultAsync(i=>i.Id==optionId);

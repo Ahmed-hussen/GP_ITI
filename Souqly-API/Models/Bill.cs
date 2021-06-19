@@ -14,3 +14,4 @@ namespace Souqly_API.Models
     }
 
 }
+

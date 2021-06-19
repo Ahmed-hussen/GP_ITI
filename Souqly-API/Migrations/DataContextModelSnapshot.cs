@@ -227,6 +227,9 @@ namespace Souqly_API.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("publicId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
