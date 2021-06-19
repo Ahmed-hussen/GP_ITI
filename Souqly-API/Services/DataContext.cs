@@ -30,6 +30,8 @@ namespace Souqly_API.Services
         public DbSet<UserBill> UserBills { get; set; }
         public DbSet<ShippingCompany> shippingCompanies { get; set; }
 
+
+     //   public DbSet<Count> Counts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
               base.OnModelCreating(builder);

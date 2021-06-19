@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from '@auth0/angular-jwt';
-import { FileUploadModule} from 'ng2-file-upload';
+//import { FileUploadModule} from 'ng2-file-upload';
 import { CommonModule } from '@angular/common';
 import {DropdownModule} from 'primeng/dropdown';
 
@@ -42,6 +42,9 @@ import { PaymentComponent } from './payment/payment.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { CheckOutComponent } from './CartManagement/check-out/check-out.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import { RegisterShippingComponent } from './Admin/register-shipping/register-shipping.component';
+import {ChartModule} from 'primeng/chart';
+import { UpdateOrderStatusComponent } from './ShippingEmployee/update-order-status/update-order-status.component';
 import { OrderDetailsComponent } from './CartManagement/order-details/order-details.component';
 import { OrderListComponent } from './CartManagement/order-list/order-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
@@ -86,7 +89,9 @@ export function tokenGetter() {
     AdminDashboardComponent,
     UserListComponent,
     UserDetailsComponent,
-    FollowOrdersComponent
+    FollowOrdersComponent,
+    RegisterShippingComponent,
+    UpdateOrderStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +99,6 @@ export function tokenGetter() {
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    FileUploadModule,
     PasswordModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -107,6 +111,8 @@ export function tokenGetter() {
   
 
     ProductExploreModule,
+    ChartModule,
+    DropdownModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

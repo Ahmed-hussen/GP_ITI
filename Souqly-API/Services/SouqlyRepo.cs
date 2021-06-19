@@ -224,10 +224,52 @@ namespace Souqly_API.Services
              return orders;
         }
 
-        // public Category[] GetCategories()
-        // {
-        //     var categories =  _context.Categories.ToListAsync();
-        //     return categories;
-        // }
+        public async Task<Count>  GetCounts()
+        {
+            Count count=new Count();
+
+             count.NumOfSupplier = _context.UserRoles.Where(t => t.RoleId == 3).Count();//supplier
+             count.NumOfMarkiting = _context.UserRoles.Where(t => t.RoleId == 2).Count();//Marketting
+             count.NumOfShipping = _context.UserRoles.Where(t => t.RoleId == 4).Count();//Shipping
+             count.NumOfProduct = _context.Products.Count();
+             count.NumOfCategory = _context.Categories.Count();
+             return  count;
+        }
+
+        public async Task<IEnumerable<Order>> GetOrdersForShipping()
+        {
+
+            var orders = await  _context.Orders.Where(i=>i.Status=="InShipping").OrderBy(i=>i.OrderDate).ToListAsync();
+
+             return orders;
+        }
+
+        public async Task<Order> getOrder(int OrderId)
+        {
+          var Order = _context.Orders.FirstOrDefault(i=>i.Id == OrderId);
+
+           return Order;
+        }
+
+         public async Task<IEnumerable<UserBill>> getBillActive(int OrderId)
+        {
+          Order order = _context.Orders.Include(i=>i.Bill).FirstOrDefault(i=>i.Id == OrderId );
+          int billId = order.BillId;
+          var UserBill =await _context.UserBills.Where(i=>i.BillId == billId).ToListAsync();
+           return UserBill;
+        }
+
+         public async Task<User> getUserprofits(int UserId)
+        {
+           var User=   _context.Users.FirstOrDefault(i=>i.Id==UserId);
+           return User;
+        }
+
+        public async Task<IEnumerable<OrderDetails>> GetOrderDetailsOption(int orderId)
+        {
+          var OrderDetailsOption=await  _context.OrderDetails.Include(i=>i.Option).Where(i=>i.OrderId==orderId).ToListAsync();
+
+          return OrderDetailsOption;
+        }
     }
 }

@@ -74,6 +74,8 @@ namespace Souqly_API.Helpers
 
             CreateMap<Product, ProductDto>();
 
+            CreateMap<Order,ShippingOrdersStatusDto>();// Get Data
+
 
             //Follow marketeer orders
             CreateMap<OrderDetails, MarketeerOrdersDto>()// Get Data

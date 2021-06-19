@@ -32,5 +32,7 @@ namespace Souqly_API.Models
         public int shippingCompaniesId { get; set; }
         public ShippingCompany shippingCompany { get; set; }
 
+        public string? shippingPolicy { get; set; }
+
     }
 }
