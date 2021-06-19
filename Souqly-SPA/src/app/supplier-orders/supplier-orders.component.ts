@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SupplierOrder } from '_models/ola/SupplierOrder';
 import { SupplierOrderService } from '_services/supplier-service.service';
-import { NavebareComponent } from '../navebare/navebare.component';
 
 @Component({
   selector: 'app-supplier-orders',

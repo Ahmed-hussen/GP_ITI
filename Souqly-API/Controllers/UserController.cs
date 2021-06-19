@@ -5,29 +5,29 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Souqly_API.Dtos.User;
+using Souqly_API.Models;
 using Souqly_API.Services;
 
 namespace Souqly_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [AllowAnonymous]
-    public class  UsersController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly ISouqlyRepo _repo;
         private readonly IMapper _mapper;
-        public UsersController(ISouqlyRepo repo, IMapper mapper )
+        public UsersController(ISouqlyRepo repo, IMapper mapper)
         {
-   
+
             _mapper = mapper;
             _repo = repo;
 
         }
 
-         [HttpGet("{id}", Name = "GetUser")]
+        [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> Getuser(int id)
         {
-         //   var isCurrentUser = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) == id;
+            //   var isCurrentUser = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) == id;
             var user = await _repo.GetUser(id);
             var userToReturn = _mapper.Map<UserForDetails>(user);
             return Ok(userToReturn);
@@ -38,7 +38,7 @@ namespace Souqly_API.Controllers
         {
             var allusers = await _repo.GetAllUsers();
             var data = _mapper.Map<System.Collections.Generic.IEnumerable<UserForManage>>(allusers);
-            
+
             return Ok(data);
         }
         //gitUser
@@ -70,16 +70,26 @@ namespace Souqly_API.Controllers
             return Ok(result);
         }
 
+        [HttpPost("withdraw")]
+        public async Task<IActionResult> PostWithdrawRequest([FromBody] int money)
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var result = await _repo.AddWithdrawnRequest(userId, money);
+            if (result == 0)
+                return NotFound();
+
+            return NoContent();
+        }
+
         [HttpPost("paymentdetails")]
         public async Task<IActionResult> paymentdetails(UserVisa model)
         {
             var currentuserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);//Get id
             var user = await _repo.GetUser(currentuserId);
             var newUser = _mapper.Map(model, user);
-           _repo.Update(newUser);
+            _repo.Update(newUser);
             await _repo.SaveAll();
             return Ok(newUser);
-
 
         }
 

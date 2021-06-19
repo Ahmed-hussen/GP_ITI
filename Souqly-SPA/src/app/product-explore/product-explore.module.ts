@@ -12,6 +12,7 @@ import {GalleriaModule} from 'primeng/galleria';
 import {DataViewModule} from 'primeng/dataview';
 import { FormsModule } from '@angular/forms';
 import {PaginatorModule} from 'primeng/paginator';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {PaginatorModule} from 'primeng/paginator';
     GalleriaModule,
     DataViewModule,
     FormsModule,
-    PaginatorModule
+    PaginatorModule,
+    ProgressSpinnerModule
   ]
 })
 export class ProductExploreModule { }

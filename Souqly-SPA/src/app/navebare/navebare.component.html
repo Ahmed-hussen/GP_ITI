@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 <!-- Header Section Begin -->
 <header class="header-section">
   <div class="header-top">
@@ -126,20 +135,6 @@
       </div>
       <nav class="nav-menu mobile-menu">
         <ul>
-          <li class="active"><a href="./index.html">الرئيسيه</a></li>
-          <li *hasRole="['Supplier']"><a href="./shop.html">تصفح</a></li>
-
-
-           <li *ngIf="loggedIn()"><a  *hasRole="['Supplier']" >حسابي</a>
-                        <ul class="dropdown" >
-                            <li *ngIf="loggedIn()">              
-                                                           
-                                  <a [routerLink]="['/myorders']">
-                                    <p-badge [value]="count" size="meduim" severity="warning" styleClass="p-mr-2 mr-2"></p-badge> 
-                                    متابعة الطلبات 
-                                  </a> <!--Supplier-->                   
-                            </li>
-                            <li><a [routerLink]="['/withdraw']">سحب الأرباح</a></li>
           <li><a >الرئيسيه</a></li>
           <li routerLinkActive="active"  *ngIf="loggedIn()"><a [routerLink]="['/products']" *hasRole="['Marketing']" routerLinkActive="active"> تصفح  </a></li>
           <li><a href="./contact.html"> مركز المساعدة </a></li>
@@ -153,7 +148,15 @@
 
            <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Marketing' , 'Supplier']" >حسابـــي</a>
                         <ul class="dropdown" >
-                            <li *ngIf="loggedIn()"><a  *hasRole="['Supplier']" [routerLink]="['/myorders']" >متابعة الطلبات</a></li>
+                            <!-- <li *ngIf="loggedIn()"><a  *hasRole="['Supplier']" [routerLink]="['/myorders']" >متابعة الطلبات</a></li> -->
+                            <li *ngIf="loggedIn()">              
+                                                           
+                              <a [routerLink]="['/myorders']" *hasRole="['Supplier']">
+                                <p-badge [value]="count" size="meduim" severity="warning" styleClass="p-mr-2 mr-2"></p-badge> 
+                                متابعة الطلبات 
+                              </a> <!--Supplier-->                   
+                            </li>
+                            <li *ngIf="loggedIn()"><a  [routerLink]="['/withdraw']">سحب الأرباح</a></li>
                             <li *ngIf="loggedIn()"><a  *hasRole="['Marketing']" [routerLink]="['/followorders']" >متابعة الطلبات</a></li>
                             <li *ngIf="loggedIn()"><a  *hasRole="['Marketing' , 'Supplier']" [routerLink]="['/manageaccount']" >إعدادات الحساب</a></li>
                             <li><a href="#">تعديل الباسورد</a></li>

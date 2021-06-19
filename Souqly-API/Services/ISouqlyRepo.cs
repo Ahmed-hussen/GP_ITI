@@ -39,6 +39,7 @@ Task Add <T> (T entity) where T:class;// Add Any entity
          Task<IEnumerable<User>> GetAllUsers();
 
         Task<UserProfitsDto> GetUserProfits(int user_id);
+        Task<int> AddWithdrawnRequest(int user_id, int money);
 
         Task<bool> DeleteAllSelected(ICollection<string> ids);
         Task<IEnumerable<OrderDetails>> GetMarketeerOrders(int id);

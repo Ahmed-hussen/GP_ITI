@@ -83,9 +83,10 @@ namespace Souqly_API
             services.AddScoped<ISouqlyRepo,SouqlyRepo>();
             services.AddScoped<ISupplierRepo, SupplierRepo>();
             services.AddScoped<IProductRepo, ProductRepo>();
+            services.AddScoped<IAdminRepo, AdminRepo>();
 
-              // CORS Policy
-             services.AddCors();
+            // CORS Policy
+            services.AddCors();
 
              services.AddSignalR();
 

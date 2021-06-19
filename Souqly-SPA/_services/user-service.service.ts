@@ -9,7 +9,7 @@ import { AuthServicesService } from './AuthServices.service';
 })
 export class UserServiceService {
 
-  url:string = environment.ApiUrl + 'api/Users/profits/';
+  url:string = environment.ApiUrl + 'api/Users/';
   UserId:number;
   constructor(private http: HttpClient, private authService:AuthServicesService) { }
 
@@ -24,6 +24,20 @@ export class UserServiceService {
     };
     
     this.UserId = this.authService.decodedToken.nameid;
-    return this.http.get<UserProfit>(this.url+this.UserId, httpOptions);
+    return this.http.get<UserProfit>(this.url+"profits/"+this.UserId, httpOptions);
+  }
+
+  postWithdrawRequest(money:number){
+    var headers_object = new HttpHeaders({
+      'Content-Type': 'application/json',
+       'Authorization': "Bearer "+ window.localStorage.getItem('token')
+    });
+
+    const httpOptions = {
+      headers: headers_object
+    };
+    
+    // this.UserId = this.authService.decodedToken.nameid;
+    return this.http.post(this.url+"withdraw", money);
   }
 }

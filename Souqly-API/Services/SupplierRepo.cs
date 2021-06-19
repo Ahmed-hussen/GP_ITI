@@ -20,9 +20,10 @@ namespace Souqly_API.Services
 
         public async Task<List<SupplierOrderDto>> GetOrders(long supplierId)
         {
-            List<OrderDetail> unseenOrders = (from o in _context.OrderDetails.Include(o => o.Option).ThenInclude(o => o.Product)
+            List<OrderDetails> unseenOrders = (from o in _context.OrderDetails.Include(o => o.Option).ThenInclude(o => o.Product)
                                               where o.Seen_Supplier == false && o.Option.Product.SupplierId == supplierId
                                               select o).ToList();
+
             foreach (var item in unseenOrders)
             {
                 item.Seen_Supplier = true;

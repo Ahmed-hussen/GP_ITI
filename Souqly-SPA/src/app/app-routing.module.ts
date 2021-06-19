@@ -14,12 +14,16 @@ import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.compo
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
 import { ProductComponent } from './product-explore/product/product.component';
 import {ProductListComponent} from './product-explore/product-list/product-list.component';
-import { ProfitsComponent } from './user/profits/profits.component';
+import { ProfitsComponent } from './profits/profits.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './crudUser/user-list/user-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import { ManageWithdrawnRequestsComponent } from './admin/manage-withdrawn-requests/manage-withdrawn-requests.component';
+import { UserDataComponent } from './admin/user-data/user-data.component';
+
+
 const routes: Routes = [
   {path:'',component:HomePageComponent},
   { path: 'login', component: LoginComponent },
@@ -37,6 +41,8 @@ const routes: Routes = [
   { path: 'OrderList', component: OrderListComponent,resolve:{order:OrderListResolver}},
   { path: 'OrderDetails/:id', component: OrderDetailsComponent,resolve:{OrderDetails:OrderDetailsResolver}},
   { path: 'withdraw', component: ProfitsComponent},
+  { path: 'manageWithdrawRequest', component: ManageWithdrawnRequestsComponent},
+  { path: 'userdata', component:UserDataComponent},
   { path: '**', redirectTo :'',pathMatch:'full'},
 
 ];

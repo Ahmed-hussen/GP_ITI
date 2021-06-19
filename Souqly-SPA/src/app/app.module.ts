@@ -3,7 +3,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from '@auth0/angular-jwt';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavebareComponent } from './navebare/navebare.component';
@@ -35,6 +34,9 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserListComponent } from './crudUser/user-list/user-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import { ProfitsComponent } from './profits/profits.component';
+import {ToastModule} from 'primeng/toast';
+import { AdminModule } from './admin/admin.module';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -58,7 +60,8 @@ export function tokenGetter() {
     AdminDashboardComponent,
     UserListComponent,
     UserDetailsComponent,
-    FollowOrdersComponent
+    FollowOrdersComponent,
+    ProfitsComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,9 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     TableModule,
     ProductExploreModule,
+    AdminModule,
     BadgeModule,
+    ToastModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
