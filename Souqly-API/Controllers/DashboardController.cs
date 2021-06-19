@@ -23,7 +23,7 @@ namespace Souqly_API.Controllers
        }
 
 
-        /*
+
         [HttpGet]
         public async Task<IActionResult> GetCounts()
         {
@@ -32,7 +32,7 @@ namespace Souqly_API.Controllers
 
         return Ok(Counts) ;
         }
-        */
+        
 
         [HttpGet]
         public async Task<IActionResult> GetWithdrawRequests()
@@ -52,8 +52,8 @@ namespace Souqly_API.Controllers
 
             return NoContent();
         }
-
-
+        
+      
 
     }
 }

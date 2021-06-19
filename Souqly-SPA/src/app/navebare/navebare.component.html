@@ -43,8 +43,8 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="inner-header">
+  <div *ngIf="loggedIn()" class="container">
+    <div *hasRole="['Marketing']"  class="inner-header">
       <div class="row">
         <div class="col-lg-2 col-md-2">
           <div class="logo">
@@ -135,9 +135,11 @@
       </div>
       <nav class="nav-menu mobile-menu">
         <ul>
-          <li><a >الرئيسيه</a></li>
+          <li ><a *hasRole="['Marketing' , 'Supplier']" >الرئيسيه</a></li>
+          <li *ngIf="loggedIn()" ><a routerLink="dashboard" *hasRole="['Admin']" >الرئيسيه</a></li>
           <li routerLinkActive="active"  *ngIf="loggedIn()"><a [routerLink]="['/products']" *hasRole="['Marketing']" routerLinkActive="active"> تصفح  </a></li>
           <li><a href="./contact.html"> مركز المساعدة </a></li>
+          <li *ngIf="loggedIn()"><a routerLink="shippingregister" *hasRole="['Admin']" > إضافه مسؤل </a></li>
           <!-- <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Supplier']" >حسابي</a>
                         <ul class="dropdown">
                             <li routerLinkActive="active" *ngIf="loggedIn()"><a [routerLink]="['/myorders']" routerLinkActive="active"> منتجاتي </a></li>
@@ -163,6 +165,8 @@
                         </ul>
                     </li>
            <li><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/payment']">طريقه استلام الارباح </a></li>
+           <li><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/uploadproduct']">اضافة المنتجات</a></li>
+
 
         </ul>
       </nav>

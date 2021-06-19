@@ -10,7 +10,7 @@ namespace Souqly_API.Services
     public interface IProductRepo
     {
         Task<List<ProductDto>> GetProducts();
-        //Task<Product> GetProductById(int id);
+        Task DeleteProduct(int id);
 
     }
 }

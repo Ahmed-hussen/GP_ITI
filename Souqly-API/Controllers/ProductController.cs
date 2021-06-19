@@ -29,25 +29,26 @@ namespace Souqly_API.Controllers
         public async Task<IActionResult> GetProducts()
         {
             var prods = await _repo.GetProducts();
-
-
-
             return Ok(prods);
-
-
+        }
+        
+        [HttpGet("GetSupplierProducts/{id}")]
+        public async Task<IActionResult> GetSupplierProducts(int id)
+        {
+            var prods = await _repo.GetSupplierProducts(id);
+            return Ok(prods);
         }
 
-        /*
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetProductById(int id)
+        [HttpDelete("deleteProduct/{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
         {
+            await _repo.DeleteProduct(id);
 
-            var product = await _repo.GetProductById(id);
+            return Ok();
+        }
 
 
-            return Ok(product);
 
 
-        }*/
     }
 }

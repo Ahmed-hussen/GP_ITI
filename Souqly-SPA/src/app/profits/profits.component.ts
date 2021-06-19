@@ -24,8 +24,9 @@ export class ProfitsComponent implements OnInit {
   }
 
   sendRequest(){
-    this.profitsData.isRequestAvailable=false;
+    
     if(this.money <= this.profitsData.availableProfits){
+      this.profitsData.isRequestAvailable=false;
       this.userService.postWithdrawRequest(this.money).subscribe(_ => null, _ => this.profitsData.isRequestAvailable=true);
       this.messageService.add({key: 'bc', severity:'success', summary: 'تم بنجاح', detail: 'تم إرسال الطلب بنجاح. سيتم التحويل في خلال يومين', sticky: true});
       
@@ -34,7 +35,6 @@ export class ProfitsComponent implements OnInit {
     
     else
       this.messageService.add({key: 'bc', severity:'error', summary: 'حدث خطأ', detail: 'المبلغ المطلوب أكبر من المبلغ المتاح بمحفظتك'});
-    
-    
+      
   }
 }

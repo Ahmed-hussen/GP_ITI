@@ -15,8 +15,7 @@ namespace Souqly_API.Controllers
     [ApiController]
     public class SupplierController : ControllerBase
     {
-     
-        
+
         private readonly ISupplierRepo _repo;
         private readonly IMapper _mapper;
         private readonly IAdminRepo _admin_repo;
@@ -46,6 +45,6 @@ namespace Souqly_API.Controllers
 
         }
 
-
-    }
+        
+   }
 }

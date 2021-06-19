@@ -17,6 +17,15 @@ namespace Souqly_API.Services
             _context = context;
         }
 
+        public async Task DeleteProduct(int id)
+        {
+            Product product = await _context.Products.FirstOrDefaultAsync(a => a.Id == id);
+
+             _context.Products.Remove(product);
+             await _context.SaveChangesAsync();
+
+        }
+
         public async Task<List<ProductDto>> GetProducts()
         {
 

@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Souqly_API.Helpers;
 using Souqly_API.Models;
 using Souqly_API.Services;
 
@@ -41,6 +42,7 @@ namespace Souqly_API
                 options.Filters.Add(new AuthorizeFilter(policy));
             }); // Routing instead of AddMvc()
 
+            services.Configure<CloudSettings>(Configuration.GetSection("CloudSettings"));
 
             // ASP Identity For JWT Token
             IdentityBuilder builder = services.AddIdentityCore<User>(
@@ -84,6 +86,7 @@ namespace Souqly_API
             services.AddScoped<ISupplierRepo, SupplierRepo>();
             services.AddScoped<IProductRepo, ProductRepo>();
             services.AddScoped<IAdminRepo, AdminRepo>();
+            services.AddScoped<IShippingRepo, ShippingRepo>();
 
             // CORS Policy
             services.AddCors();
@@ -115,7 +118,8 @@ namespace Souqly_API
 
             app.UseRouting();
 
-            app.UseCors(x => x.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+            app.UseCors(x => x.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
             app.UseAuthentication();
             app.UseAuthorization();
