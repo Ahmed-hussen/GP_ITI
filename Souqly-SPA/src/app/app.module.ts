@@ -34,7 +34,10 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserListComponent } from './crudUser/user-list/user-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
-
+import { RegisterShippingComponent } from './Admin/register-shipping/register-shipping.component';
+import {ChartModule} from 'primeng/chart';
+import { UpdateOrderStatusComponent } from './ShippingEmployee/update-order-status/update-order-status.component';
+import {DropdownModule} from 'primeng/dropdown';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -57,7 +60,9 @@ export function tokenGetter() {
     AdminDashboardComponent,
     UserListComponent,
     UserDetailsComponent,
-    FollowOrdersComponent
+    FollowOrdersComponent,
+    RegisterShippingComponent,
+    UpdateOrderStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +75,8 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     TableModule,
     ProductExploreModule,
+    ChartModule,
+    DropdownModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

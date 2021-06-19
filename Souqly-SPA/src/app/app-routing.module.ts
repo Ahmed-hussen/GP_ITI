@@ -19,6 +19,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserListComponent } from './crudUser/user-list/user-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import { RegisterShippingComponent } from './Admin/register-shipping/register-shipping.component';
+import { UpdateOrderStatusComponent } from './ShippingEmployee/update-order-status/update-order-status.component';
 const routes: Routes = [
   {path:'',component:HomePageComponent},
   { path: 'login', component: LoginComponent },
@@ -28,8 +30,9 @@ const routes: Routes = [
   { path: 'payment', component:PaymentComponent},
   { path: 'dashboard', component:AdminDashboardComponent},
   { path: 'UserList', component:UserListComponent},
+  { path: 'ShippingStatus', component:UpdateOrderStatusComponent},
   { path: 'UserList/details/:id', component:UserDetailsComponent},
-  
+  { path: 'shippingregister', component: RegisterShippingComponent},
   {path: 'followorders', component: FollowOrdersComponent},
   {path: 'products', component: ProductListComponent},
   { path: 'Checkout', component: CheckOutComponent,resolve:{checkout:OptionCartListresolver,shipping:ShippingListResolver}},//b7ml el data 3la el route

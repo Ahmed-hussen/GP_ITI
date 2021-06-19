@@ -26,5 +26,7 @@ namespace Souqly_API.Models
         public int Phone { get; set; }
         public string Address { get; set; }
 
+        public string? shippingPolicy { get; set; }
+
     }
 }

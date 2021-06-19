@@ -28,6 +28,8 @@ namespace Souqly_API.Services
         public DbSet<ProductOptionCart> ProductOptionCart { get; set; }
 
         public DbSet<UserBill> UserBills { get; set; }
+
+     //   public DbSet<Count> Counts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
               base.OnModelCreating(builder);

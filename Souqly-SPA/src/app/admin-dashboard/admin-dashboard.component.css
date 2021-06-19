@@ -120,7 +120,7 @@
   /* Float four columns side by side */
   .column {
     float: left;
-    width: 25%;
+    width: 17%;
     padding: 0 5px;
   }
   
@@ -159,8 +159,22 @@
     padding: 16px;
     
     text-align: center;
-    background-color: #444;
+    background-color: #191919;
     color: white;
   }
-  
+
+
+  .card1 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #e7ab3c;
+    color: white;
+  }
+
+  .num
+  {
+    color: #e7ab3c
+  }
+
   .ffa {font-size:50px;}

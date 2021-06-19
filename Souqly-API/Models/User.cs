@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Microsoft.AspNetCore.Identity;
 
 namespace Souqly_API.Models
@@ -26,7 +27,7 @@ namespace Souqly_API.Models
         // wallet Data
         public int WalletNumber { get; set; }
 
-        
+
         public string lastName { get; set; }
         public string address { get; set; }
         public string ImageID { get; set; } // صوره الرقم القومي
@@ -35,7 +36,8 @@ namespace Souqly_API.Models
         // Last Name 
         // Why Total profits here 
 
-        public int? TotalProfits { get; set; }
+       [DefaultValue(0)]
+        public int TotalProfits { get; set; }
        public virtual ICollection<Product> Products { get; set; }
          public virtual ICollection<Order> Orders { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
