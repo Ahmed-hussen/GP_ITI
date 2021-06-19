@@ -1,3 +1,5 @@
+import { SupplierProductsListComponent } from './product-explore/SupplierProductsList/SupplierProductsList.component';
+import { BindingOrdersComponent } from './ManageShipping/BindingOrders/BindingOrders.component';
 
 
 import { HomePageComponent } from './home-page/home-page.component';
@@ -40,6 +42,8 @@ const routes: Routes = [
   { path: 'Checkout', component: CheckOutComponent,resolve:{checkout:OptionCartListresolver,shipping:ShippingListResolver}},//b7ml el data 3la el route
   { path: 'OrderList', component: OrderListComponent,resolve:{order:OrderListResolver}},
   { path: 'OrderDetails/:id', component: OrderDetailsComponent,resolve:{OrderDetails:OrderDetailsResolver}},
+  { path: 'bindingorders', component:BindingOrdersComponent},
+  { path: 'supplierProductsList', component:SupplierProductsListComponent},
   { path: '**', redirectTo :'',pathMatch:'full'},
 
 ];

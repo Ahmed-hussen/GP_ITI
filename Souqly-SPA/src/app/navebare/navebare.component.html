@@ -126,7 +126,7 @@
       </div>
       <nav class="nav-menu mobile-menu">
         <ul>
-          <li><a >الرئيسيه</a></li>
+          <li><a [routerLink]="['']">الرئيسيه</a></li>
           <li routerLinkActive="active"  *ngIf="loggedIn()"><a [routerLink]="['/products']" *hasRole="['Marketing']" routerLinkActive="active"> تصفح  </a></li>
           <li><a href="./contact.html"> مركز المساعدة </a></li>
           <!-- <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Supplier']" >حسابي</a>
@@ -146,6 +146,8 @@
                         </ul>
                     </li>
            <li><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/payment']">طريقه استلام الارباح </a></li>
+           <li><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/uploadproduct']">اضافة المنتجات</a></li>
+
 
         </ul>
       </nav>

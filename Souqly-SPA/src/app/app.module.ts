@@ -1,3 +1,5 @@
+import { ShippingOrderDetailsComponent } from './ManageShipping/ShippingOrderDetails/ShippingOrderDetails.component';
+import { BindingOrdersComponent } from './ManageShipping/BindingOrders/BindingOrders.component';
 import { UploadProductDataComponent } from './SupplierProducts/AddProductData/uploadProductData/uploadProductData.component';
 
 import { AuthServicesService } from './../../_services/AuthServices.service';
@@ -51,7 +53,9 @@ import { ProductExploreModule } from './product-explore/product-explore.module';
 //import { UserListComponent } from './crudUser/user-list/user-list.component';
 //import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 //import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
-
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 
 
@@ -74,6 +78,8 @@ export function tokenGetter() {
     SupplierOrdersComponent,
     ManageAccountComponent,
     UploadProductDataComponent,
+    BindingOrdersComponent,
+    ShippingOrderDetailsComponent,
 
 
     PaymentComponent,
@@ -95,6 +101,10 @@ export function tokenGetter() {
     TableModule,
     CommonModule,
     DropdownModule,
+    InputTextModule,
+    ButtonModule,
+    InputSwitchModule,
+  
 
     ProductExploreModule,
     JwtModule.forRoot({

@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { AuthServicesService } from '_services/AuthServices.service';
 import { SupplierOrderService } from '_services/supplierService.service';
 import { Category } from 'src/app/Dtos/Categories';
+import { AlertService } from '_services/alertifay.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-uploadProductData',
@@ -23,10 +25,10 @@ export class UploadProductDataComponent implements OnInit {
   productadded:boolean=false;
   categories:Category[];
   obj:ProductDataDto;
-
+  Photouploaded=false;
 ////////////////////////////////////////////////////////////////////
 
-  constructor(private authService: AuthServicesService , private supplierService:SupplierOrderService) { }
+  constructor(private authService: AuthServicesService , private router : Router, private supplierService:SupplierOrderService , private alertifyService: AlertService) { }
 
 ////////////////////////////////////////////////////////////////////
 
@@ -98,8 +100,11 @@ initializeUploader() {
     autoUpload: false,
     maxFileSize: 10 * 1024 * 1024
   });
-
    this.uploader.onAfterAddingFile=(file)=>{file.withCredentials=false;};
+   this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+    this.Photouploaded=true;
+    this.alertifyService.success("تم اضافة صورة للمنتج بنجاح");
+};
 
 }//end of initializeUploader
 
@@ -125,12 +130,18 @@ addproductdata(){
      this.initializeUploader();
      //this.uploader.uploadAll();
    });
+   this.alertifyService.success("تم إضافة المنتج بنجاح باضافة الصور");
   //  console.log("===>>"+this.id);
     //this.initializeUploader();
   //  this.productadded=true;
 }
 
 ////////////////////////////////////////////////////////////////////
-
+newproduct(){
+  // this.productadded=false;
+  this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+    this.router.navigate(["uploadproduct"]);
+});
+}
 
 }
