@@ -35,16 +35,17 @@ namespace Souqly_API.Models
         // P.P 
         // Last Name 
         // Why Total profits here 
+        public int TotalProfits { get; set; } = 0;
+        public int WithdrawnProfits { get; set; } = 0;
 
-       [DefaultValue(0)]
-        public int TotalProfits { get; set; }
+       
        public virtual ICollection<Product> Products { get; set; }
          public virtual ICollection<Order> Orders { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
-
-     //   public ICollection<Order> Orders { get; set; }
-         // Many To Many
-      //  public virtual ICollection<MarketingProduct> MarketingProducts { get; set; }
+        public ICollection<WithdrawRequest> WithdrawRequests { get; set; }
+        //   public ICollection<Order> Orders { get; set; }
+        // Many To Many
+        //  public virtual ICollection<MarketingProduct> MarketingProducts { get; set; }
         public virtual ICollection<UserBill> UserBills { get; set; }
     }
 }

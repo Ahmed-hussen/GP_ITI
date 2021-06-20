@@ -12,12 +12,14 @@ namespace Souqly_API.Controllers
 
 
         private readonly ISouqlyRepo _repo;
+        private readonly IAdminRepo _adminRepo;
         private readonly IMapper _mapper;
 
-       public DashboardController(ISouqlyRepo repo, IMapper mapper)
+       public DashboardController(ISouqlyRepo repo, IMapper mapper, IAdminRepo adminRepo)
        {
             _repo = repo;
             _mapper = mapper;
+            _adminRepo = adminRepo;
        }
 
 
@@ -28,14 +30,30 @@ namespace Souqly_API.Controllers
 
         var Counts=await _repo.GetCounts();
 
-        return Ok(Counts);
+        return Ok(Counts) ;
+        }
+        
+
+        [HttpGet]
+        public async Task<IActionResult> GetWithdrawRequests()
+        {
+
+            var result = await _adminRepo.GetWithdrawnRequests();
+            return Ok(result);
+
         }
 
+        [HttpPut]
+        public async Task<IActionResult> ConfirmWithdrawRequest([FromBody] int reqId)
+        {
+            var result = await _adminRepo.ConfirmWithdrawnRequests(reqId);
+            if (result == 0)
+                return NotFound();
 
-
-
-
-
+            return NoContent();
+        }
+        
+      
 
     }
 }

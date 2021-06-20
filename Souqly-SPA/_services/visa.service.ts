@@ -30,6 +30,7 @@ export class VisaService {
     const httpOptions = {
       headers: headers_object
     };
+    visaObj.id=this.autserve.decodedToken.nameid;//to take id of this token
 
    return this.http.post(this.url + 'paymentdetails', visaObj, httpOptions);
   }

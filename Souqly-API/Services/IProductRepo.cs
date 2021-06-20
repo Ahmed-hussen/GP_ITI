@@ -14,6 +14,8 @@ namespace Souqly_API.Services
 
         Task<PagedLists<ProductDto>> GetProducts(ProductParams productParams);
         //Task<Product> GetProductById(int id);
+        Task<List<ProductDto>> GetProducts();
+        Task DeleteProduct(int id);
 
     }
 }

@@ -11,32 +11,63 @@ import { ProductServiceService } from '_services/product-service.service';
 })
 export class ProductListComponent implements OnInit {
   products:Product[];
-  pagination:Pagination;
+//   pagination:Pagination;
   
-  constructor(private productServ:ProductServiceService,private alert:AlertService) { }
-  pageNumber = 1;
-  pageSize = 8;
+//   constructor(private productServ:ProductServiceService,private alert:AlertService) { }
+//   pageNumber = 1;
+//   pageSize = 8;
   
+//   ngOnInit(): void {
+//     this.productServ.getProducts(this.pageNumber,this.pageSize).subscribe(
+//       prods => {
+//         this.products = prods.result;
+//         this.pagination = prods.pagination
+//         }
+//       )
+//   }
+//   pageChanged(event: any): void {
+//     this.pagination.currentPage = event.page;
+//     this.loadproducts();
+//   }
+
+//   loadproducts(){
+
+//     this.productServ.getProducts(this.pagination.currentPage, this.pagination.itemsPerPage).subscribe((res: PaginationResult<Product[]>) => {
+//       this.products = res.result;
+//       this.pagination = res.pagination;
+//   }, error => this.alert.error(error))
+// }
+
+
+
+  sortOptions: any[];
+  sortOrder: number;
+  sortField: string;
+
+  constructor(private productServ:ProductServiceService) { }
+
   ngOnInit(): void {
-    this.productServ.getProducts(this.pageNumber,this.pageSize).subscribe(
-      prods => {
-        this.products = prods.result;
-        this.pagination = prods.pagination
-        }
-      )
-  }
-  pageChanged(event: any): void {
-    this.pagination.currentPage = event.page;
-    this.loadproducts();
+    this.productServ.getProducts().subscribe(
+      prods => this.products = prods
+    );
+
+    this.sortOptions = [
+      {label: 'حسب الأعلى سعر', value: '!price'},
+      {label: 'حسب الأقل سعر', value: 'price'}
+    ];
   }
 
-  loadproducts(){
+  onSortChange(event) {
+    let value = event.value;
 
-    this.productServ.getProducts(this.pagination.currentPage, this.pagination.itemsPerPage).subscribe((res: PaginationResult<Product[]>) => {
-      this.products = res.result;
-      this.pagination = res.pagination;
-  }, error => this.alert.error(error))
+    if (value.indexOf('!') === 0) {
+        this.sortOrder = -1;
+        this.sortField = value.substring(1, value.length);
+    }
+    else {
+        this.sortOrder = 1;
+        this.sortField = value;
+    }
 }
-
 
 }

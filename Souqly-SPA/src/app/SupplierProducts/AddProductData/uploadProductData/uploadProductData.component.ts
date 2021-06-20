@@ -1,12 +1,16 @@
 import { ProductDataDto } from './../../../Dtos/ProductDataDto';
 //mport { Category } from './../../../../../_models/Category';
+//import { Category } from './../../../../../_models/Category';
 import { Component, OnInit } from '@angular/core';
 import { FormArray,FormControl,FormGroup,Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { AuthServicesService } from '_services/AuthServices.service';
 import { SupplierOrderService } from '_services/supplierService.service';
-import { Categories } from 'src/app/Dtos/Categories';
+//import { Categories } from 'src/app/Dtos/Categories';
+import { Category } from 'src/app/Dtos/Categories';
+import { AlertService } from '_services/alertifay.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-uploadProductData',
@@ -23,10 +27,10 @@ export class UploadProductDataComponent implements OnInit {
   productadded:boolean=false;
   categories:Categories[];
   obj:ProductDataDto;
-
+  Photouploaded=false;
 ////////////////////////////////////////////////////////////////////
 
-  constructor(private authService: AuthServicesService , private supplierService:SupplierOrderService) { }
+  constructor(private authService: AuthServicesService , private router : Router, private supplierService:SupplierOrderService , private alertifyService: AlertService) { }
 
 ////////////////////////////////////////////////////////////////////
 
@@ -34,7 +38,7 @@ export class UploadProductDataComponent implements OnInit {
     this.supplierService.getallcategories().subscribe(a=>{
       this.categories=a;
     });
-     this.initializeUploader();
+     //this.initializeUploader();
   }
 
 ////////////////////////////////////////////////////////////////////
@@ -98,8 +102,11 @@ initializeUploader() {
     autoUpload: false,
     maxFileSize: 10 * 1024 * 1024
   });
-
    this.uploader.onAfterAddingFile=(file)=>{file.withCredentials=false;};
+   this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+    this.Photouploaded=true;
+    this.alertifyService.success("تم اضافة صورة للمنتج بنجاح");
+};
 
 }//end of initializeUploader
 
@@ -122,15 +129,21 @@ addproductdata(){
      this.id=this.prodId;
      console.log("===>>"+this.id);
      this.productadded=true;
-     //this.initializeUploader();
-     this.uploader.uploadAll();
+     this.initializeUploader();
+     //this.uploader.uploadAll();
    });
+   this.alertifyService.success("تم إضافة المنتج بنجاح باضافة الصور");
   //  console.log("===>>"+this.id);
-  //  this.initializeUploader();
+    //this.initializeUploader();
   //  this.productadded=true;
 }
 
 ////////////////////////////////////////////////////////////////////
-
+newproduct(){
+  // this.productadded=false;
+  this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+    this.router.navigate(["uploadproduct"]);
+});
+}
 
 }

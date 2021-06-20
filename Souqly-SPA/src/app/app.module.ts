@@ -1,5 +1,7 @@
+import { ShippingOrderDetailsComponent } from './ManageShipping/ShippingOrderDetails/ShippingOrderDetails.component';
+import { BindingOrdersComponent } from './ManageShipping/BindingOrders/BindingOrders.component';
 import { UploadProductDataComponent } from './SupplierProducts/AddProductData/uploadProductData/uploadProductData.component';
-import { UploadProductImagesComponent } from './SupplierProducts/Upload-Images/uploadProductImages/uploadProductImages.component';
+
 import { AuthServicesService } from './../../_services/AuthServices.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -36,10 +38,15 @@ import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.compo
 
 import {TableModule} from 'primeng/table';
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
+import { ProductExploreModule } from './product-explore/product-explore.module';
+import {BadgeModule} from 'primeng/badge';
 import { PaymentComponent } from './payment/payment.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { CheckOutComponent } from './CartManagement/check-out/check-out.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import { ProfitsComponent } from './profits/profits.component';
+import {ToastModule} from 'primeng/toast';
+import { AdminModule } from './admin/admin.module';
 import { RegisterShippingComponent } from './Admin/register-shipping/register-shipping.component';
 import {ChartModule} from 'primeng/chart';
 import { UpdateOrderStatusComponent } from './ShippingEmployee/update-order-status/update-order-status.component';
@@ -47,14 +54,15 @@ import { OrderDetailsComponent } from './CartManagement/order-details/order-deta
 import { OrderListComponent } from './CartManagement/order-list/order-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 import { UserListComponent } from './crudUser/user-list/user-list.component';
-import { ProductExploreModule } from './product-explore/product-explore.module';
 //import { ProductExploreModule } from './product-explore/product-explore.module';
 //import { PaymentComponent } from './payment/payment.component';
 //import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 //import { UserListComponent } from './crudUser/user-list/user-list.component';
 //import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 //import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
-
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 
 
@@ -76,8 +84,9 @@ export function tokenGetter() {
     OrderListComponent,
     SupplierOrdersComponent,
     ManageAccountComponent,
-    UploadProductImagesComponent,
     UploadProductDataComponent,
+    BindingOrdersComponent,
+    ShippingOrderDetailsComponent,
 
 
     PaymentComponent,
@@ -85,6 +94,7 @@ export function tokenGetter() {
     UserListComponent,
     UserDetailsComponent,
     FollowOrdersComponent,
+    ProfitsComponent,
     RegisterShippingComponent,
     UpdateOrderStatusComponent
   ],
@@ -101,7 +111,15 @@ export function tokenGetter() {
     CommonModule,
     DropdownModule,
     FileUploadModule,
+    InputTextModule,
+    ButtonModule,
+    InputSwitchModule,
+  
+
     ProductExploreModule,
+    AdminModule,
+    BadgeModule,
+    ToastModule,
     ChartModule,
     DropdownModule,
     JwtModule.forRoot({

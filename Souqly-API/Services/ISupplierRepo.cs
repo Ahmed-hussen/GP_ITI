@@ -19,5 +19,8 @@ namespace Souqly_API.Services
 
 
          Task<List<SupplierOrderDto>> GetOrders(long supplierId);
+         int GetCountOfOrders(long supplierId);
+
+         //void updateSeen(int count);
     }
 }

@@ -166,9 +166,18 @@ namespace Souqly_API.Services
 
         public async Task<List<SupplierOrderDto>> GetOrders(long supplierId)
         {
+            List<OrderDetails> unseenOrders = (from o in _dbcontext.OrderDetails.Include(o => o.Option).ThenInclude(o => o.Product)
+                                              where o.Seen_Supplier == false && o.Option.Product.SupplierId == supplierId
+                                              select o).ToList();
 
+            foreach (var item in unseenOrders)
+            {
+                item.Seen_Supplier = true;
+            }
+
+            _dbcontext.SaveChanges();
             var orders = await _dbcontext.OrderDetails.Include(i => i.Order).
-                                           Include(i => i.Option).ThenInclude(o => o.Product).Select(o => new SupplierOrderDto()
+                                           Include(i => i.Option).ThenInclude( o => o.Product).Select(o => new SupplierOrderDto()
                                            {
                                                OrderId = o.OrderId,
                                                OrderDate = o.Order.OrderDate,
@@ -178,15 +187,20 @@ namespace Souqly_API.Services
                                                Status = o.Order.Status,
                                                TotalOptionPrice = o.TotalOptionPrice
                                            }).ToListAsync();
+
             return orders;
         }
 
+        public int GetCountOfOrders(long supplierId)
+        {
+            var result = _dbcontext.OrderDetails.Include(o => o.Option).ThenInclude(o => o.Product).Where(
+                    x => x.Option.Product.SupplierId == supplierId && x.Seen_Supplier == false
+                ).Count();
 
+            return result;
+        }
 
-    }//end of interface
-}//end of namespace
+      
 
-
-
-
-
+    }
+}

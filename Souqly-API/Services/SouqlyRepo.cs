@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Souqly_API.Models;
+using Souqly_API.Dtos.User;
+using System;
 
 namespace Souqly_API.Services
 {
@@ -217,6 +219,41 @@ namespace Souqly_API.Services
              return true;
         }
 
+        //function to return user profits data
+        public async Task<UserProfitsDto> GetUserProfits(int user_id)
+        {
+            
+            var result = await _context.Users.Include(u => u.UserBills).Include(u => u.WithdrawRequests).FirstOrDefaultAsync(u => u.Id == user_id);
+            return new UserProfitsDto()
+            {
+                TotalProfits = (int)result.TotalProfits,
+                AvailableProfits = (int)(result.TotalProfits - result.WithdrawnProfits),
+                ExpectedProfits = (int)result.UserBills.Where(o => o.UserId == user_id && o.Active == false).Sum(o => o.UserProfit),
+                HasPaymentMethod = (result.WalletNumber != 0),
+                IsRequestAvailable = (result.WithdrawRequests.FirstOrDefault(o => o.Confirmed == false) == null),
+                RecentTransferred = result.WithdrawRequests.Where(o => (DateTime.Now - o.DateOfRequest).Hours <= 48 && o.Confirmed == true).Sum(o => o.AmountOfMoney)
+            };
+        }
+
+        //send withdrawing request
+        public async Task<int> AddWithdrawnRequest(int user_id, int money)
+        {
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == user_id);
+            if (money <= (user.TotalProfits - user.WithdrawnProfits))
+            {
+                await _context.WithdrawRequests.AddAsync(
+                    new WithdrawRequest() { UserId = user_id, AmountOfMoney = money }
+                );
+               
+                await SaveAll();
+                return 1;
+            }
+
+            return 0;
+
+        }
+
         public async Task<IEnumerable<OrderDetails>> GetMarketeerOrders(int id) // marketing id
         {
             var orders = await  _context.OrderDetails.Include(i => i.Option).ThenInclude(i => i.Product).Include(i=>i.Order).ThenInclude(i=>i.Bill).Where(i=>i.Order.MarketingId==id).OrderBy(i=>i.Order.OrderDate).ToListAsync();
@@ -224,6 +261,7 @@ namespace Souqly_API.Services
              return orders;
         }
 
+       
         public async Task<Count>  GetCounts()
         {
             Count count=new Count();

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Souqly_API.Dtos.User;
 using Souqly_API.Models;
 
 namespace Souqly_API.Services
@@ -43,6 +44,9 @@ namespace Souqly_API.Services
         //*********************************
         //Admin
          Task<IEnumerable<User>> GetAllUsers();
+
+        Task<UserProfitsDto> GetUserProfits(int user_id);
+        Task<int> AddWithdrawnRequest(int user_id, int money);
 
         Task<bool> DeleteAllSelected(ICollection<string> ids);
         Task<IEnumerable<OrderDetails>> GetMarketeerOrders(int id);

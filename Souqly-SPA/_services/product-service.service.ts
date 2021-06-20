@@ -15,7 +15,9 @@ export class ProductServiceService {
   url:string = environment.ApiUrl + 'Product/';
   SupplierId:number;
 
-  constructor(private http: HttpClient, private authService:AuthServicesService){   
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  constructor(private http: HttpClient, private authService:AuthServicesService){
   }
 
   getProducts(pageNumber?, pageSize?):Observable<PaginationResult<Product[]>>{

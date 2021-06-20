@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 <!-- Header Section Begin -->
 <header class="header-section">
   <div class="header-top">
@@ -141,13 +150,23 @@
 
            <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Marketing' , 'Supplier']" >حسابـــي</a>
                         <ul class="dropdown" >
-                            <li *ngIf="loggedIn()"><a  *hasRole="['Supplier']" [routerLink]="['/myorders']" >متابعة الطلبات</a></li>
+                            <!-- <li *ngIf="loggedIn()"><a  *hasRole="['Supplier']" [routerLink]="['/myorders']" >متابعة الطلبات</a></li> -->
+                            <li *ngIf="loggedIn()">              
+                                                           
+                              <a [routerLink]="['/myorders']" *hasRole="['Supplier']">
+                                <p-badge [value]="count" size="meduim" severity="warning" styleClass="p-mr-2 mr-2"></p-badge> 
+                                متابعة الطلبات 
+                              </a> <!--Supplier-->                   
+                            </li>
+                            <li *ngIf="loggedIn()"><a  [routerLink]="['/withdraw']">سحب الأرباح</a></li>
                             <li *ngIf="loggedIn()"><a  *hasRole="['Marketing']" [routerLink]="['/followorders']" >متابعة الطلبات</a></li>
                             <li *ngIf="loggedIn()"><a  *hasRole="['Marketing' , 'Supplier']" [routerLink]="['/manageaccount']" >إعدادات الحساب</a></li>
                             <li><a href="#">تعديل الباسورد</a></li>
                         </ul>
                     </li>
            <li><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/payment']">طريقه استلام الارباح </a></li>
+           <li><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/uploadproduct']">اضافة المنتجات</a></li>
+
 
         </ul>
       </nav>

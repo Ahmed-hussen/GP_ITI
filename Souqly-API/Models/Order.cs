@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Souqly_API.Models
 {
@@ -25,8 +26,12 @@ namespace Souqly_API.Models
         public string ClientName { get; set; }
         public int Phone { get; set; }
         public string Address { get; set; }
-
         public string? shippingPolicy { get; set; }
+
+        [ForeignKey("shippingCompany")]
+        public int shippingCompaniesId { get; set; }
+        public ShippingCompany shippingCompany { get; set; }
+
 
     }
 }

@@ -81,7 +81,34 @@
 <!--  -->
 <!--  -->
 <!--  -->
-<div class="row" >
+
+<!-- <br/>
+<hr> -->
+
+
+
+
+
+<!--  -->
+<!--  -->
+<!--  -->
+
+
+<div class="row">
+      <!-- *ngIf="!productadded" -->
+      <input type="submit" value="إضافة المنتج" class="btn btn-success" [disabled]="productForm.invalid" >
+    </div>
+  </form>
+  <!--the end of Form-->
+
+  <hr>
+
+  <!-- hna t7ot el upload -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+
+<div class="row"  *ngIf="productadded">
 
 
 
@@ -181,31 +208,6 @@
 
 </div>
 
-<br/>
-<hr>
-
-
-
-
-
-<!--  -->
-<!--  -->
-<!--  -->
-
-
-<div class="row">
-      <!-- *ngIf="!productadded" -->
-      <input type="submit" value="إضافة المنتج" class="btn btn-success" [disabled]="productForm.invalid" >
-    </div>
-  </form>
-  <!--the end of Form-->
-
-  <hr>
-
-  <!-- hna t7ot el upload -->
-  <!--  -->
-  <!--  -->
-  <!--  -->
 
   <!-- hna t7ot el upload -->
   <br>

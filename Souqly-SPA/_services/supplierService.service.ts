@@ -1,13 +1,14 @@
 import { ProductDataDto } from './../src/app/Dtos/ProductDataDto';
 import { ProductOption } from './../src/app/Dtos/productOption';
 import { ProductForUploadDto } from '../src/app/Dtos/ProductForUploadDto';
-import { Categories } from '../src/app/Dtos/Categories';
+
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 //import { SupplierOrder } from '_models/SupplierOrder';
 import { AuthServicesService } from './AuthServices.service';
 import { SupplierOrder } from '_models/ola/SupplierOrder';
+import { Category } from 'src/app/Dtos/Categories';
 
 
 @Injectable({
@@ -71,7 +72,7 @@ export class SupplierOrderService{
 
     const httpOptions = { headers: headers_object };
 
-    return this.http.get<Categories[]>('https://localhost:5001/api/getallcategories',httpOptions);
+    return this.http.get<Category[]>('https://localhost:5001/api/getallcategories',httpOptions);
 
   }//end of getallcategories
 

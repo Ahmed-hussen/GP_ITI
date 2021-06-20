@@ -18,11 +18,13 @@ namespace Souqly_API.Controllers
 
         private readonly ISupplierRepo _repo;
         private readonly IMapper _mapper;
+        private readonly IAdminRepo _admin_repo;
 
-        public SupplierController(ISupplierRepo repo, IMapper mapper)
+        public SupplierController(ISupplierRepo repo, IMapper mapper, IAdminRepo admin_repo)
         {
             _repo = repo;
             _mapper = mapper;
+            _admin_repo = admin_repo;
         }
 
         [HttpGet("{id}")]
@@ -31,13 +33,18 @@ namespace Souqly_API.Controllers
 
             List<SupplierOrderDto> orderDetails = await _repo.GetOrders(id);
 
-            //List<SupplierOrderDto> supplierOrders = _mapper.Map<List<SupplierOrderDto>>(orderDetails);
-         
             return Ok(orderDetails);
+             
+        }
 
-         // }
+        [HttpGet("count/{id}")]
+        public IActionResult GetOrdersCount(int id)
+        {      
+
+            return Ok(_repo.GetCountOfOrders(id));
 
         }
+
         
    }
 }

@@ -37,6 +37,7 @@
     "npm-install-all": "^1.1.21",
     "popper": "^1.0.1",
     "popper.js": "^1.16.1",
+    "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
     "primeng": "^11.4.3",
     "rxjs": "~6.6.0",

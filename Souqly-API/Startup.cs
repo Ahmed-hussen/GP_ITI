@@ -2,21 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using E_Commerce.API.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Souqly_API.Helpers;
@@ -89,9 +85,11 @@ namespace Souqly_API
             services.AddScoped<ISouqlyRepo,SouqlyRepo>();
             services.AddScoped<ISupplierRepo, SupplierRepo>();
             services.AddScoped<IProductRepo, ProductRepo>();
+            services.AddScoped<IAdminRepo, AdminRepo>();
+            services.AddScoped<IShippingRepo, ShippingRepo>();
 
-              // CORS Policy
-             services.AddCors();
+            // CORS Policy
+            services.AddCors();
 
              services.AddSignalR();
 

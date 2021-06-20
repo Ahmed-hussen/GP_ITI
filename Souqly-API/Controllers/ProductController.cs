@@ -32,21 +32,25 @@ namespace Souqly_API.Controllers
             var prods = await _repo.GetProducts(productParams);
             Response.AddPagination(prods.CurrentPage,prods.PageSize,prods.TotalCount,prods.TotalPages);
             return Ok(prods);
-
-
+        }
+        
+        [HttpGet("GetSupplierProducts/{id}")]
+        public async Task<IActionResult> GetSupplierProducts(int id)
+        {
+            var prods = await _repo.GetSupplierProducts(id);
+            return Ok(prods);
         }
 
-        /*
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetProductById(int id)
+        [HttpDelete("deleteProduct/{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
         {
+            await _repo.DeleteProduct(id);
 
-            var product = await _repo.GetProductById(id);
+            return Ok();
+        }
 
 
-            return Ok(product);
 
 
-        }*/
     }
 }

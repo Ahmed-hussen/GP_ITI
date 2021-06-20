@@ -1,3 +1,5 @@
+import { SupplierProductsListComponent } from './product-explore/SupplierProductsList/SupplierProductsList.component';
+import { BindingOrdersComponent } from './ManageShipping/BindingOrders/BindingOrders.component';
 
 
 import { HomePageComponent } from './home-page/home-page.component';
@@ -16,11 +18,16 @@ import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.compo
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
 import { ProductComponent } from './product-explore/product/product.component';
 import {ProductListComponent} from './product-explore/product-list/product-list.component';
+import { ProfitsComponent } from './profits/profits.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './crudUser/user-list/user-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import { ManageWithdrawnRequestsComponent } from './admin/manage-withdrawn-requests/manage-withdrawn-requests.component';
+import { UserDataComponent } from './admin/user-data/user-data.component';
+
+
 import { RegisterShippingComponent } from './Admin/register-shipping/register-shipping.component';
 import { UpdateOrderStatusComponent } from './ShippingEmployee/update-order-status/update-order-status.component';
 import { UploadProductDataComponent } from './SupplierProducts/AddProductData/uploadProductData/uploadProductData.component';
@@ -43,6 +50,11 @@ const routes: Routes = [
   { path: 'Checkout', component: CheckOutComponent,resolve:{checkout:OptionCartListresolver,shipping:ShippingListResolver}},//b7ml el data 3la el route
   { path: 'OrderList', component: OrderListComponent,resolve:{order:OrderListResolver}},
   { path: 'OrderDetails/:id', component: OrderDetailsComponent,resolve:{OrderDetails:OrderDetailsResolver}},
+  { path: 'withdraw', component: ProfitsComponent},
+  { path: 'manageWithdrawRequest', component: ManageWithdrawnRequestsComponent},
+  { path: 'userdata', component:UserDataComponent},
+  { path: 'bindingorders', component:BindingOrdersComponent},
+  { path: 'supplierProductsList', component:SupplierProductsListComponent},
   { path: '**', redirectTo :'',pathMatch:'full'},
 
 ];
