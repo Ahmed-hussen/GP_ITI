@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from '@auth0/angular-jwt';
-//import { FileUploadModule} from 'ng2-file-upload';
+import { FileUploadModule} from 'ng2-file-upload';
 import { CommonModule } from '@angular/common';
 import {DropdownModule} from 'primeng/dropdown';
 
@@ -100,7 +100,7 @@ export function tokenGetter() {
     TableModule,
     CommonModule,
     DropdownModule,
-
+    FileUploadModule,
     ProductExploreModule,
     ChartModule,
     DropdownModule,

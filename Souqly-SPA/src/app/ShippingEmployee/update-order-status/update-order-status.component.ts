@@ -21,7 +21,7 @@ export class UpdateOrderStatusComponent implements OnInit {
     status : UpdateStates;
   ngOnInit(): void {
      this.shippingStatusService.getOrders().subscribe(d =>{
-      this.allOrders = d;
+     this.allOrders = d;
 
      });
 

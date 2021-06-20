@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '_models/ola/Product';
+import { Pagination, PaginationResult } from '_models/Pagination';
+import { AlertService } from '_services/alertifay.service';
 import { ProductServiceService } from '_services/product-service.service';
 
 @Component({
@@ -9,12 +11,32 @@ import { ProductServiceService } from '_services/product-service.service';
 })
 export class ProductListComponent implements OnInit {
   products:Product[];
-  constructor(private productServ:ProductServiceService) { }
-
+  pagination:Pagination;
+  
+  constructor(private productServ:ProductServiceService,private alert:AlertService) { }
+  pageNumber = 1;
+  pageSize = 8;
+  
   ngOnInit(): void {
-    this.productServ.getProducts().subscribe(
-      prods => this.products = prods
-    )
+    this.productServ.getProducts(this.pageNumber,this.pageSize).subscribe(
+      prods => {
+        this.products = prods.result;
+        this.pagination = prods.pagination
+        }
+      )
   }
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
+    this.loadproducts();
+  }
+
+  loadproducts(){
+
+    this.productServ.getProducts(this.pagination.currentPage, this.pagination.itemsPerPage).subscribe((res: PaginationResult<Product[]>) => {
+      this.products = res.result;
+      this.pagination = res.pagination;
+  }, error => this.alert.error(error))
+}
+
 
 }

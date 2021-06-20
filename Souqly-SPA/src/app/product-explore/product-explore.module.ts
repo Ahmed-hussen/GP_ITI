@@ -12,6 +12,7 @@ import {GalleriaModule} from 'primeng/galleria';
 import {DataViewModule} from 'primeng/dataview';
 import { FormsModule } from '@angular/forms';
 
+import { PaginationModule } from 'ngx-bootstrap/pagination'
 
 @NgModule({
   declarations: [
@@ -21,14 +22,15 @@ import { FormsModule } from '@angular/forms';
     ProductOptionComponent
   ],
   imports: [
-    CommonModule, 
+    CommonModule,
     DynamicDialogModule,
     InputNumberModule,
     RadioButtonModule,
     ButtonModule,
     GalleriaModule,
     DataViewModule,
-    FormsModule
+    FormsModule ,
+  PaginationModule.forRoot(),
   ]
 })
 export class ProductExploreModule { }

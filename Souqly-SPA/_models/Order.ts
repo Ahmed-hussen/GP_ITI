@@ -15,5 +15,5 @@ export interface Order{
   siteProfits?: number
   shippingProfits?: number
   marketingProfits:number
-  orderDetails?:OrderDetails[]
+  orderDetail?:OrderDetails[]
 }

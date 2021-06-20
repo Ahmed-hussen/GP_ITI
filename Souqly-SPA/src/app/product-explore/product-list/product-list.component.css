@@ -1,0 +1,6 @@
+pagination ::ng-deep ul > li.active > a {
+    background-color: #e99e12 !important;
+    outline: none !important;
+    border-color: none !important;
+ 
+}

@@ -5,8 +5,9 @@ import { Categories } from '../src/app/Dtos/Categories';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { SupplierOrder } from '_models/SupplierOrder';
+//import { SupplierOrder } from '_models/SupplierOrder';
 import { AuthServicesService } from './AuthServices.service';
+import { SupplierOrder } from '_models/ola/SupplierOrder';
 
 
 @Injectable({
@@ -23,14 +24,6 @@ export class SupplierOrderService{
     this.SupplierId = this.authService.decodedToken.nameid;
     return this.http.get<SupplierOrder[]>(this.url+this.SupplierId);
   }
-
-  getCategories(){
-   return this.http.get<Categories[]>(this.urll+"allcategories");
-  }
-
-
-
-
 
 
 
@@ -78,7 +71,7 @@ export class SupplierOrderService{
 
     const httpOptions = { headers: headers_object };
 
-    return this.http.get<Categories[]>('https://localhost:44309/api/getallcategories',httpOptions);
+    return this.http.get<Categories[]>('https://localhost:5001/api/getallcategories',httpOptions);
 
   }//end of getallcategories
 

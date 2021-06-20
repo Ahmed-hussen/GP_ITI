@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Souqly_API.Dtos.Products;
+using Souqly_API.Helpers;
 using Souqly_API.Services;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,10 @@ namespace Souqly_API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts()
+    public async Task<IActionResult> GetProducts([FromQuery]ProductParams productParams)
         {
-            var prods = await _repo.GetProducts();
-
-
-
+            var prods = await _repo.GetProducts(productParams);
+            Response.AddPagination(prods.CurrentPage,prods.PageSize,prods.TotalCount,prods.TotalPages);
             return Ok(prods);
 
 

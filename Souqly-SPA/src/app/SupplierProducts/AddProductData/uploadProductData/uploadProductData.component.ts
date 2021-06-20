@@ -1,11 +1,12 @@
 import { ProductDataDto } from './../../../Dtos/ProductDataDto';
-import { Category } from './../../../../../_models/Category';
+//mport { Category } from './../../../../../_models/Category';
 import { Component, OnInit } from '@angular/core';
 import { FormArray,FormControl,FormGroup,Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { AuthServicesService } from '_services/AuthServices.service';
 import { SupplierOrderService } from '_services/supplierService.service';
+import { Categories } from 'src/app/Dtos/Categories';
 
 @Component({
   selector: 'app-uploadProductData',
@@ -20,7 +21,7 @@ export class UploadProductDataComponent implements OnInit {
   id:number;
   prodId:any;
   productadded:boolean=false;
-  categories:Category[];
+  categories:Categories[];
   obj:ProductDataDto;
 
 ////////////////////////////////////////////////////////////////////

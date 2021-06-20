@@ -2,7 +2,7 @@ import { ProductOption } from './../../../Dtos/productOption';
 import { SupplierOrderService } from '_services/supplierService.service';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductForUploadDto } from './../../../Dtos/ProductForUploadDto';
-import { Image } from './../../../../../_models/Image';
+//import { Image } from './../../../../../_models/Image';
 import { AuthServicesService } from './../../../../../_services/AuthServices.service';
 import { environment } from './../../../../environments/environment';
 import { ImageForCreate } from './../../../Dtos/imageForCreate';

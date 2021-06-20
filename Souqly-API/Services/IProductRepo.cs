@@ -1,4 +1,5 @@
 ﻿using Souqly_API.Dtos.Products;
+using Souqly_API.Helpers;
 using Souqly_API.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,9 @@ namespace Souqly_API.Services
 {
     public interface IProductRepo
     {
-        Task<List<ProductDto>> GetProducts();
+       // Task<List<ProductDto>> GetProducts();
+
+        Task<PagedLists<ProductDto>> GetProducts(ProductParams productParams);
         //Task<Product> GetProductById(int id);
 
     }

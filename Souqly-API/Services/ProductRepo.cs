@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Souqly_API.Dtos.Products;
+using Souqly_API.Helpers;
 using Souqly_API.Models;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,10 @@ namespace Souqly_API.Services
             _context = context;
         }
 
-        public async Task<List<ProductDto>> GetProducts()
+public async Task<PagedLists<ProductDto>> GetProducts(ProductParams productParams)
         {
 
-            List<ProductDto> result = await  _context.Products.Include(p => p.Options).Include(p => p.Images).Select(p => new ProductDto()
+           var result =   _context.Products.Include(p => p.Options).Include(p => p.Images).Select(p => new ProductDto()
                                      {
                                           id = p.Id,
                                           productName = p.ProductName,
@@ -30,8 +31,8 @@ namespace Souqly_API.Services
                                           options = p.Options.Select(o => new OptionDto() { 
                                               Id = o.Id, Name = o.AvailableOptions, ItemPrice = o.ItemPrice, StockIn = o.StockIn
                                           }).ToList()
-                                     }).ToListAsync();
-            return result ;
+                                     });
+            return await PagedLists<ProductDto>.CreateAsync(result,productParams.PageNumber,productParams.PageSize) ;
 
         }
 
