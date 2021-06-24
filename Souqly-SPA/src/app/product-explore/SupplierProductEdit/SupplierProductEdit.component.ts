@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Option } from './../../../../_models/ola/option';
 import { Component, OnInit } from '@angular/core';
@@ -42,13 +43,16 @@ export class SupplierProductEditComponent implements OnInit {
     }
   ];
 
+  clonedProducts: { [s: string]: Option; } = {};
+  option:Option;
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private productService: ProductServiceService,
     public dialogRef: DynamicDialogRef, public dialogConfig: DynamicDialogConfig ,
     private alertifyService: AlertService,
     private messageService: MessageService,
-    private router:Router) { }
+    private router:Router,
+    private http:HttpClient) { }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -63,19 +67,20 @@ export class SupplierProductEditComponent implements OnInit {
 
  closeModal(){
       this.dialogRef.close();
-          this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-            this.router.navigate(["supplierProductsList"]);
-          });
+          // this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+          //   this.router.navigate(["supplierProductsList"]);
+          // });
 
     }//end of closeModal
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-// onRowEditInit(option:Option) {
+onRowEditInit(optionEdited:Option) {
 
-//   this.clonedProducts[product.id] = {...product};
+  this.option=optionEdited;
+  console.log(this.option.id+" "+this.option.name);
 
-// }//end of onRowEditInit
+}//end of onRowEditInit
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -84,28 +89,29 @@ onRowEditSave(option:Option) {
   if (option.itemPrice > 0 && option.name != "" && option.stockIn > 0) {
       //delete this.clonedProducts[product.id];
       // this.messageService.add({severity:'success', summary: 'Success', detail:'Product is updated'});
-      this.alertifyService.success("Done");
+      this.productService.editOption(option).subscribe(a=>{
+        this.alertifyService.success("Done");
+      });
+
   }
   else {
       this.messageService.add({severity:'error', summary: 'Error', detail:'Invalid Price'});
-      this.alertifyService.error("Done");
-  //     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-  //       this.router.navigate(["SupplierProductEdit"]);
-  //     });
+      this.alertifyService.error("Error");
    }
 
 }//end of onRowEditSave
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-// onRowEditCancel(product: Product, index: number) {
+onRowEditCancel(product:Option) {
 
-//   this.products2[index] = this.clonedProducts[product.id];
-//   delete this.clonedProducts[product.id];
 
-// }//end of onRowEditCancel
+
+
+}//end of onRowEditCancel
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 

@@ -309,5 +309,11 @@ namespace Souqly_API.Services
 
           return OrderDetailsOption;
         }
+
+        public async Task<Option> GetOptionToUPdateQauntaty(int OptionID)
+        {
+            var option = await _context.Option.FirstOrDefaultAsync(i=>i.Id==OptionID);
+            return option;
+        }
     }
 }

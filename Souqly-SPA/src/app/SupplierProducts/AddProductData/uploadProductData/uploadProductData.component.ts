@@ -1,5 +1,4 @@
 import { ProductDataDto } from './../../../Dtos/ProductDataDto';
-//mport { Category } from './../../../../../_models/Category';
 //import { Category } from './../../../../../_models/Category';
 import { Component, OnInit } from '@angular/core';
 import { FormArray,FormControl,FormGroup,Validators } from '@angular/forms';
@@ -7,7 +6,6 @@ import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { AuthServicesService } from '_services/AuthServices.service';
 import { SupplierOrderService } from '_services/supplierService.service';
-//import { Categories } from 'src/app/Dtos/Categories';
 import { Category } from 'src/app/Dtos/Categories';
 import { AlertService } from '_services/alertifay.service';
 import { Router } from '@angular/router';
@@ -25,7 +23,7 @@ export class UploadProductDataComponent implements OnInit {
   id:number;
   prodId:any;
   productadded:boolean=false;
-  categories:Categories[];
+  categories:Category[];
   obj:ProductDataDto;
   Photouploaded=false;
 ////////////////////////////////////////////////////////////////////
@@ -38,7 +36,7 @@ export class UploadProductDataComponent implements OnInit {
     this.supplierService.getallcategories().subscribe(a=>{
       this.categories=a;
     });
-     //this.initializeUploader();
+    //  this.initializeUploader();
   }
 
 ////////////////////////////////////////////////////////////////////
@@ -94,7 +92,7 @@ export class UploadProductDataComponent implements OnInit {
 
 initializeUploader() {
   this.uploader = new FileUploader({
-    url: "https://localhost:44309/api/"+this.id,
+    url: "https://localhost:5001/api/"+this.id,
     authToken: 'Bearer ' + localStorage.getItem('token'),
     isHTML5: true,
     allowedFileType: ['image'],
@@ -131,8 +129,8 @@ addproductdata(){
      this.productadded=true;
      this.initializeUploader();
      //this.uploader.uploadAll();
+     this.alertifyService.success("تم إضافة المنتج بنجاح باضافة الصور");
    });
-   this.alertifyService.success("تم إضافة المنتج بنجاح باضافة الصور");
   //  console.log("===>>"+this.id);
     //this.initializeUploader();
   //  this.productadded=true;
@@ -140,7 +138,7 @@ addproductdata(){
 
 ////////////////////////////////////////////////////////////////////
 newproduct(){
-  // this.productadded=false;
+   this.productadded=false;
   this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
     this.router.navigate(["uploadproduct"]);
 });

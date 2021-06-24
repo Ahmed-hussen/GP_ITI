@@ -29,7 +29,7 @@ namespace Souqly_API.Models
         public string? shippingPolicy { get; set; }
 
         [ForeignKey("shippingCompany")]
-        public int shippingCompaniesId { get; set; }
+        public int shippingCompaniesId { get; set; } = 1;
         public ShippingCompany shippingCompany { get; set; }
 
 

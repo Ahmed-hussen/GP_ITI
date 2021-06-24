@@ -83,7 +83,7 @@ namespace Souqly_API.Controllers
             await _isouqlyRepo.Add(product);
             await _isouqlyRepo.SaveAll();
 
-            
+
             for (int i = 0; i < productdata.Codes.Length ; i++)
             {
                 Option op = new Option();

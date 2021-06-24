@@ -60,5 +60,36 @@ namespace Souqly_API.Services
             return 1;
             
         }
+
+        public async Task<int> CancelConfirmWithdrawnRequest(int id)
+        {
+            var obj = await _context.WithdrawRequests.Include(o => o.User).FirstOrDefaultAsync(w => w.Id == id);
+            if (obj == null)
+                return 0;
+
+            obj.Confirmed = false;
+
+            obj.User.WithdrawnProfits -= obj.AmountOfMoney;
+
+            _context.SaveChanges();
+
+            return 1;
+            
+        }
+
+        public async Task<int> RejectWithdrawnRequest(int id)
+        {
+            WithdrawRequest obj = await _context.WithdrawRequests.FirstOrDefaultAsync(w => w.Id == id);
+            if (obj == null)
+                return 0;
+
+
+            _context.Remove(obj);
+
+            _context.SaveChanges();
+
+            return 1;
+            
+        }
     }
 }

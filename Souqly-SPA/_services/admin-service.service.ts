@@ -14,13 +14,23 @@ export class AdminServiceService {
   constructor(private http: HttpClient) { }
 
   getWithdrawRequests(){
-   
+
     return this.http.get<UserForWithdrawRequest[]>(this.url+"GetWithdrawRequests")
   }
 
   confirmWithdrawRequests(reqId:number){
-    
+
     return this.http.put(this.url+"ConfirmWithdrawRequest", reqId);
+  }
+
+  cancelConfirmWithdrawRequest(reqId:number){
+
+    return this.http.put(this.url+"CancelConfirmWithdrawRequest", reqId);
+  }
+
+  rejectWithdrawRequest(reqId:number){
+
+    return this.http.delete(this.url+"RefuseWithdrawRequest/"+reqId);
   }
 
 }

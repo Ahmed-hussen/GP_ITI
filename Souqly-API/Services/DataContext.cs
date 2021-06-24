@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using E_Commerce.API.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +21,12 @@ namespace Souqly_API.Services
       //  public DbSet<MarketingProduct> MarketingProducts { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Cart> Carts { get; set; }
+
+        // internal Task SaveChangesAsync()
+        // {
+        //     throw new NotImplementedException();
+        // }
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }

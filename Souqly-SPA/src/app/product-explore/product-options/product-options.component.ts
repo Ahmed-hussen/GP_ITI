@@ -51,7 +51,7 @@ export class ProductOptionComponent implements OnInit {
 
 
     addToCart(){
-      alert(this.optionId + ", " + this.quantity);
+   
       this.services.AddToCart(this.optionId,this.quantity).subscribe(
         suc=>{
           this.alertifyService.success("قد تمت الاضافه للسله بنجـاح")

@@ -11,6 +11,8 @@ import { AdminServiceService } from '_services/admin-service.service';
   providers: [MessageService]
 })
 export class ManageWithdrawnRequestsComponent implements OnInit {
+  actions:string[] = ["confirm", "disConfirm", "reject"];
+  typeOfAction:string;
 
   requests:UserForWithdrawRequest[];
   notConfirmedRequests:UserForWithdrawRequest[]=[];
@@ -50,9 +52,14 @@ export class ManageWithdrawnRequestsComponent implements OnInit {
     this.router.navigateByUrl('/userdata', { state: user });
   }
 
-  showConfirm(reqId:number){
-    this.index = this.notConfirmedRequests.findIndex(x => x.requestId == reqId);
-    this.returnedReq = this.notConfirmedRequests[this.index];
+  showConfirm(reqId:number, type:string){
+    this.typeOfAction = type;
+    this.index = (type == this.actions[0] || type == this.actions[2]?
+                          this.notConfirmedRequests.findIndex(x => x.requestId == reqId):
+                          this.confirmedRequests.findIndex(x => x.requestId == reqId));
+    this.returnedReq = (type == this.actions[0] || type == this.actions[2]? 
+                          this.notConfirmedRequests[this.index] : 
+                          this.confirmedRequests[this.index]);
 
     this.reqId = reqId;
     this.messageService.clear();
@@ -60,19 +67,50 @@ export class ManageWithdrawnRequestsComponent implements OnInit {
   }
 
   onConfirm(){
-    this.notConfirmedRequests.splice(this.index, 1);
-    this.returnedReq.confirmed = true;
-    this.confirmedRequests.push(this.returnedReq);
     var i = this.requests.findIndex(r => r.requestId == this.returnedReq.requestId);
-    this.requests[i].confirmed = true;
+    if(this.typeOfAction == this.actions[0]){ //confirm
+      this.notConfirmedRequests.splice(this.index, 1);
+      this.returnedReq.confirmed = true;
+      this.confirmedRequests.push(this.returnedReq);
+      this.requests[i].confirmed = true;
 
-    this.adminService.confirmWithdrawRequests(this.reqId).subscribe(_ => null, _ =>{
+      this.adminService.confirmWithdrawRequests(this.reqId).subscribe(_ => null, _ =>{
+        this.returnedReq.confirmed = false;
+        this.notConfirmedRequests.push(this.returnedReq);
+        this.confirmedRequests.pop();
+        this.requests[i].confirmed = false;
+        alert("A problem has happened, please try again");
+      });
+
+    }
+    else if(this.typeOfAction == this.actions[1]){ //cancel confirm
+      this.confirmedRequests.splice(this.index, 1);
       this.returnedReq.confirmed = false;
       this.notConfirmedRequests.push(this.returnedReq);
-      this.confirmedRequests.pop();
       this.requests[i].confirmed = false;
-      alert("not confirmed, please try again");
-    });
+
+      this.adminService.cancelConfirmWithdrawRequest(this.reqId).subscribe(_ => null, _ =>{
+        this.returnedReq.confirmed = true;
+        this.confirmedRequests.push(this.returnedReq);
+        this.notConfirmedRequests.pop();
+        this.requests[i].confirmed = true;
+        alert("A problem has happened, please try again");
+      });
+
+    }
+    else{
+      alert("hi");
+      this.notConfirmedRequests.splice(this.index, 1);
+      this.requests.splice(i, 1);
+
+      this.adminService.rejectWithdrawRequest(this.reqId).subscribe(_ => null, _ =>{      
+        this.notConfirmedRequests.push(this.returnedReq);
+        this.requests.push(this.returnedReq);
+        alert("A problem has happened, please try again");
+      });
+    }
+    
+      
     this.messageService.clear('c');
   }
 

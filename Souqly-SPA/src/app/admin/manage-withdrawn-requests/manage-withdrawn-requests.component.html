@@ -57,9 +57,10 @@
             <td class="py-4" *ngFor="let col of cols" style="text-align: center;">
                 {{request[col.field]}}
             </td>
-            <td class="py-4" style="text-align: center;">
-                <button class="btn btn-success ml-2 px-3" (click)="showConfirm(request['requestId'])">تأكيد</button>
-                <button class="btn btn-info" (click)="showDetails(request['userName'])">عرض بيانات العميل</button>
+            <td colspan="2" class="py-4" style="text-align: center;">
+                <button class="btn btn-success ml-2 px-3" (click)="showConfirm(request['requestId'], actions[0])">تأكيد</button>
+                <button class="btn btn-danger ml-2 px-3" (click)="showConfirm(request['requestId'], actions[2])">رفض الطلب</button>
+                <button class="btn btn-info" (click)="showDetails(request['userName'])">بيانات العميل</button>
             </td>
         </tr>
     </ng-template>
@@ -100,9 +101,11 @@
                 <td class="py-4" *ngFor="let col of cols" style="text-align: center;">
                     {{request[col.field]}}
                 </td>
-                <td  class="py-4" style="text-align: center;">
-                    <button *ngIf="!request['confirmed']" class="btn btn-success ml-2 px-3" (click)="showConfirm(request['requestId'])">تأكيد</button>
-                    <button class="btn btn-info" (click)="showDetails(request['userName'])">عرض بيانات العميل</button>
+                <td colspan="2"  class="py-4" style="text-align: center;">
+                    <button *ngIf="!request['confirmed']" class="btn btn-success ml-2 px-3" (click)="showConfirm(request['requestId'], actions[0])">تأكيد</button>
+                    <button *ngIf="!request['confirmed']" class="btn btn-danger ml-2 px-3" (click)="showConfirm(request['requestId'], actions[2])">رفض الطلب</button>
+                    <button *ngIf="request['confirmed']" class="btn btn-success ml-2 px-3" (click)="showConfirm(request['requestId'], actions[1])">إلغاء التأكيد</button>
+                    <button class="btn btn-info" (click)="showDetails(request['userName'])">بيانات العميل</button>
                 </td>
             </tr>
         </ng-template>
@@ -144,7 +147,8 @@
                     {{request[col.field]}}
                 </td>
                 <td class="py-4" style="text-align: center;">
-                    <button class="btn btn-info" (click)="showDetails(request['userName'])">عرض بيانات العميل</button>
+                    <button class="btn btn-success ml-2 px-3" (click)="showConfirm(request['requestId'], actions[1])">إلغاء التأكيد</button>
+                    <button class="btn btn-info" (click)="showDetails(request['userName'])">بيانات العميل</button>
                 </td>
             </tr>
         </ng-template>

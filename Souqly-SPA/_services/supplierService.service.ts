@@ -49,18 +49,20 @@ export class SupplierOrderService{
 
   }
 
-  addproductoption(productoption:ProductOption){
-
+  addnewproduct(product:ProductDataDto){
     var headers_object = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': "Bearer "+ window.localStorage.getItem('token')
     });
 
     const httpOptions = { headers: headers_object };
-
-    return this.http.post('https://localhost:5001/api/addproductoption',productoption,httpOptions);
-
-  }//end of addproductoption
+    
+    this.SupplierId = this.authService.decodedToken.nameid;
+    console.log("yes"+this.SupplierId);
+    product.supplierId=this.SupplierId;
+    console.log("yes"+product.supplierId);
+    return this.http.post('https://localhost:5001/api/addproduct',product,httpOptions);
+  }
 
 
   getallcategories(){
@@ -76,15 +78,7 @@ export class SupplierOrderService{
 
   }//end of getallcategories
 
-  addnewproduct(product:ProductDataDto){
-    var headers_object = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer "+ window.localStorage.getItem('token')
-    });
 
-    const httpOptions = { headers: headers_object };
-
-    return this.http.post('https://localhost:44309/api/addproduct',product,httpOptions);
-  }
+  
 
 }

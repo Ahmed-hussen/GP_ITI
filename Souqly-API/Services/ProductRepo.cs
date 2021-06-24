@@ -1,4 +1,5 @@
 ﻿//using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Souqly_API.Dtos.Products;
 using Souqly_API.Models;
 using System;
@@ -43,6 +44,39 @@ namespace Souqly_API.Services
             return result ;
 
         }
+
+        public async Task<List<ProductDto>> GetSupplierProducts(int id)
+{
+List<ProductDto> result = await _context.Products.Include(p => p.Options).Include(p => p.Images).Where(a=>a.SupplierId==id).Select(p => new ProductDto()
+{
+id = p.Id,
+productName = p.ProductName,
+price = p.Options.Min(o => o.ItemPrice),
+stockIn = p.Options.Sum(o => o.StockIn),
+images = p.Images.Select(i => i.Url).ToList(),
+options = p.Options.Select(o => new OptionDto()
+{
+Id = o.Id,
+Name = o.AvailableOptions,
+ItemPrice = o.ItemPrice,
+StockIn = o.StockIn
+}).ToList()
+}).ToListAsync();
+return result;
+}
+
+
+      public async Task EditProductOption(OptionDto optionEdited)
+        {
+            var option = await _context.Option.FirstOrDefaultAsync(op => op.Id == optionEdited.Id);
+            option.ItemPrice = optionEdited.ItemPrice;
+            option.StockIn = optionEdited.StockIn;
+            option.AvailableOptions = optionEdited.Name;
+            await _context.SaveChangesAsync();
+        }
+
+
+
 
     }
 }

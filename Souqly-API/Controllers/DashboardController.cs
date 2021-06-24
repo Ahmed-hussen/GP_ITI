@@ -52,6 +52,26 @@ namespace Souqly_API.Controllers
 
             return NoContent();
         }
+
+        [HttpPut]
+        public async Task<IActionResult> CancelConfirmWithdrawRequest([FromBody] int reqId)
+        {
+            var result = await _adminRepo.CancelConfirmWithdrawnRequest(reqId);
+            if (result == 0)
+                return NotFound();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{reqId}")]
+        public async Task<IActionResult> RefuseWithdrawRequest(int reqId)
+        {
+            var result = await _adminRepo.RejectWithdrawnRequest(reqId);
+            if (result == 0)
+                return NotFound();
+
+            return NoContent();
+        }
         
       
 

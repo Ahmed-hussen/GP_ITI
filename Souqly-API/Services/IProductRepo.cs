@@ -12,10 +12,14 @@ namespace Souqly_API.Services
     {
        // Task<List<ProductDto>> GetProducts();
 
-        Task<PagedLists<ProductDto>> GetProducts(ProductParams productParams);
+       // Task<PagedLists<ProductDto>> GetProducts(ProductParams productParams);
         //Task<Product> GetProductById(int id);
         Task<List<ProductDto>> GetProducts();
         Task DeleteProduct(int id);
+
+     Task<List<ProductDto>> GetSupplierProducts(int id);
+
+     Task EditProductOption(OptionDto optionEdited);
 
     }
 }

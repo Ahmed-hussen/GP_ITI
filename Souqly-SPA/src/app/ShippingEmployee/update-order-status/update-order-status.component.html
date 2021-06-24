@@ -18,15 +18,15 @@
               </td>
               <td>
 
+            <select style="width: 200px ; height: 45px; background-color: #e7ab3c ;color: aliceblue ; margin-left: 70px ; text-align: center;border-radius: 1rem;width: fit-content;padding: 0px 10px;" id="selectid" 
+            (change)="modo($event.target.value,rowData['id'])">
+            <option style="text-align: center;padding-right: 25px;width: fit-content;padding: 0px 10px;" Value="In Shipping">في الشحن</option>
+            <option style="text-align: center;width: fit-content;padding: 0px 10px;" Value="Deliverd"> تم الوصول </option>
+            <option style="text-align: center;width: fit-content;padding: 0px 10px;" Value="Canceld"> تم الالغاء </option>
+
+            </select>
 
 
-                <select  id="selectid" class="form-control-mb-12"
-                (change)="modo($event.target.value,rowData['id'])">
-
-                <option Value="Deliverd"> Deliverd </option>
-                <option Value="Canceld"> Canceld </option>
-
-                </select>
 
 
               </td>
@@ -34,3 +34,4 @@
       </ng-template>
     </p-table>
     </div>
+

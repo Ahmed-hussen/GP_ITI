@@ -30,8 +30,6 @@ export class ShippingStatusService {
     };
 
 
-   alert(Status);
-   alert(OrderId);
     return this.http.post(this.apiUrl+ "UpdateOrder/" +OrderId+'/'+Status ,{OrderId,Status}, httpOptions);
   }
 

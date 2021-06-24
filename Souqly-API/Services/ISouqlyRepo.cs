@@ -63,6 +63,6 @@ namespace Souqly_API.Services
         Task<User> getUserprofits(int UserId);
 
          Task<IEnumerable<OrderDetails>> GetOrderDetailsOption(int orderId);
-
+         Task<Option>  GetOptionToUPdateQauntaty(int OptionID);
     }
 }

@@ -9,7 +9,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/htt
   providedIn: 'root'
 })
 export class VisaService {
-  
+
   url:string = environment.ApiUrl + 'api/Users/';
   
 

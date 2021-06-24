@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
 <!-- Header Section Begin -->
 <header class="header-section">
   <div class="header-top">
@@ -28,9 +20,9 @@
 
         <div class="lan-selector">
           <select class="language_drop" name="countries" id="countries" style="width:300px;">
-            <option value='yt' data-image="assets/img/flag-1.jpg" data-imagecss="flag yt" data-title="English">English
+            <option value='yt'  data-title="English">عربي
             </option>
-            <option value='yu' data-image="assets/img/flag-2.jpg" data-imagecss="flag yu" data-title="Bangladesh">German
+            <option value='yu' data-image="assets/img/flag-2.jpg" data-imagecss="flag yu" data-title="Bangladesh">English
             </option>
           </select>
         </div>
@@ -117,8 +109,8 @@
   </div>
   <div class="nav-item">
     <div class="container">
-      <div class="nav-depart">
-        <div class="depart-btn">
+      <div  *ngIf="loggedIn()" class="nav-depart">
+        <div *hasRole="['Marketing']"  class="depart-btn">
           <i class="ti-menu"></i>
           <span> كل الاقسام</span>
           <ul class="depart-hover">
@@ -135,39 +127,65 @@
       </div>
       <nav class="nav-menu mobile-menu">
         <ul>
-          <li ><a *hasRole="['Marketing' , 'Supplier']" >الرئيسيه</a></li>
-          <li *ngIf="loggedIn()" ><a routerLink="dashboard" *hasRole="['Admin']" >الرئيسيه</a></li>
-          <li routerLinkActive="active"  *ngIf="loggedIn()"><a [routerLink]="['/products']" *hasRole="['Marketing']" routerLinkActive="active"> تصفح  </a></li>
-          <li><a href="./contact.html"> مركز المساعدة </a></li>
-          <li *ngIf="loggedIn()"><a routerLink="shippingregister" *hasRole="['Admin']" > إضافه مسؤل </a></li>
-          <!-- <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Supplier']" >حسابي</a>
-                        <ul class="dropdown">
-                            <li routerLinkActive="active" *ngIf="loggedIn()"><a [routerLink]="['/myorders']" routerLinkActive="active"> منتجاتي </a></li>
-                            <li><a class="nav-link" routerLink="manageaccount">إعدادات الحساب</a></li>
-                            <li><a href="#">تعديل الباسورد</a></li>
-                        </ul>
-                    </li> -->
+<!-- /////////////////////////////////////////////////////////////////////////////////// -->
 
-           <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Marketing' , 'Supplier']" >حسابـــي</a>
+<!-- /////////////////////////////////////////////////////////////////////////////////// -->
+
+            <!-- no oooooooooooonnnnnnneeeee -->
+          <li *ngIf="loggedIn()" ><a *hasRole="['Marketing' ,'SHIPPING']" [routerLink]="['/home']"  >الرئيسيه</a></li>
+
+
+
+                <!-- markiting -->
+                <li routerLinkActive="active"  *ngIf="loggedIn()"><a [routerLink]="['/products']" *hasRole="['Marketing']" routerLinkActive="active"> تصفح  </a></li>
+
+                <!-- hasRole Supplier -->
+
+           <li *ngIf="loggedIn()" ><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/uploadproduct']">اضافة المنتجات</a></li>
+           <li *ngIf="loggedIn()" ><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/supplierProductsList']">تعديل المنتجات</a></li>
+
+
+
+
+                 <!-- has role Marketing or --Supplier-- -->
+            <li *ngIf="loggedIn()"><a *hasRole="['Supplier' ,'Marketing']"  [routerLink]="['/withdraw']">سحب الأرباح</a></li>
+           <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Marketing' , 'Supplier']" >حسابي</a>
                         <ul class="dropdown" >
                             <!-- <li *ngIf="loggedIn()"><a  *hasRole="['Supplier']" [routerLink]="['/myorders']" >متابعة الطلبات</a></li> -->
-                            <li *ngIf="loggedIn()">              
-                                                           
+                            <li *ngIf="loggedIn()">
                               <a [routerLink]="['/myorders']" *hasRole="['Supplier']">
                                 <p-badge [value]="count" size="meduim" severity="warning" styleClass="p-mr-2 mr-2"></p-badge> 
-                                متابعة الطلبات 
-                              </a> <!--Supplier-->                   
+                                متابعة الطلبات
+                              </a> <!--Supplier-->
                             </li>
-                            <li *ngIf="loggedIn()"><a  [routerLink]="['/withdraw']">سحب الأرباح</a></li>
                             <li *ngIf="loggedIn()"><a  *hasRole="['Marketing']" [routerLink]="['/followorders']" >متابعة الطلبات</a></li>
                             <li *ngIf="loggedIn()"><a  *hasRole="['Marketing' , 'Supplier']" [routerLink]="['/manageaccount']" >إعدادات الحساب</a></li>
-                            <li><a href="#">تعديل الباسورد</a></li>
                         </ul>
                     </li>
-           <li><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/payment']">طريقه استلام الارباح </a></li>
-           <li><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/uploadproduct']">اضافة المنتجات</a></li>
+                    <li *ngIf="loggedIn()" ><a class="nav-link" *hasRole="['Supplier' , 'Marketing']" [routerLink]="['/payment']">طريقه استلام الارباح </a></li>
 
 
+
+
+           <!--hasRole Admiiiiiiiiiiiiiiin -->
+
+           <li *ngIf="loggedIn()"><a routerLink="shippingregister" *hasRole="['Admin']" > إضافه موظف شحن </a></li>
+           <li *ngIf="loggedIn()" ><a routerLink="dashboard" *hasRole="['Admin']" >dashboard</a></li>
+           <li *ngIf="loggedIn()" ><a routerLink="manageWithdrawRequest" *hasRole="['Admin']" >طلبات سحب الأرباح</a></li>
+
+           <li *ngIf="loggedIn()" ><a routerLink="supplierDetails" *hasRole="['Admin']" >قبول المستوردين</a></li>
+           <li *ngIf="loggedIn()" ><a routerLink="UserList" *hasRole="['Admin']" >حظرالمستخدمين </a></li>
+
+           <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Admin']" [routerLink]="['/managecategory']" > اضافه كاتيجوري</a></li>
+
+           <!-- hasRole Shiiiiipper -->
+           <li *ngIf="loggedIn()" ><a routerLink="bindingorders" *hasRole="['Shipping']" >اضافه الاوردرات لشركه شحن</a></li>
+           <li *ngIf="loggedIn()" ><a routerLink="ShippingStatus" *hasRole="['Shipping']" > متابعه الطلبات المشحونه</a></li>
+
+
+            <!-- no oooooooooooonnnnnnneeeee -->
+
+          <li *ngIf="loggedIn()" ><a *hasRole="['Marketing','Supplier','Shipping']" href="./contact.html"> مركز المساعدة </a></li>
         </ul>
       </nav>
       <div id="mobile-menu-wrap"></div>

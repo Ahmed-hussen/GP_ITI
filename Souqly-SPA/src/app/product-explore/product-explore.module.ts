@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
 import {PaginatorModule} from 'primeng/paginator';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
-import { PaginationModule } from 'ngx-bootstrap/pagination'
+//import { PaginationModule } from 'ngx-bootstrap/pagination'
 
 import {InputTextModule} from 'primeng/inputtext';
 @NgModule({
@@ -41,7 +41,7 @@ import {InputTextModule} from 'primeng/inputtext';
     GalleriaModule,
     DataViewModule,
     FormsModule ,
-  PaginationModule.forRoot(),
+ // PaginationModule.forRoot(),
     PaginatorModule,
     ProgressSpinnerModule,
     TableModule,
