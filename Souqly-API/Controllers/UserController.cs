@@ -2,6 +2,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Souqly_API.Dtos.User;
@@ -107,18 +108,35 @@ namespace Souqly_API.Controllers
 
         //visa Data
 
+        [HttpGet("profits/{user_id}")]
+        public async Task<IActionResult> GetUserProfits(int user_id)
+        {
+            var result = await _repo.GetUserProfits(user_id);
+            return Ok(result);
+        }
+
+        [HttpPost("withdraw")]
+        public async Task<IActionResult> PostWithdrawRequest([FromBody] int money)
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var result = await _repo.AddWithdrawnRequest(userId, money);
+            if (result == 0)
+                return NotFound();
+
+            return NoContent();
+        }
+
         [HttpPost("paymentdetails")]
         public async Task<IActionResult> paymentdetails(UserVisa model)
         {
             var currentuserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);//Get id
             var user = await _repo.GetUser(currentuserId);
             var newUser = _mapper.Map(model, user);
-           _repo.Update(newUser);
+            _repo.Update(newUser);
             await _repo.SaveAll();
             return Ok(newUser);
 
-
         }
 
-    }
+    }  
 }

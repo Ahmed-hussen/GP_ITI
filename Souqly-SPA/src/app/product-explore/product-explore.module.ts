@@ -1,3 +1,8 @@
+
+import { SupplierProductComponent } from './SupplierProduct/SupplierProduct.component';
+import { SupplierProductsListComponent } from './SupplierProductsList/SupplierProductsList.component';
+import { TableModule } from 'primeng/table';
+import { SupplierProductEditComponent } from './SupplierProductEdit/SupplierProductEdit.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -11,24 +16,38 @@ import {ButtonModule} from 'primeng/button';
 import {GalleriaModule} from 'primeng/galleria';
 import {DataViewModule} from 'primeng/dataview';
 import { FormsModule } from '@angular/forms';
+import {PaginatorModule} from 'primeng/paginator';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
+//import { PaginationModule } from 'ngx-bootstrap/pagination'
 
+import {InputTextModule} from 'primeng/inputtext';
 @NgModule({
   declarations: [
     ProductListComponent,
     ProductComponent,
     ProductDetailsComponent,
-    ProductOptionComponent
+    ProductOptionComponent,
+    SupplierProductEditComponent,
+    SupplierProductsListComponent,
+    SupplierProductComponent
   ],
   imports: [
-    CommonModule, 
+    CommonModule,
     DynamicDialogModule,
     InputNumberModule,
     RadioButtonModule,
     ButtonModule,
     GalleriaModule,
     DataViewModule,
-    FormsModule
+    FormsModule ,
+ // PaginationModule.forRoot(),
+    PaginatorModule,
+    ProgressSpinnerModule,
+    TableModule,
+    InputTextModule
+
+
   ]
 })
 export class ProductExploreModule { }

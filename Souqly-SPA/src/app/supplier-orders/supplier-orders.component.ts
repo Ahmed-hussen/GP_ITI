@@ -11,13 +11,16 @@ export class SupplierOrdersComponent implements OnInit {
 
   orders:SupplierOrder[];
   cols:any[];
+  countToMark:number
 
   constructor(private supplierService:SupplierOrderService) { }
 
   ngOnInit(): void {
-
+    this.countToMark = this.supplierService.count;
+   
     this.supplierService.getOrders().subscribe(d => {
-      this.orders = d;
+      this.orders = d.reverse();
+      this.supplierService.count = 0; 
     });
 
     this.cols = [
@@ -29,6 +32,7 @@ export class SupplierOrdersComponent implements OnInit {
       { field: 'totalOptionPrice', header: 'السعر' },
       { field: 'status', header: 'الحالة' }
   ];
+  
   }
 
 }

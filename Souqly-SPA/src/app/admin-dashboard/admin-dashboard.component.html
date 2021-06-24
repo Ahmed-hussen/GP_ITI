@@ -11,6 +11,7 @@
   <a href="#contact"><i class=" fa fas fa-shopping-bag"></i> Catalog</a>
 </div> -->
 
+
 <div class="main" >
     <h2 style="color: rgb(189, 194, 194);" class="py-2 mx-3">Dashboard</h2>
     <div class="container">
@@ -18,31 +19,41 @@
     <div class="column">
       <div class="card">
         <p><i class="fa fa-user"></i></p>
-        <h3>11+</h3>
-        <p>Users</p>
-      </div>
-    </div>
-  
-    <div class="column">
-      <div class="card">
-        <p><i class="fa fa-check"></i></p>
-        <h3>55+</h3>
-        <p>Proucts</p>
-      </div>
-    </div>
-  
-    <div class="column">
-      <div class="card">
-        <p><i class="fa fa-smile-o"></i></p>
-        <h3>100+</h3>
+        <h3 class="num">{{count.numOfSupplier}}</h3>
         <p>Suppliers</p>
       </div>
     </div>
-  
+
+    <div class="column">
+      <div class="card1">
+        <p><i class="fa fa-smile-o"></i></p>
+        <h3>{{count.numOfShipping}}+</h3>
+        <p>Shipping</p>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <p><i class="fa fa-smile-o"></i></p>
+        <h3 class="num" >{{count.numOfMarkiting}}+</h3>
+        <p>Marketeers</p>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card1">
+        <p><i class="fa fa-check"></i></p>
+        <h3 >{{count.numOfProduct}}+</h3>
+        <p>Products</p>
+      </div>
+    </div>
+
+
+
     <div class="column">
       <div class="card">
         <p><i class="fa fa-coffee"></i></p>
-        <h3>100+</h3>
+        <h3  class="num" >{{count.numOfCategory}}+</h3>
         <p>Categories</p>
       </div>
     </div>
@@ -62,65 +73,27 @@
       <span class="fa fa-star"></span>
       
       <hr style="border:3px solid #f1f1f1">
-      
-      <div class="row">
-        <div class="side">
-          <div>User</div>
-        </div>
-        <div class="middle">
-          <div class="bar-container">
-            <div class="bar-5"></div>
-          </div>
-        </div>
-        <div class="side right">
-          <div>150</div>
-        </div>
-        <div class="side">
-          <div>Product </div>
-        </div>
-        <div class="middle">
-          <div class="bar-container">
-            <div class="bar-4"></div>
-          </div>
-        </div>
-        <div class="side right">
-          <div>63</div>
-        </div>
-        <div class="side">
-          <div>Category</div>
-        </div>
-        <div class="middle">
-          <div class="bar-container">
-            <div class="bar-3"></div>
-          </div>
-        </div>
-        <div class="side right">
-          <div>15</div>
-        </div>
-        <div class="side">
-          <div>Markiting</div>
-        </div>
-        <div class="middle">
-          <div class="bar-container">
-            <div class="bar-2"></div>
-          </div>
-        </div>
-        <div class="side right">
-          <div>6</div>
-        </div>
-        <div class="side">
-          <div>Orders</div>
-        </div>
-        <div class="middle">
-          <div class="bar-container">
-            <div class="bar-1"></div>
-          </div>
-        </div>
-        <div class="side right">
-          <div>20</div>
-        </div>
-      </div></div>
-    </div>
+
+    
+
+
+
+
+
+      <p-chart type="polarArea" [data]="data"></p-chart>
+
+
+
+
+
+
+
+
+
+
+
+
+
    <hr>
    <div class="container" style="z-index: 1;">
     
@@ -139,12 +112,9 @@
           
           
           <tr>
-           
             <tr *ngFor="let item of nstd"  >
-             
                 <td>{{item.userName}}</td>
                 <td>{{item.email}}</td>
-                
               <td> 
           </tr>
         </tbody>

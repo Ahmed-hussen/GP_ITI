@@ -34,6 +34,8 @@ export class VisaService {
     visaObj.id=this.autserve.decodedToken.nameid;//to take id of this token
      console.log(visaObj);
     return this.http.post(this.url + 'paymentdetails', visaObj, httpOptions);
+
+   //return this.http.post(this.url + 'paymentdetails', visaObj, httpOptions);
   }
   getVisaDataById(id:number)
   {

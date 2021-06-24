@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Souqly_API.Models;
+using Souqly_API.Dtos.User;
+using System;
 
 namespace Souqly_API.Services
 {
@@ -148,6 +150,10 @@ namespace Souqly_API.Services
 
         }
 
+        public async Task<List<Category>> GetAllCategories()
+        {
+            return await _context.Categories.ToListAsync();
+        }
         public async Task<float> GetOptionPrice(int optionId)
         {
           var Option=await _context.Option.FirstOrDefaultAsync(i=>i.Id==optionId);
@@ -213,6 +219,41 @@ namespace Souqly_API.Services
              return true;
         }
 
+        //function to return user profits data
+        public async Task<UserProfitsDto> GetUserProfits(int user_id)
+        {
+            
+            var result = await _context.Users.Include(u => u.UserBills).Include(u => u.WithdrawRequests).FirstOrDefaultAsync(u => u.Id == user_id);
+            return new UserProfitsDto()
+            {
+                TotalProfits = (int)result.TotalProfits,
+                AvailableProfits = (int)(result.TotalProfits - result.WithdrawnProfits),
+                ExpectedProfits = (int)result.UserBills.Where(o => o.UserId == user_id && o.Active == false).Sum(o => o.UserProfit),
+                HasPaymentMethod = (result.WalletNumber != 0),
+                IsRequestAvailable = (result.WithdrawRequests.FirstOrDefault(o => o.Confirmed == false) == null),
+                RecentTransferred = result.WithdrawRequests.Where(o => (DateTime.Now - o.DateOfRequest).Hours <= 48 && o.Confirmed == true).Sum(o => o.AmountOfMoney)
+            };
+        }
+
+        //send withdrawing request
+        public async Task<int> AddWithdrawnRequest(int user_id, int money)
+        {
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == user_id);
+            if (money <= (user.TotalProfits - user.WithdrawnProfits))
+            {
+                await _context.WithdrawRequests.AddAsync(
+                    new WithdrawRequest() { UserId = user_id, AmountOfMoney = money }
+                );
+               
+                await SaveAll();
+                return 1;
+            }
+
+            return 0;
+
+        }
+
         public async Task<IEnumerable<OrderDetails>> GetMarketeerOrders(int id) // marketing id
         {
             var orders = await  _context.OrderDetails.Include(i => i.Option).ThenInclude(i => i.Product).Include(i=>i.Order).ThenInclude(i=>i.Bill).Where(i=>i.Order.MarketingId==id).OrderBy(i=>i.Order.OrderDate).ToListAsync();
@@ -220,5 +261,59 @@ namespace Souqly_API.Services
              return orders;
         }
 
+       
+        public async Task<Count>  GetCounts()
+        {
+            Count count=new Count();
+
+             count.NumOfSupplier = _context.UserRoles.Where(t => t.RoleId == 3).Count();//supplier
+             count.NumOfMarkiting = _context.UserRoles.Where(t => t.RoleId == 2).Count();//Marketting
+             count.NumOfShipping = _context.UserRoles.Where(t => t.RoleId == 4).Count();//Shipping
+             count.NumOfProduct = _context.Products.Count();
+             count.NumOfCategory = _context.Categories.Count();
+             return  count;
+        }
+
+        public async Task<IEnumerable<Order>> GetOrdersForShipping()
+        {
+
+            var orders = await  _context.Orders.Where(i=>i.Status=="InShipping").OrderBy(i=>i.OrderDate).ToListAsync();
+
+             return orders;
+        }
+
+        public async Task<Order> getOrder(int OrderId)
+        {
+          var Order = _context.Orders.FirstOrDefault(i=>i.Id == OrderId);
+
+           return Order;
+        }
+
+         public async Task<IEnumerable<UserBill>> getBillActive(int OrderId)
+        {
+          Order order = _context.Orders.Include(i=>i.Bill).FirstOrDefault(i=>i.Id == OrderId );
+          int billId = order.BillId;
+          var UserBill =await _context.UserBills.Where(i=>i.BillId == billId).ToListAsync();
+           return UserBill;
+        }
+
+         public async Task<User> getUserprofits(int UserId)
+        {
+           var User=   _context.Users.FirstOrDefault(i=>i.Id==UserId);
+           return User;
+        }
+
+        public async Task<IEnumerable<OrderDetails>> GetOrderDetailsOption(int orderId)
+        {
+          var OrderDetailsOption=await  _context.OrderDetails.Include(i=>i.Option).Where(i=>i.OrderId==orderId).ToListAsync();
+
+          return OrderDetailsOption;
+        }
+
+        public async Task<Option> GetOptionToUPdateQauntaty(int OptionID)
+        {
+            var option = await _context.Option.FirstOrDefaultAsync(i=>i.Id==OptionID);
+            return option;
+        }
     }
 }

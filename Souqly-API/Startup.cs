@@ -2,23 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using E_Commerce.API.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Souqly_API.Helpers;
 using Souqly_API.Models;
 using Souqly_API.Services;
 
@@ -45,6 +42,7 @@ namespace Souqly_API
                 options.Filters.Add(new AuthorizeFilter(policy));
             }); // Routing instead of AddMvc()
 
+            services.Configure<CloudSettings>(Configuration.GetSection("CloudSettings"));
 
             // ASP Identity For JWT Token
             IdentityBuilder builder = services.AddIdentityCore<User>(
@@ -87,9 +85,11 @@ namespace Souqly_API
             services.AddScoped<ISouqlyRepo,SouqlyRepo>();
             services.AddScoped<ISupplierRepo, SupplierRepo>();
             services.AddScoped<IProductRepo, ProductRepo>();
+            services.AddScoped<IAdminRepo, AdminRepo>();
+            services.AddScoped<IShippingRepo, ShippingRepo>();
 
-              // CORS Policy
-             services.AddCors();
+            // CORS Policy
+            services.AddCors();
 
              services.AddSignalR();
 
@@ -118,7 +118,8 @@ namespace Souqly_API
 
             app.UseRouting();
 
-            app.UseCors(x => x.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+            app.UseCors(x => x.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
             app.UseAuthentication();
             app.UseAuthorization();

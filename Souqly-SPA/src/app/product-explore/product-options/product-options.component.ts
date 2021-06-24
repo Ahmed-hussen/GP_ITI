@@ -13,7 +13,7 @@ import { ProductServiceService } from '_services/product-service.service';
 export class ProductOptionComponent implements OnInit {
     // id:number;
     product: Product;
-    
+
     optionId:number;
     quantity:number;
 
@@ -48,18 +48,18 @@ export class ProductOptionComponent implements OnInit {
     closeModel(){
       this.ref.close();
     }
-   
+
 
     addToCart(){
-      alert(this.optionId + ", " + this.quantity);
+   
       this.services.AddToCart(this.optionId,this.quantity).subscribe(
         suc=>{
           this.alertifyService.success("قد تمت الاضافه للسله بنجـاح")
         },e=>{
           this.alertifyService.error(e.error)
         }
-  
-  
+
+
       )
     }
 
