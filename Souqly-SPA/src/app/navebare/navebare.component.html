@@ -140,8 +140,8 @@
                 <li routerLinkActive="active"  *ngIf="loggedIn()"><a [routerLink]="['/products']" *hasRole="['Marketing']" routerLinkActive="active"> تصفح  </a></li>
 
                 <!-- hasRole Supplier -->
-
-           <li *ngIf="loggedIn()" ><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/uploadproduct']">اضافة المنتجات</a></li>
+              
+           <li *ngIf="loggedIn()" ><a class="nav-link" *hasRole="['Supplier']" (click)="add()" [routerLink]="['/uploadproduct']">اضافة المنتجات</a></li>
            <li *ngIf="loggedIn()" ><a class="nav-link" *hasRole="['Supplier']" [routerLink]="['/supplierProductsList']">تعديل المنتجات</a></li>
 
 

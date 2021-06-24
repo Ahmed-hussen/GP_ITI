@@ -13,6 +13,7 @@ import { UserCrudService } from '_services/user-crud.service';
 export class UserListComponent implements OnInit {
  nstd:User[]=[];
  id:number;
+ nnstd:User;
  
   constructor(private serve:AuthServicesService , private autserve:UserCrudService , private rout:Router , private alert:AlertService) { }
 
@@ -23,7 +24,8 @@ export class UserListComponent implements OnInit {
   }
  
   delete(ar:User)
-  { 
+  {     
+    console.log(this.serve.currentUser ) ;
           this.id=ar.id;
       if(ar.userName=="Admin")
   

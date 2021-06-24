@@ -6,6 +6,9 @@ import { CartMangmentService } from '_services/cart-mangment.service';
 import { AppComponent } from '../app.component';
 import { SupplierOrderService } from '_services/supplier-service.service';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { UserCrudService } from '_services/user-crud.service';
+import { User } from '_models/user';
+import { AlertService } from '_services/alertifay.service';
 
 @Component({
   selector: 'app-navebare',
@@ -17,16 +20,17 @@ export class NavebareComponent implements OnInit {
   products: ProductOptionCart[];
   isSupplier:boolean;
   constructor(public authService: AuthServicesService, private router: Router, private resolver: ActivatedRoute,
-    private cartService: CartMangmentService, private supplierService:SupplierOrderService) { }
+    private cartService: CartMangmentService, private supplierService:SupplierOrderService,private alert:AlertService,private rout:Router ) { }
 
    //define connection SR
    hubConnection:HubConnection;
-
-
+   nstd:User;
   ngOnInit(): void {
     // this.resolver.data.subscribe(
     //   data=>{this.products=data['options']}
     // )
+this.nstd.userName=this.authService.currentUser.userName;
+   console.log("dddddddddddddddd") ;
     this.loadCart();
     
     if (this.authService.decodedToken.role == "Supplier")
@@ -93,6 +97,19 @@ export class NavebareComponent implements OnInit {
 
     this.hubConnection.invoke('refresh');
   //  this.loadCart()
+  }
+  /////////////////////////
+  add()
+  {
+    if(this.authService.currentUser?.emailConfirmed==false)
+    {
+      this.rout.navigateByUrl("/products");
+      this.alert.success("  عذرا... لن تستطيع رفع المنتجات لدينا حاليا ");
+    }
+    else
+    {
+      this.alert.success("لقد تمت الموافقه عليك كمورد لدينا")
+    }
   }
 
 
