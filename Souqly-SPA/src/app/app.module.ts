@@ -34,6 +34,9 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserListComponent } from './crudUser/user-list/user-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import { DeleteUserComponent } from './crudUser/delete-user/delete-user.component';
+import { EditeUserComponent } from './crudUser/edite-user/edite-user.component';
+import { SupplierDetailsComponent } from './crudUser/supplier-details/supplier-details.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -57,7 +60,10 @@ export function tokenGetter() {
     AdminDashboardComponent,
     UserListComponent,
     UserDetailsComponent,
-    FollowOrdersComponent
+    FollowOrdersComponent,
+    DeleteUserComponent,
+    EditeUserComponent,
+    SupplierDetailsComponent
   ],
   imports: [
     BrowserModule,

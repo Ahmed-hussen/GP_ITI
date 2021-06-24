@@ -6,4 +6,9 @@ export interface User {
   roleName:string;
   phoneNumber:string;
   firstName:string;
+  lastName: string;
+  address: string;
+  lockoutEnabled:boolean;
+  emailConfirmed:boolean;
+  normalizedUserName:string;
 }

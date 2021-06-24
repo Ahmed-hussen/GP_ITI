@@ -19,6 +19,9 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserListComponent } from './crudUser/user-list/user-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import { EditeUserComponent } from './crudUser/edite-user/edite-user.component';
+import { DeleteUserComponent } from './crudUser/delete-user/delete-user.component';
+import { SupplierDetailsComponent } from './crudUser/supplier-details/supplier-details.component';
 const routes: Routes = [
   {path:'',component:HomePageComponent},
   { path: 'login', component: LoginComponent },
@@ -28,7 +31,12 @@ const routes: Routes = [
   { path: 'payment', component:PaymentComponent},
   { path: 'dashboard', component:AdminDashboardComponent},
   { path: 'UserList', component:UserListComponent},
+  { path: 'supplierDetails', component:SupplierDetailsComponent},
+  { path: 'supplierDetails/editUser/:id', component:EditeUserComponent},
   { path: 'UserList/details/:id', component:UserDetailsComponent},
+  { path: 'UserList/editUser/:id', component:EditeUserComponent},
+  { path: 'UserList/deleteUser/:id', component:DeleteUserComponent},
+  
   
   {path: 'followorders', component: FollowOrdersComponent},
   {path: 'products', component: ProductListComponent},
