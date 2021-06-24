@@ -14,6 +14,8 @@ namespace Souqly_API.Models
         public DateTime Date { get; set; }
         public string Dimension { get; set; }
 
+        public int? QuantitySold { get; set; } = 0;
+
         public User Supplier { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }

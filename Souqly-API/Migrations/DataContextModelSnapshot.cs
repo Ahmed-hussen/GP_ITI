@@ -300,6 +300,12 @@ namespace Souqly_API.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("shippingCompaniesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("shippingPolicy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BillId")
@@ -308,6 +314,8 @@ namespace Souqly_API.Migrations
                     b.HasIndex("MarketingId");
 
                     b.HasIndex("ShippingId");
+
+                    b.HasIndex("shippingCompaniesId");
 
                     b.ToTable("Orders");
                 });
@@ -367,6 +375,9 @@ namespace Souqly_API.Migrations
 
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("QuantitySold")
+                        .HasColumnType("int");
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("int");
@@ -442,6 +453,24 @@ namespace Souqly_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Shippings");
+                });
+
+            modelBuilder.Entity("Souqly_API.Models.ShippingCompany", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("companyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("companyPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("shippingCompanies");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.User", b =>
@@ -525,8 +554,10 @@ namespace Souqly_API.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("WithdrawnProfits");
                     b.Property<int>("WalletNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WithdrawnProfits")
                         .HasColumnType("int");
 
                     b.Property<string>("address")
@@ -574,6 +605,32 @@ namespace Souqly_API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserBills");
+                });
+
+            modelBuilder.Entity("Souqly_API.Models.WithdrawRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AmountOfMoney")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Confirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DateOfRequest")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("WithdrawRequests");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.UserRole", b =>
@@ -697,11 +754,19 @@ namespace Souqly_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Souqly_API.Models.ShippingCompany", "shippingCompany")
+                        .WithMany("orders")
+                        .HasForeignKey("shippingCompaniesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Bill");
 
                     b.Navigation("Marketing");
 
                     b.Navigation("Shipping");
+
+                    b.Navigation("shippingCompany");
                 });
 
             modelBuilder.Entity("Souqly_API.Models.OrderDetails", b =>
@@ -780,6 +845,17 @@ namespace Souqly_API.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Souqly_API.Models.WithdrawRequest", b =>
+                {
+                    b.HasOne("Souqly_API.Models.User", "User")
+                        .WithMany("WithdrawRequests")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Souqly_API.Models.UserRole", b =>
                 {
                     b.HasOne("E_Commerce.API.Models.Role", "Role")
@@ -834,6 +910,11 @@ namespace Souqly_API.Migrations
                     b.Navigation("Orders");
                 });
 
+            modelBuilder.Entity("Souqly_API.Models.ShippingCompany", b =>
+                {
+                    b.Navigation("orders");
+                });
+
             modelBuilder.Entity("Souqly_API.Models.User", b =>
                 {
                     b.Navigation("Orders");
@@ -843,6 +924,8 @@ namespace Souqly_API.Migrations
                     b.Navigation("UserBills");
 
                     b.Navigation("UserRoles");
+
+                    b.Navigation("WithdrawRequests");
                 });
 #pragma warning restore 612, 618
         }

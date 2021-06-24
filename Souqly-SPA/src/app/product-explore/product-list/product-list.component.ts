@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '_models/ola/Product';
+// import { ManageCategories } from '_models/ManageCategories';
 import { Pagination, PaginationResult } from '_models/Pagination';
 import { AlertService } from '_services/alertifay.service';
 import { ProductServiceService } from '_services/product-service.service';
@@ -11,6 +12,9 @@ import { ProductServiceService } from '_services/product-service.service';
 })
 export class ProductListComponent implements OnInit {
   products:Product[];
+  topProducts:Product[];
+  // allCategories: ManageCategories[];
+  // selectedCategory: ManageCategories;
 //   pagination:Pagination;
   
 //   constructor(private productServ:ProductServiceService,private alert:AlertService) { }
@@ -47,8 +51,12 @@ export class ProductListComponent implements OnInit {
   constructor(private productServ:ProductServiceService) { }
 
   ngOnInit(): void {
+    // this.loadCategories();
     this.productServ.getProducts().subscribe(
       prods => this.products = prods
+    );
+    this.productServ.getTopProducts(3).subscribe(
+      prods => this.topProducts = prods
     );
 
     this.sortOptions = [
@@ -69,5 +77,19 @@ export class ProductListComponent implements OnInit {
         this.sortField = value;
     }
 }
+// loadCategories(){
+//   this.adminMCategoriesServ.getCategories().subscribe(d=>{
+//     this.allCategories = d;
+//   });
+// }
+
+// CategoryChanging()
+// {
+
+//   this.productServ.getCategoryProducts(this.selectedCategory.id).subscribe(
+//     prods => this.products = prods
+//   )
+
+// }
 
 }

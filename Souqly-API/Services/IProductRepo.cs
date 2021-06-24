@@ -18,8 +18,12 @@ namespace Souqly_API.Services
         Task DeleteProduct(int id);
 
      Task<List<ProductDto>> GetSupplierProducts(int id);
-
+Task<List<ProductDto>> GetCatogoreyProducts(int CatgoreyId);
      Task EditProductOption(OptionDto optionEdited);
+
+      Task<List<ProductDto>> GetTopProducts(int top);
+    Task<List<ProductDto>> GetTopProductsByCatogorey(int CatgoreyId,int topnum);
+     Task UpdateSoldQuantity(int id, int quantity);
 
     }
 }

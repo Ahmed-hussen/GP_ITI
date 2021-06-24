@@ -18,11 +18,13 @@ namespace Souqly_API.Controllers
     {
         private readonly ISouqlyRepo _repo;
         private readonly IMapper _mapper;
+         private readonly IProductRepo _productRepo;
 
-        public OrderController(ISouqlyRepo repo, IMapper mapper)
+        public OrderController(ISouqlyRepo repo,IProductRepo productRepo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
+            _productRepo = productRepo;
         }
 
      [HttpPost]
@@ -66,6 +68,8 @@ namespace Souqly_API.Controllers
                         OptionId = OptionInfo.OptionId,
                         TotalOptionPrice = OptionInfo.NewPrice
                     };
+
+                    await _productRepo.UpdateSoldQuantity(orderDetail.Option.ProductId, orderDetail.Quantity);
 
                     await _repo.Add(orderDetail);
                      var option= await _repo.GetOptionToUPdateQauntaty(OptionInfo.OptionId);

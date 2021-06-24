@@ -86,4 +86,41 @@ editOption(optionEdited:Option){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+getTopProducts(top:number){
+  var headers_object = new HttpHeaders({
+    'Content-Type': 'application/json',
+     'Authorization': "Bearer "+ window.localStorage.getItem('token')
+  });
+ 
+  const httpOptions = {
+    headers: headers_object
+  };
+  return this.http.get<Product[]>(this.url+"GetTopProducts/"+top, httpOptions);
+ 
+}
+getCatgoreyTopProducts(catgoreyId:number,top:number){
+  var headers_object = new HttpHeaders({
+    'Content-Type': 'application/json',
+     'Authorization': "Bearer "+ window.localStorage.getItem('token')
+  });
+ 
+  const httpOptions = {
+    headers: headers_object
+  };
+  return this.http.get<Product[]>(this.url+"GetTopProducts/"+catgoreyId+top, httpOptions);
+ 
+}
+getCategoryProducts(id : number){
+  var headers_object = new HttpHeaders({
+    'Content-Type': 'application/json',
+     'Authorization': "Bearer "+ window.localStorage.getItem('token')
+  });
+
+  const httpOptions = {
+    headers: headers_object
+  };
+  return this.http.get<Product[]>(this.url + id, httpOptions);
+}
+//end of service
+
 }

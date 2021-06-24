@@ -4,9 +4,37 @@
     </div>
     <br>
 </div> -->
+<br>
+<br>
+<!-- <p-dropdown *ngIf= true  [options]="allCategories" [(ngModel)]="selectedCategory" (onChange)="CategoryChanging()" optionValue="id"  optionLabel="categoryName"></p-dropdown> -->
+<div class="text-center mb-5" style="font-size:xx-large; font-weight: bolder; color:#e7ab3c;">
+اكثــر المنتجــات مبيعـا   </div>
 <div style="min-height: 500px;" class="d-flex justify-content-center align-items-center" *ngIf="products == null">
     <p-progressSpinner [style]="{width: '50px', height: '50px'}"  styleClass="custom-spinner" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
 </div>
+
+
+<div class="container" *ngIf="topProducts != null">
+    <div class="" dir="rtl">
+        <p-dataView #dv [value]="topProducts" 
+           layout="grid" class="p-dataview">
+            <ng-template pTemplate="header" class="p-dataview-header">
+           
+            </ng-template>
+ 
+ 
+            <ng-template let-prod pTemplate="gridItem">
+                <div class="p-col-12 p-md-4">
+                    <app-product [product]="prod"></app-product>   
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+ 
+</div>
+ 
+ 
+<hr>
 
 <!-- <div *ngIf="pagination.totalItems>0" class="d-flex justify-content-center">
     <pagination style="color: #e99e12 !important;" [boundaryLinks]="true" [itemsPerPage]="pagination.itemsPerPage" [totalItems]="pagination.totalItems"

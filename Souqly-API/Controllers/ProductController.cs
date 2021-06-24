@@ -38,6 +38,20 @@ namespace Souqly_API.Controllers
             var prods = await _repo.GetProducts();
             return Ok(prods);
         }
+        [HttpGet("{CatgoreyId}")]
+        public async Task<IActionResult> GetCatgoreyProducts(int CatgoreyId)
+        {
+            var prods = await _repo.GetCatogoreyProducts(CatgoreyId);
+            if (prods != null)
+            {
+                return Ok(prods);
+            }
+            else
+            {
+                return NotFound();
+ 
+            }
+        }
         
         [HttpGet("GetSupplierProducts/{id}")]
         public async Task<IActionResult> GetSupplierProducts(int id)
@@ -69,6 +83,22 @@ namespace Souqly_API.Controllers
 
             return Ok("تم تعديل الاختيارات");
         }
+
+   [HttpGet("GetTopProducts/{top}")]
+    public async Task<IActionResult> GetTopProducts(int top=10)
+    {
+           var prods =await _repo.GetTopProducts(top);
+            return Ok(prods);
+    }
+
+        [HttpGet("GetTopProducts/{CatgoreyId}/{top}")]
+        public async Task<IActionResult> GetTopProductsByCatorey(int CatgoreyId,int top = 10)
+        {
+            var prods = await _repo.GetTopProductsByCatogorey(CatgoreyId,top);
+            return Ok(prods);
+        }
+
+
 
  
 
