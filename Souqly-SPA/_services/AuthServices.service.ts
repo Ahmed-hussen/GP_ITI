@@ -57,7 +57,6 @@ export class AuthServicesService {
   }
 
   register(user: User) {
-    alert(user);
     return this.http.post(this.baseURL + 'register', user);
   }
 

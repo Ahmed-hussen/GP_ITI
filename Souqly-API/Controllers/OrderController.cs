@@ -42,7 +42,7 @@ namespace Souqly_API.Controllers
             DateTime endDate = DateTime.Now;
             var ShippingInfo = await _repo.GetShipping(model.ShippingId);
             order.ShippedDate = endDate.AddDays(ShippingInfo.Duration);
-            order.Status = "Pending";
+            order.Status = "Binding";
             order.MarketingId = int.Parse(marketingId);
             await   _repo.Add(order);
             await _repo.SaveAll();
@@ -56,7 +56,7 @@ namespace Souqly_API.Controllers
             {
                 foreach (var OptionIdInCart in OptionsIds)
                 {
-                    // 
+                    //
                     var OptionInfo = await _repo.GetProductOption(OptionIdInCart, cartID);
 
                     OrderDetails orderDetail = new OrderDetails()
@@ -68,6 +68,8 @@ namespace Souqly_API.Controllers
                     };
 
                     await _repo.Add(orderDetail);
+                     var option= await _repo.GetOptionToUPdateQauntaty(OptionInfo.OptionId);
+                     option.StockIn=option.StockIn-OptionInfo.Quantity;
                     await _repo.SaveAll();
                     await _repo.Delete(OptionInfo);
                     // Suppliers Data
@@ -97,6 +99,7 @@ namespace Souqly_API.Controllers
                 Active = false
             };
             await _repo.Add(Marketing);
+            await _repo.SaveAll();
             return Ok(order.Id);
 
 
@@ -118,8 +121,8 @@ namespace Souqly_API.Controllers
              var marketingId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
              var products=await _repo.GetAllOrders(int.Parse(marketingId));
-             
-            var productsReturn= _mapper.Map<IEnumerable<OrderListDto>>(products);
+
+             var productsReturn= _mapper.Map<IEnumerable<OrderListDto>>(products);
             return Ok(productsReturn);
 
       }

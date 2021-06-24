@@ -12,9 +12,9 @@ export class OrderDetailsComponent implements OnInit {
   order:Order;
   public total = 0;
     constructor( private resolve:ActivatedRoute,public authService: AuthServicesService) { }
-  
+
     ngOnInit() {
-  
+
       this.resolve.data.subscribe(
         data=>{
           this.order=data['OrderDetails']
@@ -24,7 +24,7 @@ export class OrderDetailsComponent implements OnInit {
     }
     findsum(data) {
       this.order = data
-      for(var result of data.orderDetails){
+      for(var result of data.orderDetail){
 
         this.total += result.totalOptionPrice;
 

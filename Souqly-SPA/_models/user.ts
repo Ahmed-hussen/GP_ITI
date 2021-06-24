@@ -4,6 +4,11 @@ export interface User {
   email:string;
   password:number;
   roleName:string;
-  phoneNumber: string;
-
+  phoneNumber:string;
+  firstName:string;
+  lastName: string;
+  address: string;
+  lockoutEnabled:boolean;
+  emailConfirmed:boolean;
+  normalizedUserName:string;
 }

@@ -31,10 +31,11 @@ namespace Souqly_API.Controllers
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
         private readonly IAuthRepo _repo;
+        private readonly ISouqlyRepo _souqlyRepo;
 
         public AuthController(UserManager<User> userManager, RoleManager<Role> roleManager,
         SignInManager<User> signInManager, IConfiguration config,
-        IMapper mapper, IAuthRepo repo)
+        IMapper mapper, IAuthRepo repo , ISouqlyRepo souqlyRepo)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -42,6 +43,7 @@ namespace Souqly_API.Controllers
             _config = config;
             _mapper = mapper;
             _repo = repo;
+            _souqlyRepo = souqlyRepo;
         }
 
         [HttpPost("login")]
@@ -57,7 +59,7 @@ namespace Souqly_API.Controllers
             var user = await _userManager.FindByNameAsync(userForLogin.UserName);
             if (user == null)
                 return NotFound("البريدد الاكتروني او الاسم غير صحيح");
-            var result = await _signInManager.CheckPasswordSignInAsync(user, userForLogin.Password, false);
+           var result = await _signInManager.CheckPasswordSignInAsync(user, userForLogin.Password, false);
             if (result.Succeeded)
             {
                 var appUser = await _userManager.Users.FirstOrDefaultAsync(
@@ -123,6 +125,16 @@ namespace Souqly_API.Controllers
                     if (await _roleManager.RoleExistsAsync("Admin"))
                         await _userManager.AddToRoleAsync(newUser, "Admin");
                 }
+
+                //da hayt8ayar hayb2a fl datacontext howa w add admin
+                var newShippCompany = new ShippingCompany
+                {
+                    Id = 1,
+                    companyName = "Not Attached",
+                    companyPhone = null
+                };
+                await _souqlyRepo.Add(newShippCompany);
+                await _souqlyRepo.SaveAll();
             }
         }
         // 2- Roles
@@ -168,12 +180,14 @@ namespace Souqly_API.Controllers
                 if (await _repo.UserNameExists(model.UserName))
                     return BadRequest("هذا الاسم موجود بالفعل");
             }
-
+          
             var userToCreate = _mapper.Map<User>(model);
+            
+           
             var result = await _userManager.CreateAsync(userToCreate, model.Password);
             var result2 = await _userManager.AddToRoleAsync(userToCreate, model.RoleName);
             var userToReturn = _mapper.Map<UserForDetails>(userToCreate);
-
+            
             if (result.Succeeded)
             {
                 //  await _signInManager.SignInAsync(userToCreate, isPersistent:false);

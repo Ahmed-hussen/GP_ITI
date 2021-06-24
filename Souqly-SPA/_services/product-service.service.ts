@@ -1,3 +1,4 @@
+import { Option } from './../_models/ola/option';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -12,8 +13,12 @@ export class ProductServiceService {
   url:string = environment.ApiUrl + 'Product/';
   SupplierId:number;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   constructor(private http: HttpClient, private authService:AuthServicesService){
   }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   getProducts(){
     var headers_object = new HttpHeaders({
@@ -25,9 +30,12 @@ export class ProductServiceService {
       headers: headers_object
     };
     return this.http.get<Product[]>(this.url, httpOptions);
-  }
 
-  getCategoryProducts(id : number){
+  }//end ofgetProducts
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  GetSupplierProducts(id:number){
     var headers_object = new HttpHeaders({
       'Content-Type': 'application/json',
        'Authorization': "Bearer "+ window.localStorage.getItem('token')
@@ -36,7 +44,81 @@ export class ProductServiceService {
     const httpOptions = {
       headers: headers_object
     };
-    return this.http.get<Product[]>(this.url + id, httpOptions);
-  }
+    return this.http.get<Product[]>(this.url+"GetSupplierProducts/"+id, httpOptions);
+
+  }//end ofgetProducts
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+deleteProduct(id:number){
+
+  var headers_object = new HttpHeaders({
+    'Content-Type': 'application/json',
+     'Authorization': "Bearer "+ window.localStorage.getItem('token')
+  });
+
+  const httpOptions = {
+    headers: headers_object
+  };
+
+  return this.http.delete("https://localhost:5001/Product/deleteProduct/"+id,httpOptions);
+
+}//end of deleteProduct
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+editOption(optionEdited:Option){
+
+  var headers_object = new HttpHeaders({
+    'Content-Type': 'application/json',
+     'Authorization': "Bearer "+ window.localStorage.getItem('token')
+  });
+
+  const httpOptions = {
+    headers: headers_object
+  };
+
+  return this.http.put("https://localhost:5001/Product/editOption",optionEdited,httpOptions);
+
+}//end ofeditOption
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+getTopProducts(top:number){
+  var headers_object = new HttpHeaders({
+    'Content-Type': 'application/json',
+     'Authorization': "Bearer "+ window.localStorage.getItem('token')
+  });
+
+  const httpOptions = {
+    headers: headers_object
+  };
+  return this.http.get<Product[]>(this.url+"GetTopProducts/"+top, httpOptions);
+
+}
+getCatgoreyTopProducts(catgoreyId:number,top:number){
+  var headers_object = new HttpHeaders({
+    'Content-Type': 'application/json',
+     'Authorization': "Bearer "+ window.localStorage.getItem('token')
+  });
+
+  const httpOptions = {
+    headers: headers_object
+  };
+  return this.http.get<Product[]>(this.url+"GetTopProducts/"+catgoreyId+top, httpOptions);
+
+}
+getCategoryProducts(id : number){
+  var headers_object = new HttpHeaders({
+    'Content-Type': 'application/json',
+     'Authorization': "Bearer "+ window.localStorage.getItem('token')
+  });
+
+  const httpOptions = {
+    headers: headers_object
+  };
+  return this.http.get<Product[]>(this.url + id, httpOptions);
+}
+//end of service
 
 }

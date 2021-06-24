@@ -40,7 +40,7 @@
               <ul  class="myborder"  style="background-color: #ffffff !important; margin-bottom:5%">
                            <span class="mytitle" style="margin-left:47%"> الطلبات
                   </span>
-                <li *ngFor="let item of order.orderDetails" class="subtotal" style="font-size: 22px !important;     border-bottom: 1px solid #644d12 !important">
+                <li *ngFor="let item of order.orderDetail" class="subtotal" style="font-size: 22px !important;  border-bottom: 1px solid #644d12 !important">
                  {{item.totalOptionPrice}} EGP <span>  {{item.option.availableOptions}}</span>
 
                    </li>

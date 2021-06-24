@@ -25,8 +25,8 @@ namespace Souqly_API.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddToCart(AddToCartDto model)
+        [HttpGet("{id}/{Qauntity}")]
+        public async Task<IActionResult> AddToCart(int id,int Qauntity)
         {
             var marketingId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             int CartId;
@@ -41,47 +41,51 @@ namespace Souqly_API.Controllers
                 {
                     MarketingId = Int32.Parse(marketingId)
                 };
-                _repo.Add(cart);
+              await  _repo.Add(cart);
                 await _repo.SaveAll();
                 CartId = await _repo.GetCartID(Int32.Parse(marketingId));
             }
-            model.CartId = CartId;
-            var ItemPrice = await _repo.GetOptionPrice(model.OptionId);
-            model.NewPrice = ItemPrice * model.Quantity;
+            
+            var ItemPrice = await _repo.GetOptionPrice(id);
+            float NewPrice = ItemPrice * Qauntity;
             ProductOptionCart ProOptionCart;
-            if (await _repo.IsOptionExist(model.OptionId))
+            if (await _repo.IsOptionExist(id))
             {
 
-                var DBOption = await _repo.GetOption(model.OptionId, model.CartId);
+                var DBOption = await _repo.GetOption(id, CartId);
 
-                model.Quantity = DBOption.Quantity + model.Quantity;
-                model.NewPrice = DBOption.NewPrice + model.NewPrice;
-
-                ProOptionCart = _mapper.Map(model, DBOption);
-                int Stock = await _repo.GetStock(ProOptionCart.OptionId);
-                if (ProOptionCart.Quantity <= Stock)
+                Qauntity = DBOption.Quantity + Qauntity;
+                NewPrice = DBOption.NewPrice + NewPrice;
+                DBOption.Quantity=Qauntity;
+                DBOption.NewPrice=NewPrice;
+                int Stock = await _repo.GetStock(DBOption.OptionId);
+                if (DBOption.Quantity <= Stock)
                 {
                     if (await _repo.SaveAll()) return NoContent();
                 }
                 else
                 {
-                    return NotFound("عفوا الكمية المطلوبة غير متاحة");
+                     return StatusCode(500,"عفوا الكمية المطلوبة غير متاحة");
                 }
             }
             else
             {
-                ProOptionCart = _mapper.Map<ProductOptionCart>(model);
+            ProductOptionCart newitem=new ProductOptionCart();
+            newitem.NewPrice=NewPrice;
+            newitem.OptionId=id;
+            newitem.Quantity=Qauntity;
+            newitem.CartId=CartId;
 
-                int Stock = await _repo.GetStock(ProOptionCart.OptionId);
-                if (ProOptionCart.Quantity <= Stock)
+                int Stock = await _repo.GetStock(id);
+                if (Qauntity <= Stock)
                 {
-                    _repo.Add(ProOptionCart);
+                   await _repo.Add(newitem);
                     await _repo.SaveAll();
                     return Ok();
                 }
                 else
                 {
-                    return NotFound("عفوا الكمية المطلوبة غير متاحة");
+                    return StatusCode(500,"عفوا الكمية المطلوبة غير متاحة");
                 }
 
             }

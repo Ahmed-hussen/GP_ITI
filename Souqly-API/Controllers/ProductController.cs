@@ -3,11 +3,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Souqly_API.Dtos.Products;
+using Souqly_API.Models;
 using Souqly_API.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+ 
 
 namespace Souqly_API.Controllers
 {  
@@ -19,35 +22,58 @@ namespace Souqly_API.Controllers
         private readonly IProductRepo _repo;
         private readonly IMapper _mapper;
 
+ 
+
         public ProductController(IProductRepo repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
 
+ 
+
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
             var prods = await _repo.GetProducts();
-
-
-
             return Ok(prods);
-
-
+        }
+        
+        [HttpGet("GetSupplierProducts/{id}")]
+        public async Task<IActionResult> GetSupplierProducts(int id)
+        {
+            var prods = await _repo.GetSupplierProducts(id);
+            return Ok(prods);
         }
 
-        /*
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetProductById(int id)
+ 
+
+        [HttpDelete("deleteProduct/{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
         {
+            await _repo.DeleteProduct(id);
 
-            var product = await _repo.GetProductById(id);
+ 
 
+            return Ok();
+        }
 
-            return Ok(product);
+ 
 
+        [HttpPut("editOption")]
+        public async Task<IActionResult> EditProductOption(OptionDto optionEdited)
+        {
+            await _repo.EditProductOption(optionEdited);
 
-        }*/
+ 
+
+            return Ok("تم تعديل الاختيارات");
+        }
+
+ 
+
+ 
+
     }
 }
+ 

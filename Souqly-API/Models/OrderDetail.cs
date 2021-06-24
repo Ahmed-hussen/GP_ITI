@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace Souqly_API.Models
 {
     public class OrderDetails
@@ -9,5 +11,8 @@ namespace Souqly_API.Models
         public int OrderId { get; set; }
         public Option Option { get; set; }
         public int OptionId { get; set; }
+
+        [DefaultValue("false")]
+        public bool Seen_Supplier { get; set; }
     }
 }
