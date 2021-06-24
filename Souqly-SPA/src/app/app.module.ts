@@ -30,6 +30,12 @@ import {TableModule} from 'primeng/table';
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
 import { ProductExploreModule } from './product-explore/product-explore.module';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import {DropdownModule} from 'primeng/dropdown';
+import { ManageCategoriesComponent } from './Admin/manage-categories/manage-categories.component';
+import { AddCategoryComponent } from './Admin/add-category/add-category.component';
+import { EditCategoryComponent } from './Admin/edit-category/edit-category.component';
+
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -49,7 +55,10 @@ export function tokenGetter() {
     OrderListComponent,
     SupplierOrdersComponent,
     ManageAccountComponent,
-    FollowOrdersComponent
+    FollowOrdersComponent,
+    ManageCategoriesComponent,
+    AddCategoryComponent,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +70,7 @@ export function tokenGetter() {
     BrowserModule,
     BrowserAnimationsModule,
     TableModule,
+    DropdownModule,
     ProductExploreModule,
     JwtModule.forRoot({
       config: {

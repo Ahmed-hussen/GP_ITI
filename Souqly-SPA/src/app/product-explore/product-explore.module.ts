@@ -11,6 +11,7 @@ import {ButtonModule} from 'primeng/button';
 import {GalleriaModule} from 'primeng/galleria';
 import {DataViewModule} from 'primeng/dataview';
 import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -21,14 +22,15 @@ import { FormsModule } from '@angular/forms';
     ProductOptionComponent
   ],
   imports: [
-    CommonModule, 
+    CommonModule,
     DynamicDialogModule,
     InputNumberModule,
     RadioButtonModule,
     ButtonModule,
     GalleriaModule,
     DataViewModule,
-    FormsModule
+    FormsModule,
+    DropdownModule
   ]
 })
 export class ProductExploreModule { }

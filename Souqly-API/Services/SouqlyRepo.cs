@@ -216,5 +216,33 @@ namespace Souqly_API.Services
              return orders;
         }
 
+        public async Task<IEnumerable<Category>> GetallCategories()
+        {
+           var allcategories =await _context.Categories.ToListAsync();
+
+           return allcategories;
+        }
+
+        // public Category CreateNewCategory(Category cat)
+        // {
+        //      _context.Categories.Add(cat);
+        //      _context.SaveChanges();
+        //      return cat;
+        // }
+
+        public async Task<Category> UpdateCategory(int id, string name)
+        {
+         var cat = await _context.Categories.FirstOrDefaultAsync(i=>i.Id == id);
+         cat.CategoryName= name ;
+         await _context.SaveChangesAsync();
+         return cat;
+        }
+
+        public Category GetCatById(int id)
+        {
+         var categorywithId = _context.Categories.FirstOrDefault(i=>i.Id == id);
+         return categorywithId;
+        }
+
     }
 }

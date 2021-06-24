@@ -28,6 +28,7 @@ namespace Souqly_API.Dtos.Marketeer
         //option
         public string AvailableOptions { get; set; }
 
+
         //product 
 
         public string ProductName { get; set; }

@@ -1,6 +1,7 @@
 <div class="row w-100 p-5">
+  <p-dropdown *ngIf= true  [options]="allCategories" [(ngModel)]="selectedCategory" (onChange)="CategoryChanging()" optionValue="id"  optionLabel="categoryName"></p-dropdown>
+
     <div *ngFor="let prod of products" class="col-3">
         <app-product [product]="prod"></app-product>
     </div>
 </div>
-     

@@ -12,9 +12,9 @@ export class ProductServiceService {
   url:string = environment.ApiUrl + 'Product/';
   SupplierId:number;
 
-  constructor(private http: HttpClient, private authService:AuthServicesService){   
+  constructor(private http: HttpClient, private authService:AuthServicesService){
   }
-  
+
   getProducts(){
     var headers_object = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -25,6 +25,18 @@ export class ProductServiceService {
       headers: headers_object
     };
     return this.http.get<Product[]>(this.url, httpOptions);
+  }
+
+  getCategoryProducts(id : number){
+    var headers_object = new HttpHeaders({
+      'Content-Type': 'application/json',
+       'Authorization': "Bearer "+ window.localStorage.getItem('token')
+    });
+
+    const httpOptions = {
+      headers: headers_object
+    };
+    return this.http.get<Product[]>(this.url + id, httpOptions);
   }
 
 }

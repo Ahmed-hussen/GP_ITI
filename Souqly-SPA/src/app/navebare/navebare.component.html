@@ -106,36 +106,19 @@
       </div>
     </div>
   </div>
-  <div class="nav-item">
+  <div  class="nav-item">
     <div class="container">
-      <div class="nav-depart">
-        <div class="depart-btn">
-          <i class="ti-menu"></i>
-          <span> كل الاقسام</span>
-          <ul class="depart-hover">
-            <li class="active"><a href="#">Women’s Clothing</a></li>
-            <li><a href="#">Men’s Clothing</a></li>
-            <li><a href="#">Underwear</a></li>
-            <li><a href="#">Kid's Clothing</a></li>
-            <li><a href="#">Brand Fashion</a></li>
-            <li><a href="#">Accessories/Shoes</a></li>
-            <li><a href="#">Luxury Brands</a></li>
-            <li><a href="#">Brand Outdoor Apparel</a></li>
-          </ul>
-        </div>
-      </div>
+      <!-- <p-dropdown *ngIf="loggedIn()"  [options]="allCategories" [(ngModel)]="selectedCategory" (onChange)="sendCategoryId()" optionValue="id"  optionLabel="categoryName"></p-dropdown> -->
+
       <nav class="nav-menu mobile-menu">
         <ul>
           <li><a >الرئيسيه</a></li>
           <li routerLinkActive="active"  *ngIf="loggedIn()"><a [routerLink]="['/products']" *hasRole="['Marketing']" routerLinkActive="active"> تصفح  </a></li>
           <li><a href="./contact.html"> مركز المساعدة </a></li>
-          <!-- <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Supplier']" >حسابي</a>
-                        <ul class="dropdown">
-                            <li routerLinkActive="active" *ngIf="loggedIn()"><a [routerLink]="['/myorders']" routerLinkActive="active"> منتجاتي </a></li>
-                            <li><a class="nav-link" routerLink="manageaccount">إعدادات الحساب</a></li>
-                            <li><a href="#">تعديل الباسورد</a></li>
-                        </ul>
-                    </li> -->
+
+          <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Admin']" [routerLink]="['/managecategory']"  >الفئـــــات</a>
+          </li>
+
 
            <li routerLinkActive="active" *ngIf="loggedIn()"><a  *hasRole="['Marketing' , 'Supplier']" >حسابـــي</a>
                         <ul class="dropdown" >
@@ -145,7 +128,6 @@
                             <li><a href="#">تعديل الباسورد</a></li>
                         </ul>
                     </li>
-
         </ul>
       </nav>
       <div id="mobile-menu-wrap"></div>

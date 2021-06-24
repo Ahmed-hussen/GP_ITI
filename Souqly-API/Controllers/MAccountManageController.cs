@@ -42,9 +42,6 @@ namespace Souqly_API.Controllers
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); // get the user id 
             var oldUser = await _repo.GetUser(currentUserId);
             var newUser = _mapper.Map(model, oldUser); // update
-            // var updatedUserName = model.FirstName +" "+ model.lastName;
-            // newUser.UserName = updatedUserName;
-            // newUser.NormalizedUserName = newUser.UserName.ToUpper();
             await _repo.SaveAll();
             return Ok(model); 
         }

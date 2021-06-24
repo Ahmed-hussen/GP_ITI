@@ -3,25 +3,40 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductOptionCart } from '_models/productOptionCart';
 import { CartMangmentService } from '_services/cart-mangment.service';
+import { AdminMCategoriesService } from '_services/admin-mcategories.service';
+import { ManageCategories } from '_models/ManageCategories';
+
+// interface City {
+//   name: string,
+//   code: string
+// }
 
 @Component({
   selector: 'app-navebare',
   templateUrl: './navebare.component.html',
   styleUrls: ['./navebare.component.css']
 })
+
 export class NavebareComponent implements OnInit {
 
   products: ProductOptionCart[];
   isSupplier:boolean;
+  allCategories: ManageCategories[];
+  selectedCategory: ManageCategories;
+  value:number;
+
   constructor(public authService: AuthServicesService, private router: Router, private resolver: ActivatedRoute,
-    private cartService: CartMangmentService) { }
+    private cartService: CartMangmentService,private adminMCategoriesServ: AdminMCategoriesService){}
+
 
   ngOnInit(): void {
     // this.resolver.data.subscribe(
     //   data=>{this.products=data['options']}
     // )
     this.loadCart()
+    // this.loadCategories();
   }
+
   loadCart() {
     this.cartService.getOptionsFromCart().subscribe(
       succ => { this.products = succ, this.findsum(succ) },
@@ -57,4 +72,12 @@ export class NavebareComponent implements OnInit {
     this.authService.currentUser = null;
     this.router.navigate(['']);
   }
+
+  // loadCategories(){
+  //   this.adminMCategoriesServ.getCategories().subscribe(d=>{
+  //     this.allCategories = d;
+  //   });
+  // }
+
+
 }
