@@ -69,7 +69,7 @@ namespace Souqly_API.Controllers
                         TotalOptionPrice = OptionInfo.NewPrice
                     };
 
-                    await _productRepo.UpdateSoldQuantity(orderDetail.Option.ProductId, orderDetail.Quantity);
+                      await _productRepo.UpdateSoldQuantity(OptionInfo.Option.Product.Id, OptionInfo.Quantity);
 
                     await _repo.Add(orderDetail);
                      var option= await _repo.GetOptionToUPdateQauntaty(OptionInfo.OptionId);

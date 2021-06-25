@@ -9,7 +9,8 @@ namespace Souqly_API.Dtos.User
         [StringLength(256), Required]
         public string UserName { get; set; }
         public string PhoneNumber { get; set; }
- 
+       
+
         public string FirstName { get; set; }
         public string lastName { get; set; }
         public string RoleName { get; set; }

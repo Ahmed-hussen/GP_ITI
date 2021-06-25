@@ -2,6 +2,7 @@ import { AuthServicesService } from './../../../../_services/AuthServices.servic
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HasRoleDirective } from '_directives/has-role.directive';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,34 @@ export class LoginComponent implements OnInit {
         }
 
       },
-      () => { this.router.navigate(['products']) }
+     
+      () => {
+        if(this.service.decodedToken.role=="Admin")
+        {
+         this.router.navigate(['/dashboard'])
+        }
+        else if(this.service.decodedToken.role=="Supplier")
+        {
+         
+           this.router.navigate(['/uploadproduct'])
+          
+        }
+        else if(this.service.decodedToken.role=="Marketing")
+        {
+         
+           this.router.navigate(['products'])
+          
+        }
+        else if(this.service.decodedToken.role=="Marketing")
+        {
+         
+           this.router.navigate(['/bindingorders'])
+          
+        }
+        
+        
+        
+        }
     )
-  }
+}
 }

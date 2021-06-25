@@ -9,8 +9,9 @@ import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/htt
   providedIn: 'root'
 })
 export class VisaService {
-
-  url:string = environment.ApiUrl + 'api/Users/';
+  
+  url = environment.ApiUrl +'api/Users/';
+ 
   
 
   constructor( private http:HttpClient , private autserve:AuthServicesService) { 
@@ -31,8 +32,10 @@ export class VisaService {
       headers: headers_object
     };
     visaObj.id=this.autserve.decodedToken.nameid;//to take id of this token
+     console.log(visaObj);
+    return this.http.post(this.url + 'paymentdetails', visaObj, httpOptions);
 
-   return this.http.post(this.url + 'paymentdetails', visaObj, httpOptions);
+   //return this.http.post(this.url + 'paymentdetails', visaObj, httpOptions);
   }
   getVisaDataById(id:number)
   {

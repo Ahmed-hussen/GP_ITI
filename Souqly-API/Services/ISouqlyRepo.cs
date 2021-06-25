@@ -49,7 +49,16 @@ namespace Souqly_API.Services
         Task<int> AddWithdrawnRequest(int user_id, int money);
 
         Task<bool> DeleteAllSelected(ICollection<string> ids);
+
+        //Get Orders
         Task<IEnumerable<OrderDetails>> GetMarketeerOrders(int id);
+
+        //Admin
+         Task<IEnumerable<Category>> GetallCategories();
+
+         Task<Category> UpdateCategory(int id, string name);
+
+         Category GetCatById(int id);
         Task <Count> GetCounts();
 
         //shipping

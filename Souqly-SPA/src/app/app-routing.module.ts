@@ -16,7 +16,6 @@ import { OrderDetailsResolver } from '_resolvers/OrderDetails.resolver';
 import { OrderListComponent } from './CartManagement/order-list/order-list.component';
 import { SupplierOrdersComponent } from './supplier-orders/supplier-orders.component';
 import { ManageAccountComponent } from './Marketing/manage-account/manage-account.component';
-import { ProductComponent } from './product-explore/product/product.component';
 import {ProductListComponent} from './product-explore/product-list/product-list.component';
 import { ProfitsComponent } from './profits/profits.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -24,6 +23,13 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserListComponent } from './crudUser/user-list/user-list.component';
 import { UserDetailsComponent } from './crudUser/user-details/user-details.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import { ManageCategoriesComponent } from './Admin/manage-categories/manage-categories.component';
+import { AddCategoryComponent } from './Admin/add-category/add-category.component';
+import { EditCategoryComponent } from './Admin/edit-category/edit-category.component';
+
+import { EditeUserComponent } from './crudUser/edite-user/edite-user.component';
+import { DeleteUserComponent } from './crudUser/delete-user/delete-user.component';
+import { SupplierDetailsComponent } from './crudUser/supplier-details/supplier-details.component';
 import { ManageWithdrawnRequestsComponent } from './admin/manage-withdrawn-requests/manage-withdrawn-requests.component';
 import { UserDataComponent } from './admin/user-data/user-data.component';
 
@@ -42,10 +48,24 @@ const routes: Routes = [
   { path: 'payment', component:PaymentComponent},
   { path: 'dashboard', component:AdminDashboardComponent},
   { path: 'UserList', component:UserListComponent},
+  { path: 'supplierDetails', component:SupplierDetailsComponent},
+  { path: 'supplierDetails/editUser/:id', component:EditeUserComponent},
+  { path: 'UserList/details/:id', component:UserDetailsComponent},
+  { path: 'UserList/editUser/:id', component:EditeUserComponent},
+  { path: 'UserList/deleteUser/:id', component:DeleteUserComponent},
+
+
   { path: 'ShippingStatus', component:UpdateOrderStatusComponent},
   { path: 'UserList/details/:id', component:UserDetailsComponent},
   { path: 'shippingregister', component: RegisterShippingComponent},
   {path: 'followorders', component: FollowOrdersComponent},
+  {path: 'managecategory', component: ManageCategoriesComponent, children:[
+  {path: 'addcategory' , component: AddCategoryComponent }
+  ]
+   },
+   //try
+  {path: 'editcategory/:id' , component: EditCategoryComponent},
+  ///
   {path: 'products', component: ProductListComponent},
   { path: 'Checkout', component: CheckOutComponent,resolve:{checkout:OptionCartListresolver,shipping:ShippingListResolver}},//b7ml el data 3la el route
   { path: 'OrderList', component: OrderListComponent,resolve:{order:OrderListResolver}},

@@ -93,6 +93,10 @@ namespace Souqly_API.Helpers
               .ForMember(dest => dest.DealPrice, opt => { opt.MapFrom(src => src.Order.Bill.DealPrice); })
               .ForMember(dest => dest.MarktingProfits, opt => { opt.MapFrom(src => src.Order.Bill.MarktingProfits); });
 
+            //Admin Manage categories
+            CreateMap<Category, ManageCategoriesDto>();// Get Data
+            CreateMap<ManageCategoriesDto,Category>();// Create
+
 
             CreateMap<Order, OrderShippingDto>();
             CreateMap<OrderShippingDto, Order>();

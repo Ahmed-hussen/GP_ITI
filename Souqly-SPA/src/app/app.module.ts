@@ -9,8 +9,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from '@auth0/angular-jwt';
 import { FileUploadModule} from 'ng2-file-upload';
 import { CommonModule } from '@angular/common';
-import {DropdownModule} from 'primeng/dropdown';
-
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -44,6 +42,13 @@ import { PaymentComponent } from './payment/payment.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { CheckOutComponent } from './CartManagement/check-out/check-out.component';
 import { FollowOrdersComponent } from './Marketing/follow-orders/follow-orders.component';
+import {DropdownModule} from 'primeng/dropdown';
+import { ManageCategoriesComponent } from './Admin/manage-categories/manage-categories.component';
+import { AddCategoryComponent } from './Admin/add-category/add-category.component';
+import { EditCategoryComponent } from './Admin/edit-category/edit-category.component';
+import { DeleteUserComponent } from './crudUser/delete-user/delete-user.component';
+import { EditeUserComponent } from './crudUser/edite-user/edite-user.component';
+import { SupplierDetailsComponent } from './crudUser/supplier-details/supplier-details.component';
 import { ProfitsComponent } from './profits/profits.component';
 import {ToastModule} from 'primeng/toast';
 import { AdminModule } from './admin/admin.module';
@@ -84,16 +89,21 @@ export function tokenGetter() {
     OrderListComponent,
     SupplierOrdersComponent,
     ManageAccountComponent,
+    FollowOrdersComponent,
+    ManageCategoriesComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
     UploadProductDataComponent,
     BindingOrdersComponent,
     ShippingOrderDetailsComponent,
-
-
     PaymentComponent,
     AdminDashboardComponent,
     UserListComponent,
     UserDetailsComponent,
     FollowOrdersComponent,
+    DeleteUserComponent,
+    EditeUserComponent,
+    SupplierDetailsComponent,
     ProfitsComponent,
     RegisterShippingComponent,
     UpdateOrderStatusComponent
@@ -108,13 +118,13 @@ export function tokenGetter() {
     BrowserModule,
     BrowserAnimationsModule,
     TableModule,
-    CommonModule,
     DropdownModule,
+    CommonModule,
     FileUploadModule,
     InputTextModule,
     ButtonModule,
     InputSwitchModule,
-  
+
 
     ProductExploreModule,
     AdminModule,

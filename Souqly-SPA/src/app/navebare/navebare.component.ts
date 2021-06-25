@@ -1,10 +1,8 @@
 import { AuthServicesService } from './../../../_services/AuthServices.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductOptionCart } from '_models/productOptionCart';
 import { CartMangmentService } from '_services/cart-mangment.service';
-import { AppComponent } from '../app.component';
-import { SupplierOrderService } from '_services/supplier-service.service';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 @Component({
@@ -13,11 +11,11 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
   styleUrls: ['./navebare.component.css']
 })
 export class NavebareComponent implements OnInit {
-  count:number;
+
   products: ProductOptionCart[];
   isSupplier:boolean;
   constructor(public authService: AuthServicesService, private router: Router, private resolver: ActivatedRoute,
-    private cartService: CartMangmentService, private supplierService:SupplierOrderService) { }
+    private cartService: CartMangmentService) { }
 
    //define connection SR
    hubConnection:HubConnection;
@@ -27,15 +25,7 @@ export class NavebareComponent implements OnInit {
     // this.resolver.data.subscribe(
     //   data=>{this.products=data['options']}
     // )
-    this.loadCart();
-    
-    if (this.authService.decodedToken.role == "Supplier")
-      this.supplierService.getCountOfOrders().subscribe(
-        d => this.count = this.supplierService.count
-      );
-      
-        
-    // this.loadCart()
+    this.loadCart()
 
    //define conction and give it api service url
     this.hubConnection=new HubConnectionBuilder().withUrl("http://localhost:5000/cart").build();

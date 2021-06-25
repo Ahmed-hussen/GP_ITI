@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ManageCategories } from '_models/ManageCategories';
 import { Product } from '_models/ola/Product';
-// import { ManageCategories } from '_models/ManageCategories';
+import { AdminMCategoriesService } from '_services/admin-mcategories.service';
 import { Pagination, PaginationResult } from '_models/Pagination';
 import { AlertService } from '_services/alertifay.service';
 import { ProductServiceService } from '_services/product-service.service';
@@ -13,14 +14,14 @@ import { ProductServiceService } from '_services/product-service.service';
 export class ProductListComponent implements OnInit {
   products:Product[];
   topProducts:Product[];
-  // allCategories: ManageCategories[];
-  // selectedCategory: ManageCategories;
+  allCategories: ManageCategories[];
+  selectedCategory: ManageCategories;
 //   pagination:Pagination;
-  
+
 //   constructor(private productServ:ProductServiceService,private alert:AlertService) { }
 //   pageNumber = 1;
 //   pageSize = 8;
-  
+
 //   ngOnInit(): void {
 //     this.productServ.getProducts(this.pageNumber,this.pageSize).subscribe(
 //       prods => {
@@ -48,21 +49,38 @@ export class ProductListComponent implements OnInit {
   sortOrder: number;
   sortField: string;
 
-  constructor(private productServ:ProductServiceService) { }
+  constructor(private productServ:ProductServiceService,private adminMCategoriesServ: AdminMCategoriesService) { }
 
   ngOnInit(): void {
-    // this.loadCategories();
-    this.productServ.getProducts().subscribe(
-      prods => this.products = prods
-    );
-    this.productServ.getTopProducts(3).subscribe(
-      prods => this.topProducts = prods
-    );
 
-    this.sortOptions = [
-      {label: 'حسب الأعلى سعر', value: '!price'},
-      {label: 'حسب الأقل سعر', value: 'price'}
-    ];
+      this.productServ.getProducts().subscribe(
+        prods => this.products = prods
+      );
+      this.productServ.getTopProducts(3).subscribe(
+        prods => this.topProducts = prods
+      );
+
+      this.sortOptions = [
+        {label: 'حسب الأعلى سعر', value: '!price'},
+        {label: 'حسب الأقل سعر', value: 'price'}
+      ];
+    this.loadCategories();
+
+  }
+  loadCategories(){
+    this.adminMCategoriesServ.getCategories().subscribe(d=>{
+      this.allCategories = d;
+    });
+  }
+  CategoryChanging( ID :number)
+  {
+    this.productServ.getCategoryProducts(ID).subscribe(
+      prods => this.products = prods
+    )
+    this.productServ.getCatgoreyTopProducts(ID,3).subscribe(
+      prods => this.topProducts = prods
+    )
+
   }
 
   onSortChange(event) {
@@ -77,19 +95,4 @@ export class ProductListComponent implements OnInit {
         this.sortField = value;
     }
 }
-// loadCategories(){
-//   this.adminMCategoriesServ.getCategories().subscribe(d=>{
-//     this.allCategories = d;
-//   });
-// }
-
-// CategoryChanging()
-// {
-
-//   this.productServ.getCategoryProducts(this.selectedCategory.id).subscribe(
-//     prods => this.products = prods
-//   )
-
-// }
-
 }

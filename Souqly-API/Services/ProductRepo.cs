@@ -120,7 +120,7 @@ return result;
         public async Task UpdateSoldQuantity(int id, int quantity)
         {
             Product product = _context.Products.FirstOrDefault(p => p.Id == id);
-            if (product.QuantitySold!=null) { 
+            if (product.QuantitySold!=null) {
             product.QuantitySold += quantity;
             }
             else

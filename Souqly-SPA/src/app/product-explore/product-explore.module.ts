@@ -16,6 +16,7 @@ import {ButtonModule} from 'primeng/button';
 import {GalleriaModule} from 'primeng/galleria';
 import {DataViewModule} from 'primeng/dataview';
 import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 import {PaginatorModule} from 'primeng/paginator';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
@@ -40,7 +41,8 @@ import {InputTextModule} from 'primeng/inputtext';
     ButtonModule,
     GalleriaModule,
     DataViewModule,
-    FormsModule ,
+    FormsModule,
+    DropdownModule,
  // PaginationModule.forRoot(),
     PaginatorModule,
     ProgressSpinnerModule,
