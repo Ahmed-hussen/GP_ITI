@@ -83,7 +83,13 @@ table td.centered {
 	width: 25px;
 	padding-left: 10px;
   }
- 
+
+  .cardImg{
+    border-radius: 5% !important;
+    min-height: 100px !important;
+    width: 120px !important;
+    margin-bottom: 0 !important;
+}
 
 
 

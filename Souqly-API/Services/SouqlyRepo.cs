@@ -91,9 +91,9 @@ namespace Souqly_API.Services
             return Option.StockIn;
         }
 
-        public Task<List<ProductOptionCart>> GetCart(int id)
+         public async Task<List<ProductOptionCart>> GetCart(int id)
         {
-            var CartItems = _context.ProductOptionCart.Include(i => i.Option).Where(i => i.CartId == id).ToListAsync();
+            var CartItems = await _context.ProductOptionCart.Include(i => i.Option).ThenInclude(i=>i.Product).ThenInclude(id=>id.Images).Where(i => i.CartId == id).ToListAsync();
             return CartItems;
 
         }

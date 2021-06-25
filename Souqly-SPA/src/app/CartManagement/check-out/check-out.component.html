@@ -91,7 +91,7 @@
                       <thead>
                         <tr>
                           <th>صورة المنتج</th>
-                          <th class="p-name">اسم المنتج </th>
+                          <th style="text-align: center !important;" class="p-name">اسم المنتج </th>
                           <th>سعر المنتج </th>
                           <th>الكمية</th>
                           <th>المخزون </th>
@@ -103,9 +103,9 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let item of options">
-                          <td class="cart-pic first-row"><img src="img/cart-page/product-1.jpg" alt=""></td>
-                          <td class="cart-title first-row">
-                            <h5>{{item.option.availableOptions}}</h5>
+                          <td class="cart-pic first-row"><img class="cardImg" [src]="item.option.product.images[0].url"alt="" ></td>
+                          <td style="text-align: center !important;" class="cart-title first-row">
+                            <h5>{{item.option.availableOptions}} - {{item.option.product.productName}}</h5>
                           </td>
                           <td class="p-price first-row">{{item.option.itemPrice}}</td>
                           <td class="qua-col first-row">

@@ -41,7 +41,7 @@
                            <span class="mytitle" style="margin-left:47%"> الطلبات
                   </span>
                 <li *ngFor="let item of order.orderDetail" class="subtotal" style="font-size: 22px !important;  border-bottom: 1px solid #644d12 !important">
-                 {{item.totalOptionPrice}} EGP <span>  {{item.option.availableOptions}}</span>
+                 {{item.totalOptionPrice}} EGP <span>  {{item.option.availableOptions}} - {{item.option.product.productName}}</span>
 
                    </li>
               </ul>
