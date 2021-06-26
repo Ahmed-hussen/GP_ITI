@@ -11,4 +11,5 @@ export interface User {
   lockoutEnabled:boolean;
   emailConfirmed:boolean;
   normalizedUserName:string;
+  
 }

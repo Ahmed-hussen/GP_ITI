@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductOptionCart } from '_models/productOptionCart';
 import { CartMangmentService } from '_services/cart-mangment.service';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { NavServiceService } from '_services/NavService.service';
 
 @Component({
   selector: 'app-navebare',
@@ -15,7 +16,7 @@ export class NavebareComponent implements OnInit {
   products: ProductOptionCart[];
   isSupplier:boolean;
   constructor(public authService: AuthServicesService, private router: Router, private resolver: ActivatedRoute,
-    private cartService: CartMangmentService) { }
+    private cartService: CartMangmentService,public nav:NavServiceService) { }
 
    //define connection SR
    hubConnection:HubConnection;

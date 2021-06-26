@@ -98,7 +98,12 @@ namespace Souqly_API.Controllers
             return Ok(prods);
         }
 
-
+       [HttpGet("GetSupplierProductsEx/{id}")]
+        public async Task<IActionResult> GetSupplierProductsEx(int id)
+        {
+            var prods = await _repo.GetSupplierProductsEx(id);
+            return Ok(prods);
+        }
 
  
 

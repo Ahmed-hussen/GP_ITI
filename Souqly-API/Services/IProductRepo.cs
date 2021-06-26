@@ -24,6 +24,8 @@ Task<List<ProductDto>> GetCatogoreyProducts(int CatgoreyId);
       Task<List<ProductDto>> GetTopProducts(int top);
     Task<List<ProductDto>> GetTopProductsByCatogorey(int CatgoreyId,int topnum);
      Task UpdateSoldQuantity(int id, int quantity);
+       
+       Task<List<ProductDto>> GetSupplierProductsEx(int id);
 
     }
 }

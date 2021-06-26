@@ -121,4 +121,18 @@ getCategoryProducts(id : number){
 }
 //end of service
 
+GetSupplierProductsEx(id:number){
+
+  var headers_object = new HttpHeaders({
+    'Content-Type': 'application/json',
+     'Authorization': "Bearer "+ window.localStorage.getItem('token')
+  });
+
+  const httpOptions = {
+    headers: headers_object
+  };
+  return this.http.get<Product[]>("https://localhost:5001/Product/GetSupplierProductsEx/"+id, httpOptions);
+
+}//end ofgetProducts
+
 }

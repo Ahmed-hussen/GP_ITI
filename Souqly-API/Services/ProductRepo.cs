@@ -150,6 +150,27 @@ return result;
             }).ToListAsync();
             return result;
         }
+        public async Task<List<ProductDto>> GetSupplierProductsEx(int id)
+        {
+            List<ProductDto> result = await _context.Products.Include(p => p.Options).Include(p => p.Images).Where(a => a.SupplierId == id).Select(p => new ProductDto()
+            {
+                id = p.Id,
+                productName = p.ProductName,
+                price = p.Options.Min(o => o.ItemPrice),
+                stockIn = p.Options.Sum(o => o.StockIn),
+                images = p.Images.Select(i => i.Url).ToList(),
+                options = p.Options.Where(am => am.StockIn <= 15).Select(o => new OptionDto()
+                {
+                    Id = o.Id,
+                    Name = o.AvailableOptions,
+                    ItemPrice = o.ItemPrice,
+                    StockIn = o.StockIn
+                }).ToList()
+            }).ToListAsync();
+            return result;
+
+
+        }//end of GetSupplierProductsEx
     }
 
 

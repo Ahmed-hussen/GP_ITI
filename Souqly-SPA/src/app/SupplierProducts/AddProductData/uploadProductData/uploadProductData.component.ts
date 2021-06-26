@@ -26,6 +26,9 @@ export class UploadProductDataComponent implements OnInit {
   categories:Category[];
   obj:ProductDataDto;
   Photouploaded=false;
+  errorMsg="";
+  active:boolean;
+
 ////////////////////////////////////////////////////////////////////
 
   constructor(private authService: AuthServicesService , private router : Router, private supplierService:SupplierOrderService , private alertifyService: AlertService) { }
@@ -36,7 +39,7 @@ export class UploadProductDataComponent implements OnInit {
     this.supplierService.getallcategories().subscribe(a=>{
       this.categories=a;
     });
-    //  this.initializeUploader();
+    this.active = this.authService.currentUser.emailConfirmed;
   }
 
 ////////////////////////////////////////////////////////////////////
@@ -130,7 +133,10 @@ addproductdata(){
      this.initializeUploader();
      //this.uploader.uploadAll();
      this.alertifyService.success("تم إضافة المنتج بنجاح باضافة الصور");
-   });
+   }, (error) => {
+    this.errorMsg=error.error;
+
+  });
   //  console.log("===>>"+this.id);
     //this.initializeUploader();
   //  this.productadded=true;

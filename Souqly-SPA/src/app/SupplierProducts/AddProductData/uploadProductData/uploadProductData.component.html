@@ -1,8 +1,9 @@
 <br>
 
-<div dir="rtl" class=container>
+<div dir="rtl" class=container *ngIf="active">
   <form [formGroup]="productForm" (ngSubmit)="addproductdata()" *ngIf="!productadded">
-    <h3 dir="rtl"><b>بيانات المنتج الاساية</b></h3>
+    <h3 style="text-align: right;"><b>بيانات المنتج الاساية</b></h3>
+    <br>
 
     <div class="row">
       <div class="col-sm-4">
@@ -45,24 +46,32 @@
       </div>
 
     </div>
-    <br>
-    <br>
+    <!-- <input class="btn btn-primary" (click)="addoption()" value="اضافة تفاصيل" style="margin-left: 100%;"> -->
     <!-- <h2> {{productForm.value|json}}</h2> -->
     <hr>
+    <div class="container">
     <div class="row">
-      <h3 dir="rtl"><b>بيانات المنتج الاضافية</b></h3>
-      <input class="btn btn-primary" (click)="addoption()" value="اضافة تفاصيل">
-      <div>
-        <div *ngFor="let item of Codes.controls;let i=index">
+      <h3><b>بيانات المنتج الاضافية</b></h3>
+
+      </div>
+      <br>
+    <input class="btn optionbutton" (click)="addoption()" value="اضافة تفاصيل" style="margin-left: 100%;">
+
+
+      <div class="row">
+        <div *ngFor="let item of Codes.controls;let i=index" style="margin-right: 10px; margin-right: 5%;">
           <br>
-          <div formArrayName="Codes" id="optioninline"> <input type="text" [formControlName]="i" placeholder="الكود">
+          <div formArrayName="Codes" id="optioninline"> <input type="text" class="form-control" [formControlName]="i" placeholder="الكود">
           </div>
-          <div formArrayName="StockIns" id="optioninline"> <input type="text" [formControlName]="i" placeholder="العدد">
+
+          <div formArrayName="StockIns" id="optioninline"> <input type="number" class="form-control" [formControlName]="i" placeholder="العدد">
           </div>
-          <div formArrayName="ItemPrices" id="optioninline"> <input type="text" [formControlName]="i"
-              placeholder="السعر"></div>
-          <div formArrayName="AvailableOptions" id="optioninline"> <input type="text" [formControlName]="i"
-              placeholder="الاوبشن"></div>
+
+          <div formArrayName="ItemPrices" id="optioninline"> <input type="number" class="form-control" [formControlName]="i" placeholder="السعر">
+          </div>
+
+          <div formArrayName="AvailableOptions" id="optioninline"> <input type="text" class="form-control" [formControlName]="i" placeholder="الاوبشن">
+          </div>
 
           <input class="btn btn-danger" (click)="removeoption()" value="حذف">
         </div>
@@ -70,14 +79,15 @@
 
       </div>
 
-    </div>
+
+  </div>
     <br>
     <hr>
 
 
     <div class="row">
 
-      <input type="submit" value="إضافة المنتج" class="btn btn-success" [disabled]="productForm.invalid">
+      <input type="submit" value="إضافة المنتج" class="btn addbutton" [disabled]="productForm.invalid">
     </div>
   </form>
 
@@ -179,9 +189,15 @@
   </div>
 
   <br>
-  <div class="row">
-    <input class="btn btn-warning" (click)="newproduct()" value="اضافة منتج جديد" *ngIf="Photouploaded">
+  <div class="row" style="width: 500px; text-align: center;">
+    <input class="btn btn-warning" (click)="newproduct()" value="اضافة منتج جديد" *ngIf="Photouploaded" >
   </div>
   <br>
 
+</div>
+
+
+<div class="h-75 d-flex justify-content-center align-items-center" style="font-size: 22px; font-weight: bold;" *ngIf="!active">
+  <span class="mr-3" style="color: red; text-decoration: underline;">حسابك غير مفعل</span>
+   لا يمكنك رفع منتجاتك في الوقت الحالي
 </div>

@@ -31,7 +31,7 @@ namespace Souqly_API.Services
 
         public Task<List<ShippingCompanyDto>> getAllShippingCompanies()
         {
-            var companies = _dbContext.shippingCompanies.Select(a => new ShippingCompanyDto
+            var companies = _dbContext.shippingCompanies.Where(a=>a.Id != 1).Select(a => new ShippingCompanyDto
             {
                 Id = a.Id,
                 companyName = a.companyName

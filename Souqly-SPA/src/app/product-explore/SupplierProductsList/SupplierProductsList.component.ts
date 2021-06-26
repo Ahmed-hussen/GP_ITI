@@ -11,6 +11,8 @@ import { ProductServiceService } from '_services/product-service.service';
 export class SupplierProductsListComponent implements OnInit {
 
   products: Product[];
+  productsEx: Product[];
+
   SupplierId:number;
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,9 +27,11 @@ export class SupplierProductsListComponent implements OnInit {
     this.SupplierId = this.authService.decodedToken.nameid;
      this.productServ.GetSupplierProducts(this.SupplierId).subscribe(
           prods => {this.products = prods
-            console.log("hereeeeeeeeeeeee==1==>>"+prods);
-            console.log("hereeeeeeeeeeeee==2==>>"+this.products);
           });
+
+    this.productServ.GetSupplierProductsEx(this.SupplierId).subscribe(am=>{
+        this.productsEx=am;
+      });
 
   }//end of ngOnInit
 

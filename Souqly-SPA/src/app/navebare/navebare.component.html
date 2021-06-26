@@ -1,5 +1,5 @@
 <!-- Header Section Begin -->
-<header class="header-section">
+<header class="header-section" *ngIf="nav.visible" >
   <div class="header-top">
     <div class="container">
       <div class="ht-left">
@@ -181,7 +181,7 @@
 
             <!-- no oooooooooooonnnnnnneeeee -->
 
-          <li *ngIf="loggedIn()" ><a *hasRole="['Marketing','Supplier','Shipping']" href="./contact.html"> مركز المساعدة </a></li>
+          <!-- <li *ngIf="loggedIn()" ><a *hasRole="['Marketing','Supplier','Shipping']" href="./contact.html"> مركز المساعدة </a></li> -->
         </ul>
       </nav>
       <div id="mobile-menu-wrap"></div>

@@ -7,3 +7,4 @@ namespace Souqly_API.Dtos.User
         public bool EmailConfirmed { get; set; }
     }
 }
+

@@ -37,6 +37,7 @@ import { UserDataComponent } from './admin/user-data/user-data.component';
 import { RegisterShippingComponent } from './Admin/register-shipping/register-shipping.component';
 import { UpdateOrderStatusComponent } from './ShippingEmployee/update-order-status/update-order-status.component';
 import { UploadProductDataComponent } from './SupplierProducts/AddProductData/uploadProductData/uploadProductData.component';
+import { NotFoundComponent } from './NotFound/NotFound.component';
 const routes: Routes = [
   {path:'',component:HomePageComponent},
   { path: 'login', component: LoginComponent },
@@ -75,7 +76,7 @@ const routes: Routes = [
   { path: 'userdata', component:UserDataComponent},
   { path: 'bindingorders', component:BindingOrdersComponent},
   { path: 'supplierProductsList', component:SupplierProductsListComponent},
-  { path: '**', redirectTo :'',pathMatch:'full'},
+  { path: '**', component:NotFoundComponent},
 
 ];
 
