@@ -65,13 +65,13 @@ export class SupplierProductEditComponent implements OnInit {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
- closeModal(){
-      this.dialogRef.close();
-          // this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-          //   this.router.navigate(["supplierProductsList"]);
-          // });
+   closeModal(){
+        this.dialogRef.close();
+        this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+        this.router.navigate(["supplierProductsList"]);
+      });
 
-    }//end of closeModal
+}//end of closeModal
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 

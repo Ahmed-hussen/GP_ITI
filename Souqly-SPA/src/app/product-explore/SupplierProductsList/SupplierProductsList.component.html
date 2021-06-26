@@ -9,11 +9,15 @@
     لا يوجد لديك منتجات حتى الان
 </div> -->
 
+
 <br>
 <h2 style="text-align: center;" class="text-dark">المنتجات التى قاربت على الانتهاء</h2>
-<div class="row w-100 p-5" *ngIf="products != null">
-  <div *ngFor="let prod of productsEx" class="col-3">
-    <app-SupplierProduct [product]="prod"></app-SupplierProduct>
+<div class="row w-100 p-5">
+  <div *ngFor="let prod of productsEx">
+    <div *ngIf="prod.options.length >0" class="col-3">
+      <app-SupplierProduct  [product]="prod"></app-SupplierProduct>
+    </div>
+ 
   </div>
 </div>
 

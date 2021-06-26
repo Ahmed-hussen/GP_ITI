@@ -86,7 +86,6 @@
                   <td style="text-align:center">
                       <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"  (click)="onRowEditInit(option)" class="p-button-rounded p-button-text"></button>
                       <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(option)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
-                      <button  pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(option, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
                   </td>
               </tr>
           </ng-template>
